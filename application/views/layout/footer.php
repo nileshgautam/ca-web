@@ -1,24 +1,170 @@
-<!-- <footer id="footer">
-    <div class="row">
-        <div class="col-sm-8 row">
-                <div class="col-sm-2"><img src="" alt="logo"></div>
-                <div class="col-sm-10">Business Logo</div>  
-        </div>
-        <div class="col-sm-4 row">
-            <div class="col-sm-6">India</div>
-            <div class="col-sm-6">English (India)</div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">Start your</div>
-        <div class="col-sm-2">GST Services</div>
-        <div class="col-sm-2">Income Tax</div>
-        <div class="col-sm-2">Payroll Compliance</div>
-        <div class="col-sm-2">Corporate Filings</div>
-    </div>
-</footer> -->
+<!-- start footer -->
+<footer class="Container">
+	<!-- Footer logo section -->
+	<div class="container">
+		<div class="row p-30">
+			<div class="col-sm-4 row">
+				<div class="col-sm-2"><img src="<?php echo base_url('assets/') ?>image/logo.png" alt="logo" class="footer-logo"></div>
+				<div class="col-sm-10"> <strong>CA Website</strong> </div>
+			</div>
+			<div class="col-sm-8 row">
+				<div class="col-sm-5 offset-9">
+					<span> <img src="<?php echo base_url('assets/image/icon/country.png') ?>" alt="india" class="i-18"> India</span>
+					<span> <img src="<?php echo base_url('assets/image/icon/language.png') ?>" alt="language" class="i-16"> English (India)</span>
 
+				</div>
 
+			</div>
+		</div>
+		<hr class="divider">
+	</div>
+	<!-- footer service link start -->
+	<div class="footer-service-link container">
+		<div class="row p-30">
+			<div class="col-sm-3">
+				<span class="service-title-danger">Start your</span>
+				<ul>
+					<li><a href="">Proprietorship Company</a></li>
+					<li><a href="">Partnership Company</a></li>
+					<li><a href="">Limited Liability Partnership</a></li>
+					<li><a href="">Private Limited Company</a></li>
+					<li><a href="">Public Limited Company</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<span class="service-title-danger">GST Services</span>
+				<ul>
+					<li><a href="">Proprietorship Company</a></li>
+					<li><a href="">Partnership Company</a></li>
+					<li><a href="">Limited Liability Partnership</a></li>
+					<li><a href="">Private Limited Company</a></li>
+					<li><a href="">Public Limited Company</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3"><span class="service-title-danger">Income Tax</span>
+				<ul>
+					<li><a href="">Proprietorship Company</a></li>
+					<li><a href="">Partnership Company</a></li>
+					<li><a href="">Limited Liability Partnership</a></li>
+					<li><a href="">Private Limited Company</a></li>
+					<li><a href="">Public Limited Company</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3"><span class="service-title-danger">Corporate Filings</span>
+				<ul>
+					<li><a href="">Proprietorship Company</a></li>
+					<li><a href="">Partnership Company</a></li>
+					<li><a href="">Limited Liability Partnership</a></li>
+					<li><a href="">Private Limited Company</a></li>
+					<li><a href="">Public Limited Company</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Footer Address starts -->
+	<div class="container-fluid footer-address-section">
+		<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="row">
+					<div class="col-sm-12">
+						<span class="address-title-primary">Bangalore Office</span>
+					</div>
+				</div>
+
+				<div class="address">
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">
+							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">contactus@email.com</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<span class="address-title-primary">Delhi Office</span>
+				<div class="address">
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">
+							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">contactus@email.com</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<span class="address-title-primary">Singapore Office</span>
+				<div class="address">
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">
+							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">contactus@email.com</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<span class="address-title-primary">UAE Office</span>
+				<div class="address">
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">
+							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
+						<div class="col-sm-10">contactus@email.com</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<nav class="footer-nav">
+			<ul>
+				<li> <a href="#">Home</a> </li>
+				<li> <a href="#">About Us</a> </li>
+				<li> <a href="#">Career</a> </li>
+				<li> <a href="#">Accounting Calendar</a> </li>
+				<li> <a href="#">Contact Us</a> </li>
+				<li> <a href="#">Privacy Policy</a> </li>
+				<li> <a href="#">Terms & Conditions</a> </li>
+				<li> <a href="#">Refund Policy</a> </li>
+			</ul>
+		</nav>
+		</div>
+		
+	</div>
+</footer>
+<!-- end footer -->
 
 
 <!-- Optional JavaScript -->

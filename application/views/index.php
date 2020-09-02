@@ -1,23 +1,21 @@
 <!-- Header start -->
-
 <header id="header" class="container-fluid">
-	<div class="col-sm-12">
-		<nav class="navbar">
+    <div class="col-sm-12">
+      <nav class="navbar">
 
-			<div class="logo">
-				<img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
-			</div>
-			<ul>
-				<li><a href="">Business Startups</a> </li>
-				<li><a href="">GST Registration</a> </li>
-				<li><a href="">Income Tax</a></li>
-				<li><a href="">Compliance</a></li>
-			</ul>
-
-		</nav>
-	</div>
-
-	<div class="row">
+        <div class="logo">
+          <img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
+        </div>
+        <ul>
+          <li><a href="">Business Startups</a> </li>
+          <li><a href="">GST Registration</a> </li>
+          <li><a href="">Income Tax</a></li>
+          <li><a href="">Compliance</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<div class="row business-info">
 		<div class="col-sm-6 ">
 			<div class="head-para">
 				<h4>The Trusted leader for Businesses</h4>
@@ -30,14 +28,11 @@
 					</form>
 				</div>
 			</div>
-
-
 		</div>
 		<div class="col-sm-6">
 			<div><img src="<?php echo base_url('assets/image/index/bg2.png') ?>" alt="" height="" width="100%"></div>
 		</div>
 	</div>
-</header>
 
 <!-- Register, Form, Build
 Or Grow your Company in -->
@@ -46,9 +41,9 @@ Or Grow your Company in -->
 	<div class="container city">
 		<div class="row ">
 			<div class="col-sm-3 pl-5">
-				<h5 class="title-2">Register, Form, Build Or Grow your Company in</h5>
+				<h5 class="title-primary">Register, Form, Build Or Grow your Company in</h5>
 				<p class="text-danger title-3 ">Trusted by over 10,000 business owners worldwide</p>
-			
+
 			</div>
 			<div class="col-sm-9 bg-white">
 				<div class="recent-city">
@@ -82,8 +77,6 @@ Or Grow your Company in -->
 	</div>
 </section>
 
-
-
 <!-- Header End -->
 
 <!-- Our services start -->
@@ -91,9 +84,9 @@ Or Grow your Company in -->
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="sub-heading">
-				<span class="heading-why-us py-2 mt-5">What we Do</span>
+				<span class=" py-2 mt-5 what-we-do">What we Do</span>
 			</div>
-			<h2 class="section-heading">Our Services</h2>
+			<h2 class="section-heading-primary">Our Services</h2>
 
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 				<li class="nav-item">
@@ -204,15 +197,13 @@ Or Grow your Company in -->
 	</div>
 </section>
 <!-- Our services end -->
+
 <!-- Counter start -->
-<section id="counter" class="container">
-	<div class="row">
-		<div class="col-sm-12">
-			<h2 class="section-heading">Counter</h2>
-		</div>
-	</div>
+<section class="bg-counter">
+	<h2 class="text-align-center">Counter</h2>
 </section>
 <!-- Counter end -->
+
 
 <!-- Why choose us start -->
 <section id="why-choose-us" class="container">
@@ -222,7 +213,7 @@ Or Grow your Company in -->
 				<span class="heading-why-us">TRUSTED BY 1200+ ORGANISATIONS IN INDIA</span>
 			</div>
 
-			<h2 class="section-heading">Why Choose Us</h2>
+			<h2 class="section-heading-primary">Why Choose Us</h2>
 		</div>
 	</div>
 	<div class="row" id="">
@@ -293,11 +284,12 @@ Or Grow your Company in -->
 </section>
 <!-- Why choose us end -->
 
+
 <!-- Our client start -->
 <section class="clients-container container">
 	<div class="row">
 		<div class="col-sm-12">
-			<h2 class="section-heading">Our Clients</h2>
+			<h2 class="section-heading-primary">Our Clients</h2>
 		</div>
 	</div>
 	<div class="row border-bottom">
@@ -315,11 +307,12 @@ Or Grow your Company in -->
 </section>
 <!-- Our client end -->
 
+
 <!-- Our testimonial start -->
 <section id="client-review" class="container">
 	<div class="row">
 		<div class="col-sm-12">
-			<h2 class="section-heading">Customer Reviews</h2>
+			<h2 class="section-heading-primary">Customer Reviews</h2>
 		</div>
 	</div>
 	<div class="row" id="testimonial">
@@ -400,6 +393,7 @@ Or Grow your Company in -->
 </section>
 <!-- Our testimonial end -->
 
+
 <!-- start Ready to get started? -->
 <section id="contact-us">
 	<div class="row">
@@ -416,167 +410,4 @@ Or Grow your Company in -->
 </section>
 <!-- end Ready to get started? -->
 
-<!-- start footer -->
-<footer class="Container">
-	<!-- Footer logo section -->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 row">
-				<div class="col-sm-2"><img src="<?php echo base_url('assets/') ?>image/logo.png" alt="logo" class="footer-logo"></div>
-				<div class="col-sm-10"> <strong>CA Website</strong> </div>
-			</div>
-			<div class="col-sm-8 row">
-				<div class="col-sm-5 offset-9">
-					<span> <img src="<?php echo base_url('assets/image/icon/country.png') ?>" alt="india" class="i-18"> India</span>
-					<span> <img src="<?php echo base_url('assets/image/icon/language.png') ?>" alt="language" class="i-16"> English (India)</span>
 
-				</div>
-
-			</div>
-		</div>
-		<hr class="divider">
-	</div>
-	<!-- footer service link start -->
-	<div class="footer-service-link container">
-		<div class="row">
-			<div class="col-sm-3">
-				<span class="service-title-danger">Start your</span>
-				<ul>
-					<li><a href="">Proprietorship Company</a></li>
-					<li><a href="">Partnership Company</a></li>
-					<li><a href="">Limited Liability Partnership</a></li>
-					<li><a href="">Private Limited Company</a></li>
-					<li><a href="">Public Limited Company</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-3">
-				<span class="service-title-danger">GST Services</span>
-				<ul>
-					<li><a href="">Proprietorship Company</a></li>
-					<li><a href="">Partnership Company</a></li>
-					<li><a href="">Limited Liability Partnership</a></li>
-					<li><a href="">Private Limited Company</a></li>
-					<li><a href="">Public Limited Company</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-3"><span class="service-title-danger">Income Tax</span>
-				<ul>
-					<li><a href="">Proprietorship Company</a></li>
-					<li><a href="">Partnership Company</a></li>
-					<li><a href="">Limited Liability Partnership</a></li>
-					<li><a href="">Private Limited Company</a></li>
-					<li><a href="">Public Limited Company</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-3"><span class="service-title-danger">Corporate Filings</span>
-				<ul>
-					<li><a href="">Proprietorship Company</a></li>
-					<li><a href="">Partnership Company</a></li>
-					<li><a href="">Limited Liability Partnership</a></li>
-					<li><a href="">Private Limited Company</a></li>
-					<li><a href="">Public Limited Company</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- Footer Address starts -->
-	<div class="container-fluid footer-address-section">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="row">
-					<div class="col-sm-12">
-						<span class="address-title-primary">Bangalore Office</span>
-					</div>
-				</div>
-
-				<div class="address">
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<span class="address-title-primary">Delhi Office</span>
-				<div class="address">
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<span class="address-title-primary">Singapore Office</span>
-				<div class="address">
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<span class="address-title-primary">UAE Office</span>
-				<div class="address">
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<nav class="footer-nav">
-			<ul>
-				<li> <a href="#">Home</a> </li>
-				<li> <a href="#">About Us</a> </li>
-				<li> <a href="#">Career</a> </li>
-				<li> <a href="#">Accounting Calendar</a> </li>
-				<li> <a href="#">Contact Us</a> </li>
-				<li> <a href="#">Privacy Policy</a> </li>
-				<li> <a href="#">Terms & Conditions</a> </li>
-				<li> <a href="#">Refund Policy</a> </li>
-			</ul>
-		</nav>
-	</div>
-</footer>
-<!-- end footer -->
