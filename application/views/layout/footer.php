@@ -72,77 +72,77 @@
 					</div>
 				</div>
 
-				<div class="address">
+				<div class="">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
+						<div class="col-sm-10 f-13">contactus@email.com</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<span class="address-title-primary">Delhi Office</span>
-				<div class="address">
+				<div class="">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
+						<div class="col-sm-10 f-13">contactus@email.com</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<span class="address-title-primary">Singapore Office</span>
-				<div class="address">
+				<div class="">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
+						<div class="col-sm-10 f-13">contactus@email.com</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<span class="address-title-primary">UAE Office</span>
-				<div class="address">
+				<div class="">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/phone.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone">080-8758652 | +91 98765 43210</p>
+							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/mail.png') ?>" alt="location" class="h-15"></span></div>
-						<div class="col-sm-10">contactus@email.com</div>
+						<div class="col-sm-10 f-13">contactus@email.com</div>
 					</div>
 				</div>
 			</div>
