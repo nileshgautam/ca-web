@@ -1,0 +1,9 @@
+.action-icons{
+    display: flex;
+    justify-content: center;   
+    margin: auto;    
+}
+
+.action-icons i{    
+    margin: 5px;
+}
