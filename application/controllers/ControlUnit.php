@@ -25,4 +25,13 @@ class ControlUnit extends CI_Controller {
 		$this->load->view('index');
 		$this->load->view('layout/footer');
 	}
+
+	public function service()
+	{
+		$page['title']='Proprietorship Company';
+		$this->load->view('layout/header',$page);
+		$this->load->view('service-header');
+		$this->load->view('services');
+		$this->load->view('layout/footer');
+	}
 }
