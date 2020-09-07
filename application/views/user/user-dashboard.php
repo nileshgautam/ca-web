@@ -1,6 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
     <div class="row container">
         <?php for ($i = 0; $i < 1; $i++) { ?>
             <div class="col-md-4 py-2">
