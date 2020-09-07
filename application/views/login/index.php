@@ -15,7 +15,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form id="form1" method="post">
+                  <form id="form1" method="post" action="<?php echo base_url('Login/validate') ?>">
                     <div class="form-group">
                       <input type="text" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
@@ -28,7 +28,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <button id="btn" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" id="btn" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
                     <!-- <hr> -->
@@ -57,4 +57,17 @@
     </div>
 
   </div>
-  <script src="<?php echo base_url("assets/admin/js/scripts/login.js") ?>"></script>
+  
+  <!-- Message pop up -->
+<?php if (!empty($this->session->flashdata('error'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('error'); ?>';
+       Notiflix.Notify.Failure(error)
+    </script>
+<?php } ?>
+<?php if (!empty($this->session->flashdata('success'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('success'); ?>';
+        Notiflix.Notify.Success(error)
+    </script>
+<?php } ?>

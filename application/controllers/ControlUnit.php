@@ -68,7 +68,7 @@ class ControlUnit extends CI_Controller
 			$this->load->helper('email');
 			$to = $insertData['email'];
 			$sub = 'No Reply';
-			$mess = 'Dear ' . $_POST['uName'] . ',' . '<br>' . 'Find your creadiential and click on below link for further process' . '<br>' . 'link: ' . base_url('User') . '<br>User Name: ' . $insertData['email'] . '<br>' . 'Password: ' . $password;
+			$mess = 'Dear ' . $_POST['uName'] . ',' . '<br>' . 'Find your creadiential and click on below link for further process' . '<br>' . 'link: ' . base_url('Login') . '<br>User Name: ' . $insertData['email'] . '<br>' . 'Password: ' . $password;
 			if (sentmail($to, $sub, $mess)) {
 				$result = $this->MainModel->insertInto('users', $insertData);
 				$result1 = $this->MainModel->insertInto('user_services', $userService);

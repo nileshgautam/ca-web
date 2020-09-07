@@ -113,14 +113,14 @@
               </div>
           </li>
           <li class="nav-item">
-              <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i class="fas fa-th-large"></i></a>
+              <a class="nav-link" href="<?php echo base_url('logout')?>" role="button"><i class="fas fa-sign-out-alt"></i></a>
           </li>
       </ul>
   </nav>
   <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
           <img src="<?php echo base_url('adminAssets/img/logo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -142,21 +142,21 @@
           <!-- Sidebar Menu -->
           <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-               
-              <?php
-                if($_SESSION['userInfo']['role']==ADMIN){              
-                  ?>
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-edit"></i>
-                          <p>
-                              Forms
-                              <i class="fas fa-angle-left right"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <!-- <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/')?>" class="nav-link">
+
+                  <?php
+                    if ($_SESSION['userInfo']['role'] == ADMIN) {
+                    ?>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-edit"></i>
+                              <p>
+                                  Forms
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <!-- <li class="nav-item">
+                              <a href="<?php echo base_url('Admin/') ?>" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Countries</p>
                               </a>
@@ -167,64 +167,63 @@
                                   <p>Categories</p>
                               </a>
                           </li> -->
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/addServices')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Services</p>
-                              </a>
-                          </li>
-                          <!-- <li class="nav-item">
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/addServices') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Services</p>
+                                  </a>
+                              </li>
+                              <!-- <li class="nav-item">
                               <a href="pages/forms/validation.html" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Validation</p>
                               </a>
                           </li> -->
-                      </ul>
-                  </li>
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-table"></i>
-                          <p>
-                              Tables
-                              <i class="fas fa-angle-left right"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/countries')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Countries</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/Categories')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Categories</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/showServices')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Services</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-                <?php }
-                else if($_SESSION['userInfo']['role']==USER){
-                ?>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-table"></i>
+                              <p>
+                                  Tables
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/countries') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Countries</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/Categories') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Categories</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/showServices') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Services</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  <?php } else if ($_SESSION['userInfo']['role'] == USER) {
+                    ?>
 
-                    <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-edit"></i>
-                          <p>
-                              Forms
-                              <i class="fas fa-angle-left right"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <!-- <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/')?>" class="nav-link">
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="fas fa-tasks"></i>
+                              <p>
+                                  Services
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <!-- <li class="nav-item">
+                              <a href="<?php echo base_url('Admin/') ?>" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Countries</p>
                               </a>
@@ -235,57 +234,87 @@
                                   <p>Categories</p>
                               </a>
                           </li> -->
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/addServices')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Services</p>
-                              </a>
-                          </li>
-                          <!-- <li class="nav-item">
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/addServices') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Services</p>
+                                  </a>
+                              </li>
+                              <!-- <li class="nav-item">
                               <a href="pages/forms/validation.html" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>Validation</p>
                               </a>
                           </li> -->
-                      </ul>
-                  </li>
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-table"></i>
-                          <p>
-                              Tables
-                              <i class="fas fa-angle-left right"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/countries')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Countries</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/Categories')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Categories</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url('Admin/showServices')?>" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Services</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-money-check"></i>
+                              <p>
+                                  Payments/Receipts
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/countries') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Countries</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/Categories') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Categories</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/showServices') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Services</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
 
-                <?php } ?>
-                  
-                  
-              
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-headphones"></i>
+                              <p>
+                                  Helpdesk
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/countries') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Countries</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/Categories') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Categories</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/showServices') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Services</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+
+                  <?php } ?>
 
 
-            
+
+
+
+
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

@@ -545,3 +545,11 @@
         padding: 22px 94px;
         font-size: 15px;
     }
+
+    /* Log In Page  */
+    .bg-gradient-primary {
+        background-color: var(--primary);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, var(--primary)), to(#224abe));
+        background-image: linear-gradient(180deg, var(--primary) 10%, var(--primary-gradient)100%);
+        background-size: cover;
+    }

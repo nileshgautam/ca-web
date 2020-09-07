@@ -7,8 +7,10 @@ class Login extends ci_controller
 		parent::__construct();
 		date_default_timezone_set("Asia/Kolkata");
 
-		if (isset($_SESSION['userInfo']) && !empty($_SESSION['userInfo'])) {
-			redirect('Admin');
+		if (isset($_SESSION['userInfo']) && !empty($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'Admin') {
+			redirect(base_url('Admin'));
+		}else if (isset($_SESSION['userInfo']) && !empty($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'User'){
+			redirect(base_url('User'));
 		}
 	}
 	public function register()
@@ -70,21 +72,29 @@ class Login extends ci_controller
 
 			if ($result) {
 				$result = $result[0];
-
+				// print_r($result);die;
 				$this->session->set_userdata("userInfo", $result, isset($_POST['rememberme']) ? true : false);
-
-				// echo '<pre>';
-				// print_r($_SESSION['userInfo']);
-			
-
-				echo json_encode(array('success' => true, 'message' => 'Login successfully'));
+				$this->session->set_flashdata('success', 'Login Successfully');
+				if($result['role'] == 'User'){
+					redirect(base_url('User'));
+				}else if($result['role'] == 'Admin'){
+					redirect(base_url('Admin'));
+				}
 			} else {
-				echo json_encode(array('success' => false, 'message' => 'Please enter valid credentials'));
+				$this->session->set_flashdata('error', 'Please enter valid crediential');
+				redirect(base_url('Login'));
 			}
 		} else {
-			echo json_encode(array('success' => false, 'message' => 'System error found, Please contact service provider'));
+			$this->session->set_flashdata('error', 'System Error! contact ti IT');
+			redirect($this->index());
 		}
 	}
 
+	public function logout()
+	{
+		$this->session->unset_userdata('userInfo');
+		$this->session->sess_destroy();
+        redirect(__CLASS__);
+	}
 	
 }
