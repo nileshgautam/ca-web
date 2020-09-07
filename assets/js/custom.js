@@ -18,3 +18,12 @@
 //     // whyus.append(html);
 
 // }, false);
+
+$(document).ready(function(){
+    console.log('hello')
+    $('#packages').on('click','input[type="radio"]',function(){
+        let price = $(this).val();
+        $('#payPrice').text('₹ '+price)
+    });
+
+    })

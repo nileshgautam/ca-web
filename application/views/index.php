@@ -1,38 +1,38 @@
 <!-- Header start -->
 <header id="header" class="container-fluid">
-    <div class="col-sm-12">
-      <nav class="navbar">
+	<div class="col-sm-12">
+		<nav class="navbar">
 
-        <div class="logo">
-          <img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
-        </div>
-        <ul>
-          <li><a href="">Business Startups</a> </li>
-          <li><a href="">GST Registration</a> </li>
-          <li><a href="">Income Tax</a></li>
-          <li><a href="">Compliance</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+			<div class="logo">
+				<img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
+			</div>
+			<ul>
+				<li><a href="">Business Startups</a> </li>
+				<li><a href="">GST Registration</a> </li>
+				<li><a href="">Income Tax</a></li>
+				<li><a href="">Compliance</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
 <div class="row business-info">
-		<div class="col-sm-6 ">
-			<div class="head-para">
-				<h4>The Trusted leader for Businesses</h4>
-				<h1>#1 Online Company Setup
-					Services in India</h1>
-				<div class="get-free">
-					<h5>Get Free Consultation Now</h5>
-					<form action="" class="action-form">
-						<div class="action-button-one col-sm-8"> <input type="text" placeholder="Your Email Address" class="input-style-2"> <a href="#" class="btn">Consult Online <img src="<?php echo base_url('assets/image/icon/next.png') ?>" alt="" height="12"> </a></div>
-					</form>
-				</div>
+	<div class="col-sm-6 ">
+		<div class="head-para">
+			<h4>The Trusted leader for Businesses</h4>
+			<h1>#1 Online Company Setup
+				Services in India</h1>
+			<div class="get-free">
+				<h5>Get Free Consultation Now</h5>
+				<form action="" class="action-form">
+					<div class="action-button-one col-sm-8"> <input type="text" placeholder="Your Email Address" class="input-style-2"> <a href="#" class="btn">Consult Online <img src="<?php echo base_url('assets/image/icon/next.png') ?>" alt="" height="12"> </a></div>
+				</form>
 			</div>
 		</div>
-		<div class="col-sm-6">
-			<div><img src="<?php echo base_url('assets/image/index/bg2.png') ?>" alt="" height="" width="100%"></div>
-		</div>
 	</div>
+	<div class="col-sm-6">
+		<div><img src="<?php echo base_url('assets/image/index/bg2.png') ?>" alt="" height="" width="100%"></div>
+	</div>
+</div>
 
 <!-- Register, Form, Build
 Or Grow your Company in -->
@@ -89,109 +89,63 @@ Or Grow your Company in -->
 			<h2 class="section-heading-primary">Our Services</h2>
 
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-business-registrations" role="tab" aria-controls="pills-home" aria-selected="true">Business Registrations
-					</a>
-				</li>
+				<?php if (isset($categories)) {
+					for ($i = 0; $i < count($categories); $i++) { ?>
+						<li class="nav-item">
+							<a class="nav-link <?php echo $i == 0 ? 'active' : '' ?>" id="pills-tab<?php echo $i + 1 ?>" data-toggle="pill" href="#pills-area<?php echo $i + 1 ?>" role="tab" aria-controls="pills<?php echo $i + 1 ?>" aria-selected="<?php echo $i == 0 ? "true" : 'false' ?>">
+								<?php echo $categories[$i]['category'] ?>
+							</a>
+						</li>
 
-				<li class="nav-item">
-					<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Goods & Service Tax</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Intellectual Property</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Income Tax</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Compliance</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Documents</a>
-				</li>
+				<?php }
+				} ?>
 			</ul>
 			<hr class="divider">
 
 			<div class="tab-content" id="pills-tabContent">
-				<div class="tab-pane fade show active" id="pills-business-registrations" role="tabpanel" aria-labelledby="pills-home-tab">
-
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="card">
-								<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.png') ?>" alt="Card image cap">
-								<div class="card-body">
-									<h6 class="card-title">Proprietorship Company</h6>
-									<label for="packages">Packages</label>
-									<form action="" class="p-form">
-										<input type="radio" name="packages" id="" checked>₹ 2,899
-										<input type="radio" name="packages" id="">₹ 6,899
-										<input type="radio" name="packages" id="">₹ 12,899
-										<div>
-											<small>Prices Inclusive of all taxes</small>
-											<button class="c-btn">Get Started</button>
+				<?php if (isset($services) && isset($categories)) {
+					for ($j = 0; $j < count($categories); $j++) { ?>
+						<div class="tab-pane fade <?php echo $j == 0 ? 'show active' : '' ?>" id="pills-area<?php echo $j + 1 ?>" role="tabpanel" aria-labelledby="pills-tab<?php echo $j + 1 ?>">
+							<div class="row">
+								<?php for ($i = 0; $i < count($services); $i++) {
+									if ($categories[$j]['id'] == $services[$i]['category_id']) { ?>
+										<div class="col-sm-4">
+											<div class="card">
+												<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.png') ?>" alt="Card image cap">
+												<div class="card-body">
+													<h6 class="card-title"><?php echo $services[$i]['service_name'] ?></h6>
+													<?php
+													$packages = json_decode($services[$i]['service_packages'], true);
+													if ($packages[0]['price'] != 0) { ?>
+														<label for="packages">Packages</label>
+														<form action="" class="p-form">
+															<input type="radio" class="mr-1" name="packages" id="" checked> ₹ 2,899
+															<input type="radio" class="mr-1" name="packages" id=""> ₹ 6,899
+															<input type="radio" class="mr-1" name="packages" id=""> ₹ 12,899
+															<div class="mt-2">
+																<small>Prices Inclusive of all taxes</small>
+																<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['id'])?>" class="c-btn">Get Started</a>
+															</div>
+														</form>
+													<?php } else { ?>
+														<span>Service Price</span>
+														<span class="d-block float-right"> ₹ <?php echo $services[$i]['service_price'] ?></span>
+														<div class="mt-2">
+															<small>Prices Inclusive of all taxes</small>
+															<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['id'])?>" class="c-btn">Get Started</a>
+														</div>
+													<?php } ?>
+												</div>
+											</div>
 										</div>
-									</form>
-								</div>
+								<?php }
+								} ?>
 							</div>
+
 						</div>
+				<?php }
+				} ?>
 
-						<div class="col-sm-4">
-							<div class="card">
-								<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.png') ?>" alt="Card image cap">
-								<div class="card-body">
-									<h6 class="card-title">Proprietorship Company</h6>
-									<label for="packages">Packages</label>
-									<form action="" class="p-form">
-										<input type="radio" name="packages" id="" checked>₹ 2,899
-										<input type="radio" name="packages" id="">₹ 6,899
-										<input type="radio" name="packages" id="">₹ 12,899
-										<div>
-											<small>Prices Inclusive of all taxes</small>
-											<button class="c-btn">Get Started</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="card">
-								<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.png') ?>" alt="Card image cap">
-								<div class="card-body">
-									<h6 class="card-title">Proprietorship Company</h6>
-									<label for="packages">Packages</label>
-									<form action="" class="p-form">
-										<input type="radio" name="packages" id="" checked>₹ 2,899
-										<input type="radio" name="packages" id="">₹ 6,899
-										<input type="radio" name="packages" id="">₹ 12,899
-										<div>
-											<small>Prices Inclusive of all taxes</small>
-											<button class="c-btn">Get Started</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="card" style="width: 18rem;">
-								<img class="card-img-top" src="..." alt="Card image cap">
-								<div class="card-body">
-									<h5 class="card-title">Card title</h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">3</div>
 			</div>
 		</div>
 	</div>
@@ -199,7 +153,7 @@ Or Grow your Company in -->
 <!-- Our services end -->
 
 <!-- Counter start -->
-<section class="bg-counter">
+<section class="bg-counter d-none">
 	<h2 class="text-align-center">Counter</h2>
 </section>
 <!-- Counter end -->
@@ -409,5 +363,3 @@ Or Grow your Company in -->
 	</div>
 </section>
 <!-- end Ready to get started? -->
-
-

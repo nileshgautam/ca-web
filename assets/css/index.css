@@ -226,7 +226,7 @@
     }
     
     .c-btn {
-        padding: 1px 30px;
+        padding: 5px 30px;
         border-radius: 20px;
         box-shadow: 10px 7px 18px #e8e3f1;
         border: 1px solid lightgray;
@@ -234,6 +234,17 @@
         background: var(--body-bg-color);
         font-weight: 500;
         margin-left: 10px;
+        text-decoration: none;
+        list-style: none;
+        cursor: pointer;
+        float: right;
+    }
+
+    .c-btn:hover{
+        text-decoration: none;
+        list-style: none;
+        cursor: pointer;
+        color: var(--main-header-bg-color);
     }
     
     .a-btn-primary {
