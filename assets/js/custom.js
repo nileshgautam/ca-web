@@ -19,10 +19,11 @@
 
 // }, false);
 
-$(document).ready(function(){
-    console.log('hello')
+$(document).ready(function(){    
     $('#packages').on('click','input[type="radio"]',function(){
         let price = $(this).val();
+        let package = $(this).attr('package');
+        $('#package').val(package);
         $('#payPrice').text('₹ '+price)
     });
 

@@ -11,7 +11,7 @@ $config = array(
 'smtp_host' => 'ssl://smtp.gmail.com',
 'smtp_port' => 465,
 'smtp_user' => 'yya9017@gmail.com',
-'smtp_pass' => '8273683791',
+'smtp_pass' => 'Yatharth@1234',
 'mailtype' => 'html',
 'charset' => 'iso-8859-1'
 );
@@ -27,7 +27,7 @@ $CI->email->subject($subject);
 $CI->email->message($mail_body);
 
 $r=$CI->email->send();
- echo $CI->email->print_debugger();
+//  echo $CI->email->print_debugger();
 //  die;
 if ($r) {
 return true;

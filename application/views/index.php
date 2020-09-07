@@ -1,21 +1,5 @@
-<!-- Header start -->
-<header id="header" class="container-fluid">
-	<div class="col-sm-12">
-		<nav class="navbar">
 
-			<div class="logo">
-				<img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
-			</div>
-			<ul>
-				<li><a href="">Business Startups</a> </li>
-				<li><a href="">GST Registration</a> </li>
-				<li><a href="">Income Tax</a></li>
-				<li><a href="">Compliance</a></li>
-			</ul>
-		</nav>
-	</div>
-</header>
-<div class="row business-info">
+<div class="row business-info m-0">
 	<div class="col-sm-6 ">
 		<div class="head-para">
 			<h4>The Trusted leader for Businesses</h4>

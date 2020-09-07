@@ -1,6 +1,12 @@
+<style>
+#header{
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
+}
+</style>
+
 <div class="business-services-info">
     <div class="container">
-        <div class="">
+        <!-- <div class="">
             <div class="col-sm-12">
                 <nav class="navbar">
                     <div class="logo">
@@ -14,7 +20,7 @@
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div> -->
 
 
         <div class="row">
@@ -52,7 +58,7 @@
                             <div class="col-sm-4">
                                 <div class="package">
                                     <div class="row">
-                                        <div class="col-sm-1 prt-5"><input type="radio" <?php echo $i==0?'checked':''?> value='<?php echo $packages[$i]['price'] ?>' name="package"></div>
+                                        <div class="col-sm-1 prt-5"><input type="radio" package="<?php echo $packages[$i]['name'] ?>" <?php echo $i==0?'checked':''?> value='<?php echo $packages[$i]['price'] ?>' name="package"></div>
                                         <div class="col-sm-5"><strong class="f-14"><?php echo $packages[$i]['name'] ?></strong></div>
                                         <div class="col-sm-5"><strong class="f-14 "><?php echo $packages[$i]['price'] ?></strong></div>
                                     </div>
@@ -87,6 +93,9 @@
                             <input type="email" name="email" placeholder="Email Address" class="form-contron-1" required>
                             <input type="text" name="contact" placeholder="Contact Number" class="form-contron-1" required>
                             <input type="text" name="state" placeholder="State" class="form-contron-1" required>
+                            <input hidden value="<?php echo current_url() ?>" name='redirection'  required>
+                            <input hidden value="<?php echo $service[0]['id'] ?>" id="serviceId" name='serviceId'  required>
+                            <input hidden value="<?php echo $packages[0]['name'] ?>" id="package" name='package'  required>
                             <div class="text-center py-2">
                                 <button type="submit" id="payBtn" class="btn btn-submit">Pay for Essential Plan <span class="ml-20" id='payPrice'> ₹ <?php echo $packages[0]['price']?></span><span><img src="<?php echo base_url('assets/image/icon/speed.png') ?>" alt="" height="16"></span></button>
                             </div>
@@ -155,3 +164,17 @@
 
 </section>
 <!-- Proprietorship Company end-->
+
+<!-- Message pop up -->
+<?php if (!empty($this->session->flashdata('error'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('error'); ?>';
+       Notiflix.Notify.Failure(error)
+    </script>
+<?php } ?>
+<?php if (!empty($this->session->flashdata('success'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('success'); ?>';
+        Notiflix.Notify.Success(error)
+    </script>
+<?php } ?>

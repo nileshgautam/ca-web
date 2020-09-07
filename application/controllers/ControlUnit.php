@@ -35,39 +35,65 @@ class ControlUnit extends CI_Controller
 		$page['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $id));
 		$page['title'] = 'Proprietorship Company';
 		$this->load->view('layout/header', $page);
-		$this->load->view('service-header');
 		$this->load->view('services');
 		$this->load->view('layout/footer');
 	}
 
 	public function sendMessage()
 	{
-		print_r($_POST);
-		die;
+		// print_r($_POST);
+
+		// // print_r($password);
+		// die;
+		$password = $this->passwordGenerate(8);
 		$insertData = array(
-			'name' => htmlspecialchars(trim($_POST['fname'])),
-			'email' => htmlspecialchars(trim($_POST['ymail'])),
-			'password' => '',
+			'name' => validateInput($_POST['uName']),
+			'email' => validateInput($_POST['email']),
+			'contact_no' => validateInput($_POST['contact']),
+			'state' => validateInput($_POST['state']),
+			'password' => $password,
 			'role' => 'User',
+			'status' => 'A'
 		);
+		$insertData['user_id'] =   $this->MainModel->getNewIDorNo('users', "USR-");
+		$userService = array(
+			'user_id' => $insertData['user_id'],
+			'service_id' => validateInput($_POST['serviceId']),
+			'package' => validateInput($_POST['package']),
+
+		);
+
 		$validate = $this->MainModel->selectAllFromWhere("users", array("email" => $insertData['email']));
 		if (!$validate) {
 			$this->load->helper('email');
-			$to = 'yya9017@gmail.com';
+			$to = $insertData['email'];
 			$sub = 'No Reply';
-			$mess = 'Dear ' . $_POST['uName'] . ',' . '/n' . 'Find your creadiential and click on below link for further process';
+			$mess = 'Dear ' . $_POST['uName'] . ',' . '<br>' . 'Find your creadiential and click on below link for further process' . '<br>' . 'link: ' . base_url('User') . '<br>User Name: ' . $insertData['email'] . '<br>' . 'Password: ' . $password;
+			if (sentmail($to, $sub, $mess)) {
+				$result = $this->MainModel->insertInto('users', $insertData);
+				$result1 = $this->MainModel->insertInto('user_services', $userService);
+				if ($result && $result1) {
 
-			$result = $this->MainModel->insertInto('users', $insertData);
-			if ($result) {
-				sentmail($to, $sub, $mess);
-				$this->session->set_flashdata('msg', 'Please Check Your Mail for further process');
-				redirect(base_url('#contact-section'));
+					$this->session->set_flashdata('success', 'Please Check Your Mail for further process');
+					redirect($_POST['redirection']);
+				} else {
+					$this->session->set_flashdata('error', 'Please Try Again');
+					redirect($_POST['redirection']);
+				}
 			} else {
-				$this->session->set_flashdata('msg', 'Please Try Again');
-				redirect(base_url('#contact-section'));
+				$this->session->set_flashdata('error', 'Something Wrong try again after some time.');
+				redirect($_POST['redirection']);
 			}
-		}else{
-			$this->session->set_flashdata('msg', 'Please Check Your Mail and find crediential as we alredy sent you');
+		} else {
+			$this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
+			redirect($_POST['redirection']);
 		}
+	}
+
+	function passwordGenerate($length)
+	{
+
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		return substr(str_shuffle($chars), 0, $length);
 	}
 }
