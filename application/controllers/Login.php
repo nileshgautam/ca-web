@@ -70,7 +70,13 @@ class Login extends ci_controller
 
 			if ($result) {
 				$result = $result[0];
+
 				$this->session->set_userdata("userInfo", $result, isset($_POST['rememberme']) ? true : false);
+
+				// echo '<pre>';
+				// print_r($_SESSION['userInfo']);
+			
+
 				echo json_encode(array('success' => true, 'message' => 'Login successfully'));
 			} else {
 				echo json_encode(array('success' => false, 'message' => 'Please enter valid credentials'));
