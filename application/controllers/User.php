@@ -28,6 +28,14 @@ class User extends CI_Controller
 		$this->load->view('admin/layout/footer.php');
 	}
 
+	public function upload_document($services_id = null)
+	{
+		$this->load->view('admin/layout/header.php');
+		$this->load->view('admin/layout/sidenav.php');
+		$this->load->view('user/service-details');
+		$this->load->view('admin/layout/footer.php');
+	}
+
 	public function upload_pdf()
 	{
 		// my_print($_POST);

@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['logout']='User/logout';
+$route['upload-document']='User/upload_document';

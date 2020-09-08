@@ -113,7 +113,7 @@
               </div>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('logout')?>" role="button"><i class="fas fa-sign-out-alt"></i></a>
+              <a class="nav-link" title="Logout" href="<?php echo base_url('logout')?>" role="button"><i class="fas fa-sign-out-alt"></i></a>
           </li>
       </ul>
   </nav>
@@ -216,8 +216,8 @@
                       <li class="nav-item has-treeview">
                           <a href="#" class="nav-link">
                               <i class="fas fa-tasks"></i>
-                              <p>
-                                  Services
+                               <p>
+                                   Services
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
