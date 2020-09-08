@@ -60,6 +60,7 @@ class ControlUnit extends CI_Controller
 			'user_id' => $insertData['user_id'],
 			'service_id' => validateInput($_POST['serviceId']),
 			'package' => validateInput($_POST['package']),
+			'status' => Payment_Received
 
 		);
 

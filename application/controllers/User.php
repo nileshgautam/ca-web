@@ -6,88 +6,98 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Controller
 {
-	var $UserDtl;
-	public function __construct()
-	{
-		parent::__construct();
-		date_default_timezone_set("Asia/Kolkata"); //Set server date an time to Asia
+    var $UserDtl;
+    public function __construct()
+    {
+        parent::__construct();
+        date_default_timezone_set("Asia/Kolkata"); //Set server date an time to Asia
 
-		if (!isset($_SESSION['userInfo']))		   // On first entry re-direct to logi screen
-		{            
-			redirect('Login/index');
-		} else {
-			$this->UserDtl = $_SESSION['userInfo'];
-		}
-	}
-
-    public function index(){
-        print_r('hello');
+        if (!isset($_SESSION['userInfo']))           // On first entry re-direct to logi screen
+        {
+            redirect('Login/index');
+        } else {
+            $this->UserDtl = $_SESSION['userInfo'];
+        }
     }
-	
-	public function upload_pdf()
-	{
-		// my_print($_POST);
-		// 	// my_print($_POST["redirectUrl"]);
-		// 	die;
+
+    public function index()
+    {
+        $id = $_SESSION['userInfo']['user_id'];
+        $data['services'] = [];
+        $data['user_services'] = $this->MainModel->selectAllFromWhere("user_services", array("user_id" => $id));
+        for ($i = 0; $i < count($data['user_services']); $i++) {
+            $sId = $data['user_services'][$i]['service_id'];            
+            $result = $this->MainModel->selectAllFromWhere("services", array("id" => $sId));  
+            array_push($data['services'],$result[0]);        
+        }
+
+        print_r($data['services']);
+    }
+
+    public function upload_pdf()
+    {
+        // my_print($_POST);
+        // 	// my_print($_POST["redirectUrl"]);
+        // 	die;
 
 
-		if (isset($_FILES["file"]["name"]) && isset($_POST["pdffilename"]) && isset($_POST["override"]) && isset($_POST["report_type"])) {
+        if (isset($_FILES["file"]["name"]) && isset($_POST["pdffilename"]) && isset($_POST["override"]) && isset($_POST["report_type"])) {
 
-			$override = $_POST["override"];
-			$fileName = validateInput($_POST["pdffilename"]);
-			$report_type = validateInput($_POST["report_type"]);
-			$reportPath = '../' . $report_type;
-			$BKPreportPath = '../' . $report_type . '_report_bkp';
-			$pdfreporturl = $report_type;
-
-
-			$upload_ready = false;
-
-			if (!file_exists('./' . $reportPath)) {
-				mkdir('./' . $reportPath, 0755, true);
-			}
-			if (!file_exists('./' . $BKPreportPath)) {
-				mkdir('./' . $BKPreportPath, 0755, true);
-			}
+            $override = $_POST["override"];
+            $fileName = validateInput($_POST["pdffilename"]);
+            $report_type = validateInput($_POST["report_type"]);
+            $reportPath = '../' . $report_type;
+            $BKPreportPath = '../' . $report_type . '_report_bkp';
+            $pdfreporturl = $report_type;
 
 
-			if (file_exists('./' . $reportPath . '/' . $fileName . '.pdf')) {
-				if ($override == 'true') {
-					rename('./' . $reportPath . '/' . $fileName . '.pdf', './' . $BKPreportPath . '/' . $fileName . '_bkp_' . date("Ymd_His") . '.pdf');
-					$upload_ready = true;
-				} else {
-					echo json_encode(array('success' => true, "file_exist" => true, 'message' =>  "File already exist."));
-				}
-			} else {
-				$upload_ready = true;
-			}
+            $upload_ready = false;
 
-			if ($upload_ready) {
-				$config['upload_path'] = './' . $reportPath;
-				$config['allowed_types'] = 'pdf';
-				$config['max_size'] = '100000';
-				$config['file_name'] = $fileName;
-				$this->load->library('upload', $config);
-				if (!$this->upload->do_upload('file')) {
-					//	$this->session->set_flashdata("error",  $this->upload->display_errors());
-					//echo $this->upload->display_errors();
-					echo json_encode(array('success' => false, 'message' =>  $this->upload->display_errors()));
-				} else {
-					$data = $this->upload->data();
-					//	$pdf_link = base_url($pdfreporturl) . '/' . $data['file_name'];
-					$pdf_link = PDF_SERVER . "/" . $pdfreporturl . '/' . $data['file_name'];
+            if (!file_exists('./' . $reportPath)) {
+                mkdir('./' . $reportPath, 0755, true);
+            }
+            if (!file_exists('./' . $BKPreportPath)) {
+                mkdir('./' . $BKPreportPath, 0755, true);
+            }
 
-					echo json_encode(array('success' => true, 'pdf_link' => $pdf_link, 'message' =>  "Uploaded successfully."));
-				}
-			}
-		} else {
 
-			echo json_encode(array('success' => false, 'message' =>  "Insufficient Information sent."));
-		}
-	}
-	public function logout()
-	{
+            if (file_exists('./' . $reportPath . '/' . $fileName . '.pdf')) {
+                if ($override == 'true') {
+                    rename('./' . $reportPath . '/' . $fileName . '.pdf', './' . $BKPreportPath . '/' . $fileName . '_bkp_' . date("Ymd_His") . '.pdf');
+                    $upload_ready = true;
+                } else {
+                    echo json_encode(array('success' => true, "file_exist" => true, 'message' =>  "File already exist."));
+                }
+            } else {
+                $upload_ready = true;
+            }
+
+            if ($upload_ready) {
+                $config['upload_path'] = './' . $reportPath;
+                $config['allowed_types'] = 'pdf';
+                $config['max_size'] = '100000';
+                $config['file_name'] = $fileName;
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('file')) {
+                    //	$this->session->set_flashdata("error",  $this->upload->display_errors());
+                    //echo $this->upload->display_errors();
+                    echo json_encode(array('success' => false, 'message' =>  $this->upload->display_errors()));
+                } else {
+                    $data = $this->upload->data();
+                    //	$pdf_link = base_url($pdfreporturl) . '/' . $data['file_name'];
+                    $pdf_link = PDF_SERVER . "/" . $pdfreporturl . '/' . $data['file_name'];
+
+                    echo json_encode(array('success' => true, 'pdf_link' => $pdf_link, 'message' =>  "Uploaded successfully."));
+                }
+            }
+        } else {
+
+            echo json_encode(array('success' => false, 'message' =>  "Insufficient Information sent."));
+        }
+    }
+    public function logout()
+    {
         $this->session->unset_userdata('userInfo');
-		redirect("login");
-	}
+        redirect("login");
+    }
 }
