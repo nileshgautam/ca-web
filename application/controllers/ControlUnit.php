@@ -86,7 +86,16 @@ class ControlUnit extends CI_Controller
 				redirect($_POST['redirection']);
 			}
 		} else {
-			$this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
+			$result1 = $this->MainModel->insertInto('user_services', $userService);
+				if ($result1) {
+
+					$this->session->set_flashdata('success', 'Please Login your account for further process');
+					redirect($_POST['redirection']);
+				} else {
+					$this->session->set_flashdata('error', 'Please Try Again');
+					redirect($_POST['redirection']);
+				}
+			// $this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
 			redirect($_POST['redirection']);
 		}
 	}
