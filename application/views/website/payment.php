@@ -30,7 +30,7 @@
                         <div class="form-group row col-sm-6">
                             <label for="Price" class="col-sm-4 col-form-label">Payable Amount</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" name="price" id="Price" value="<?php echo $selectedService['package'] == 'single' ? $service[0]['service_price'] : '6000' ?>">
+                                <input type="text" readonly class="form-control-plaintext" name="price" id="Price" value="<?php echo $selectedService['price'] ?>">
                             </div>
                         </div>
                         <input hidden name='state' value=<?php echo $selectedService['state'] ?>)>

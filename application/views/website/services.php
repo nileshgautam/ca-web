@@ -96,6 +96,7 @@
                             <input type="text" name="state" placeholder="State" class="form-contron-1" required>
                             <input hidden value="<?php echo current_url() ?>" name='redirection' required>
                             <input hidden value="<?php echo $service[0]['id'] ?>" id="serviceId" name='serviceId' required>
+                            <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['price'] : $service[0]['service_price'] ?>" id="price" name='price' required>
                             <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['name'] : 'single' ?>" id="package" name='package' required>
                             <div class="text-center py-2">
                                 <button type="submit" id="payBtn" class="btn btn-submit">Pay for Essential Plan <span class="ml-20" id='payPrice'> ₹ <?php echo $packages[0]['price'] > 0 ? $packages[0]['price'] : $service[0]['service_price'] ?></span><span><img src="<?php echo base_url('assets/image/icon/speed.png') ?>" alt="" height="16"></span></button>

@@ -58,18 +58,20 @@ class ControlUnit extends CI_Controller
 			'state' => validateInput($_POST['state']),
 			'password' => $password,
 			'role' => 'User',
-			'status' => 'A'
+			'status' => 'A',
+			
 		);
 		$insertData['user_id'] =   $this->MainModel->getNewIDorNo('users', "USR-");
 		$userService = array(
 			'user_id' => $insertData['user_id'],
 			'service_id' => validateInput($_POST['serviceId']),
 			'package' => validateInput($_POST['package']),
-			'status' => Payment_Received
-
+			'status' => Payment_Received,
+			'price' => validateInput($_POST['price'])
 		);
 
 		$validate = $this->MainModel->selectAllFromWhere("users", array("email" => $insertData['email']));
+		
 		if (!$validate) {
 			$this->load->helper('email');
 			$to = $insertData['email'];
@@ -91,6 +93,7 @@ class ControlUnit extends CI_Controller
 				redirect($_POST['redirection']);
 			}
 		} else {
+			$userService['user_id'] = $validate[0]['user_id'];
 			$result1 = $this->MainModel->insertInto('user_services', $userService);
 				if ($result1) {
 

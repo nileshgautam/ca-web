@@ -33,7 +33,7 @@ class User extends CI_Controller
         
         $this->load->view('user/layout/header.php');
 		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/user-dashboard');
+		$this->load->view('user/user-dashboard',$data);
 		$this->load->view('user/layout/footer.php');
 
         
