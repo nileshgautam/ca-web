@@ -1,8 +1,8 @@
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="pcoded-content py-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    <!-- /.container-fluid -->
+      <!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
@@ -19,19 +19,19 @@
               <div class="card-body">
                 <table id="service-datatable" class="table table-bordered table-striped">
                   <thead>
-                      <td>Service Name</td>
-                      <td>Required document</td>
-                      <td>Action</td>
+                    <td>Service Name</td>
+                    <td>Required document</td>
+                    <td>Action</td>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Misc</td>
-                    <td>IE Mobile</td>
-                    <td><i class="fas fa-upload"></i></td>
-                  </tr>
-            
+                    <tr>
+                      <td>Misc</td>
+                      <td>IE Mobile</td>
+                      <td><i class="ti-upload"></i></td>
+                    </tr>
+
                   </tbody>
-            
+
                 </table>
               </div>
               <!-- /.card-body -->

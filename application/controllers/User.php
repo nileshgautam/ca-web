@@ -22,19 +22,39 @@ class User extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
+
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
 		$this->load->view('user/user-dashboard');
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('user/layout/footer.php');
+
+
 	}
 
 	public function upload_document($services_id = null)
 	{
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
 		$this->load->view('user/service-details');
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('user/layout/footer.php');
 	}
+
+	public function payment_receipts($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/payment-receipts');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	public function helpdesk($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/helpdesk');
+		$this->load->view('user/layout/footer.php');
+	}
+
 
 	public function upload_pdf()
 	{
@@ -97,6 +117,7 @@ class User extends CI_Controller
 			echo json_encode(array('success' => false, 'message' =>  "Insufficient Information sent."));
 		}
 	}
+
 	public function logout()
 	{
 		$this->session->unset_userdata('userInfo');
