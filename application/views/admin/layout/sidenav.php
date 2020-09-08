@@ -258,21 +258,9 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="<?php echo base_url('Admin/countries') ?>" class="nav-link">
+                                  <a href="<?php echo base_url('User/payment_receipts')?>" class="nav-link">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Countries</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="<?php echo base_url('Admin/Categories') ?>" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Categories</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="<?php echo base_url('Admin/showServices') ?>" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Services</p>
+                                      <p>Payments/Receipts</p>
                                   </a>
                               </li>
                           </ul>
@@ -290,22 +278,11 @@
                               <li class="nav-item">
                                   <a href="<?php echo base_url('Admin/countries') ?>" class="nav-link">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Countries</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="<?php echo base_url('Admin/Categories') ?>" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Categories</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="<?php echo base_url('Admin/showServices') ?>" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Services</p>
+                                      <p>Generate case</p>
                                   </a>
                               </li>
                           </ul>
+                         
                       </li>
 
                   <?php } ?>

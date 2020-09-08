@@ -31,10 +31,10 @@ class User extends CI_Controller
             array_push($data['services'],array_merge($data['user_services'][$i],$result[0]));        
         }
         
-        $this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
-		$this->load->view('user/user-dashboard',$data);
-		$this->load->view('admin/layout/footer.php');
+        $this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/user-dashboard');
+		$this->load->view('user/layout/footer.php');
 
         
     }
@@ -105,12 +105,33 @@ class User extends CI_Controller
         $this->session->unset_userdata('userInfo');
         redirect("login");
     }
+	
+
+
 
 	public function upload_document($services_id = null)
 	{
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
 		$this->load->view('user/service-details');
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('user/layout/footer.php');
 	}
+
+	public function payment_receipts($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/payment-receipts');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	public function helpdesk($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/helpdesk');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	
 }

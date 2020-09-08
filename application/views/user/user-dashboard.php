@@ -1,71 +1,35 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <div class="row container">
-        <?php 
-        // echo "<pre>";
-        // print_r($services);
-        if(count($services)>0){
-        for ($i = 0; $i < count($services); $i++) { ?>
-            <div class="col-md-6 py-2">
+<div class="pcoded-content">
+    <div class="row container m-0">
+        <?php for ($i = 0; $i < 1; $i++) { ?>
+            <div class="col-md-5 py-2">
                 <!-- Widget: user widget style 2 -->
-                <div class="card card-widget widget-user-2">
+                <div class="card border-gray card-style">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="widget-user-header bg-dark">
+                    <div class="widget-user-header header-style">
                         <!-- /.widget-user-image -->
-                        <h5 class=" m-0"><?php echo $services[$i]['service_name']?></h5>
-                        <a href="#" class="nav-link">
-                            Status <span class="float-right badge bg-warning">Payment Received</span>
+                        <h6 class="p-2 text-dark">Proprietorship Company Registration</h6>
+                    </div>
+                    <div class="card-body card-body-style">
+                        <div class="nav-item">
+                            <span> Status</span><span class="float-right">Payment Received</span>
+                        </div>
+                        <div class="nav-item">
+                            <span>Premium </span> <span class="float-right">7000.00</span>
+
+                        </div>
+                        <div class="nav-item">
+                            <span>Purchage Date</span> <span class="float-right">07/Sep/2020</span>
+                        </div>
+                        <div class="py-2">
+
+                        
+                        <a href="<?php echo base_url('upload-document') ?>" class="btn-sm offset-8 badge bg-success">
+                           <i class="ti-upload"></i> Upload document
                         </a>
+                        </div>
                     </div>
                     <div class="card-footer p-0">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-
-                            </li>
-                            <li class="nav-item m-0 row" id="package-details"> 
-                                <a href="#" class="nav-link col-sm-6">
-                                Premium <span class="float-right badge bg-primary">7000.00</span>
-                                </a>
-                                <a href="#" class="nav-link col-sm-6">
-                                    Purchage Date <span class="float-right badge bg-info">07/Sep/2020</span>
-                                </a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                
-                            </li> -->
-
-                            <li class="nav-item">
-                                <div class="col-md-12 p-0">
-                                    <div class="card card-outline collapsed-card">
-                                        <div class="card-header">
-                                            <p class="card-title">Service Details</p>
-                                            <div class="card-tools">
-                                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                                </button>
-                                            </div>
-                                            <!-- /.card-tools -->
-                                        </div>
-                                        <!-- /.card-header -->
-                                        <div class="card-body" style="display: none;">
-                                            <ul>
-                                                <li> 1.lorem*4</li>
-                                                <li> 2.lorem*4</li>
-                                                <li> 3.lorem*4</li>
-                                                <li> 4.lorem*4</li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.card-body -->
-                                    </div>
-                                    <!-- /.card -->
-                                </div>
-                            </li>
-
-                            <li class="nav-item text-center p-2">
-                                <a href="<?php echo base_url('upload-document')?>" class="btn btn-primary btn-sm ">
-                                    Upload document
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <!-- /.widget-user -->
@@ -75,24 +39,3 @@
         ?>
     </div>
 </div>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-    
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div> -->
