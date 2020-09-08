@@ -1,9 +1,15 @@
-.action-icons{
+.action-icons {
     display: flex;
-    justify-content: center;   
-    margin: auto;    
+    justify-content: center;
+    margin: auto;
 }
 
-.action-icons i{    
+.action-icons i {
     margin: 5px;
+}
+
+#package-details {
+    display: flex;
+    justify-items: center;
+    /* justify-content: space-around; */
 }

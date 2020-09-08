@@ -89,3 +89,5 @@ defined('Partial_Documents_Uploaded')      OR define('Partial_Documents_Uploaded
 defined('Documents_Uploaded')      OR define('Documents_Uploaded', 'Documents Uploaded');
 defined('Work_in_Progress')      OR define('Work_in_Progress', 'Work in Progress');
 defined('Work_Completed')      OR define('Work_Completed', 'Work Completed');
+define('ADMIN', 'Admin');
+define('USER', 'User');

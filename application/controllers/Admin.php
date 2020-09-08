@@ -96,7 +96,7 @@ class Admin extends CI_Controller
 
 	public function showServices()
 	{
-		$data['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');		
+		$data['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
 		$this->load->view('admin/layout/header.php');
 		$this->load->view('admin/layout/sidenav.php');
 		$this->load->view('admin/showServices.php', $data);
@@ -105,7 +105,7 @@ class Admin extends CI_Controller
 
 	public function addServices($id = '')
 	{
-		if($id !=""){
+		if ($id != "") {
 			$data['selectedService'] = $this->MainModel->selectAllFromWhere("services", array("id" => $id));
 			$data['submitType'] = 'update';
 		}
@@ -153,7 +153,7 @@ class Admin extends CI_Controller
 		);
 
 		$validate = $this->MainModel->selectAllFromWhere("services", array("service_name" => $insertData['service_name']));
-		if(!$validate){
+		if (!$validate) {
 			$result = $this->MainModel->insertInto('services', $insertData);
 			if ($result) {
 				echo json_encode(array('success', 'Service successfully added'));
@@ -165,11 +165,5 @@ class Admin extends CI_Controller
 		}
 	}
 
-	public function logout()
-	{
 
-		$this->session->unset_userdata('userInfo');
-
-		redirect("login");
-	}
 }

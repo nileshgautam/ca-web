@@ -30,6 +30,10 @@ class User extends CI_Controller
             $result = $this->MainModel->selectAllFromWhere("services", array("id" => $sId));  
             array_push($data['services'],$result[0]);        
         }
+        $this->load->view('admin/layout/header.php');
+		$this->load->view('admin/layout/sidenav.php');
+		$this->load->view('user/user-dashboard');
+		$this->load->view('admin/layout/footer.php');
 
         print_r($data['services']);
     }
@@ -100,4 +104,12 @@ class User extends CI_Controller
         $this->session->unset_userdata('userInfo');
         redirect("login");
     }
+
+	public function upload_document($services_id = null)
+	{
+		$this->load->view('admin/layout/header.php');
+		$this->load->view('admin/layout/sidenav.php');
+		$this->load->view('user/service-details');
+		$this->load->view('admin/layout/footer.php');
+	}
 }

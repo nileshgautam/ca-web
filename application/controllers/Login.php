@@ -90,5 +90,11 @@ class Login extends ci_controller
 		}
 	}
 
+	public function logout()
+	{
+		$this->session->unset_userdata('userInfo');
+		$this->session->sess_destroy();
+        redirect(__CLASS__);
+	}
 	
 }

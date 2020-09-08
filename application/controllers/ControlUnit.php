@@ -24,9 +24,9 @@ class ControlUnit extends CI_Controller
 		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASCS');
 		$page['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
 		$page['title'] = 'CA Web';
-		$this->load->view('layout/header', $page);
-		$this->load->view('index');
-		$this->load->view('layout/footer');
+		$this->load->view('website/layout/header', $page);
+		$this->load->view('website/index');
+		$this->load->view('website/layout/footer');
 	}
 
 	public function service($id = '')
@@ -34,9 +34,9 @@ class ControlUnit extends CI_Controller
 		$id = base64_decode($id);
 		$page['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $id));
 		$page['title'] = 'Proprietorship Company';
-		$this->load->view('layout/header', $page);
-		$this->load->view('services');
-		$this->load->view('layout/footer');
+		$this->load->view('website/layout/header', $page);
+		$this->load->view('website/services');
+		$this->load->view('website/layout/footer');
 	}
 
 	public function sendMessage()
