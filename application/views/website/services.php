@@ -1,7 +1,7 @@
 <style>
-#header{
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
-}
+    #header {
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
+    }
 </style>
 
 <div class="business-services-info">
@@ -51,15 +51,15 @@
 
 
                 <div class="row" id='packages'>
-                    <?php 
-                    $packages = json_decode($service[0]['service_packages'], true);                    
-                    if ($packages[0]['price'] > 0) {                        
+                    <?php
+                    $packages = json_decode($service[0]['service_packages'], true);
+                    if ($packages[0]['price'] > 0) {
                         for ($i = 0; $i < count($packages); $i++) {
                     ?>
                             <div class="col-sm-4">
                                 <div class="package">
                                     <div class="row">
-                                        <div class="col-sm-1 prt-5"><input type="radio" package="<?php echo $packages[$i]['name'] ?>" <?php echo $i==0?'checked':''?> value='<?php echo $packages[$i]['price'] ?>' name="package"></div>
+                                        <div class="col-sm-1 prt-5"><input type="radio" package="<?php echo $packages[$i]['name'] ?>" <?php echo $i == 0 ? 'checked' : '' ?> value='<?php echo $packages[$i]['price'] ?>' name="package"></div>
                                         <div class="col-sm-5"><strong class="f-14"><?php echo $packages[$i]['name'] ?></strong></div>
                                         <div class="col-sm-5"><strong class="f-14 "><?php echo $packages[$i]['price'] ?></strong></div>
                                     </div>
@@ -89,16 +89,16 @@
                     <div class="card-body">
                         <strong>Get Started Now</strong>
 
-                        <form action="<?php echo base_url('ControlUnit/sendMessage')?>" method='post'>
+                        <form action="<?php echo base_url('ControlUnit/payment') ?>" method='post'>
                             <input type="text" name="uName" placeholder="Full Name" class="form-contron-1" required>
                             <input type="email" name="email" placeholder="Email Address" class="form-contron-1" required>
                             <input type="text" name="contact" placeholder="Contact Number" class="form-contron-1" required>
                             <input type="text" name="state" placeholder="State" class="form-contron-1" required>
-                            <input hidden value="<?php echo current_url() ?>" name='redirection'  required>
-                            <input hidden value="<?php echo $service[0]['id'] ?>" id="serviceId" name='serviceId'  required>
-                            <input hidden value="<?php echo $packages[0]['name'] ?>" id="package" name='package'  required>
+                            <input hidden value="<?php echo current_url() ?>" name='redirection' required>
+                            <input hidden value="<?php echo $service[0]['id'] ?>" id="serviceId" name='serviceId' required>
+                            <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['name'] : 'single' ?>" id="package" name='package' required>
                             <div class="text-center py-2">
-                                <button type="submit" id="payBtn" class="btn btn-submit">Pay for Essential Plan <span class="ml-20" id='payPrice'> ₹ <?php echo $packages[0]['price'] > 0 ? $packages[0]['price'] : $service[0]['service_price']?></span><span><img src="<?php echo base_url('assets/image/icon/speed.png') ?>" alt="" height="16"></span></button>
+                                <button type="submit" id="payBtn" class="btn btn-submit">Pay for Essential Plan <span class="ml-20" id='payPrice'> ₹ <?php echo $packages[0]['price'] > 0 ? $packages[0]['price'] : $service[0]['service_price'] ?></span><span><img src="<?php echo base_url('assets/image/icon/speed.png') ?>" alt="" height="16"></span></button>
                             </div>
 
                             <!-- <button class="btn-rounded"></button> -->
@@ -170,7 +170,7 @@
 <?php if (!empty($this->session->flashdata('error'))) { ?>
     <script>
         let error = '<?php echo $this->session->flashdata('error'); ?>';
-       Notiflix.Notify.Failure(error)
+        Notiflix.Notify.Failure(error)
     </script>
 <?php } ?>
 <?php if (!empty($this->session->flashdata('success'))) { ?>

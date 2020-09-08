@@ -1,14 +1,18 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <div class="row container">
-        <?php for ($i = 0; $i < 1; $i++) { ?>
+        <?php 
+        // echo "<pre>";
+        // print_r($services);
+        if(count($services)>0){
+        for ($i = 0; $i < count($services); $i++) { ?>
             <div class="col-md-6 py-2">
                 <!-- Widget: user widget style 2 -->
                 <div class="card card-widget widget-user-2">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-dark">
                         <!-- /.widget-user-image -->
-                        <h5 class=" m-0">Proprietorship Company Registration</h5>
+                        <h5 class=" m-0"><?php echo $services[$i]['service_name']?></h5>
                         <a href="#" class="nav-link">
                             Status <span class="float-right badge bg-warning">Payment Received</span>
                         </a>
@@ -67,6 +71,7 @@
                 <!-- /.widget-user -->
             </div>
         <?php  }
+        }
         ?>
     </div>
 </div>

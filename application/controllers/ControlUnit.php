@@ -39,12 +39,17 @@ class ControlUnit extends CI_Controller
 		$this->load->view('website/layout/footer');
 	}
 
+	public function payment(){
+		$data['selectedService'] = $_POST;
+		$data['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $data['selectedService']['serviceId']));
+		$this->load->view('website/layout/header');
+		$this->load->view('website/payment',$data);
+		$this->load->view('website/layout/footer');
+	}
+	
 	public function sendMessage()
-	{
-		// print_r($_POST);
-
-		// // print_r($password);
-		// die;
+	{		
+		// print_r($_POST);die;
 		$password = $this->passwordGenerate(8);
 		$insertData = array(
 			'name' => validateInput($_POST['uName']),
@@ -102,7 +107,6 @@ class ControlUnit extends CI_Controller
 
 	function passwordGenerate($length)
 	{
-
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		return substr(str_shuffle($chars), 0, $length);
 	}

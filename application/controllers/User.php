@@ -28,14 +28,15 @@ class User extends CI_Controller
         for ($i = 0; $i < count($data['user_services']); $i++) {
             $sId = $data['user_services'][$i]['service_id'];            
             $result = $this->MainModel->selectAllFromWhere("services", array("id" => $sId));  
-            array_push($data['services'],$result[0]);        
+            array_push($data['services'],array_merge($data['user_services'][$i],$result[0]));        
         }
+        
         $this->load->view('admin/layout/header.php');
 		$this->load->view('admin/layout/sidenav.php');
-		$this->load->view('user/user-dashboard');
+		$this->load->view('user/user-dashboard',$data);
 		$this->load->view('admin/layout/footer.php');
 
-        print_r($data['services']);
+        
     }
 
     public function upload_pdf()

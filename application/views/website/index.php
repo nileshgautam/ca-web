@@ -103,9 +103,9 @@ Or Grow your Company in -->
 													if ($packages[0]['price'] != 0) { ?>
 														<label for="packages">Packages</label>
 														<form action="" class="p-form">
-															<input type="radio" class="mr-1" name="packages" id="" checked> ₹ 2,899
-															<input type="radio" class="mr-1" name="packages" id=""> ₹ 6,899
-															<input type="radio" class="mr-1" name="packages" id=""> ₹ 12,899
+															<input type="radio" class="mr-1" name="packages" id="" checked> ₹ <?php echo $packages[0]['price']?>
+															<input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[1]['price']?>
+															<input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[2]['price']?>
 															<div class="mt-2">
 																<small>Prices Inclusive of all taxes</small>
 																<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['id'])?>" class="c-btn">Get Started</a>
