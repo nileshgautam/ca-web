@@ -38,7 +38,7 @@
     <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery/jquery.min.js"></script>
     <div class="fixed-button">
         <a href="#" target="_blank" class="btn btn-md btn-primary">
-            <i class="fa fa-up-arrow" aria-hidden="true"></i> 
+        <i class="ti-arrow-up"></i>
         </a>
     </div>
     <!-- Pre-loader start -->

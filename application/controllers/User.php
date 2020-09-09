@@ -52,11 +52,11 @@ class User extends CI_Controller
 		$this->load->view('user/layout/footer.php');
 	}
 
-	public function new_ticket($services_id = null)
+	public function view_ticket($services_id = null)
 	{
 		$this->load->view('user/layout/header.php');
 		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/help/new-ticket');
+		$this->load->view('user/help/view-ticket');
 		$this->load->view('user/layout/footer.php');
 	}
 
@@ -65,6 +65,14 @@ class User extends CI_Controller
 		$this->load->view('user/layout/header.php');
 		$this->load->view('user/layout/sidenav.php');
 		$this->load->view('user/help/chatroom');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	public function setting($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/setting');
 		$this->load->view('user/layout/footer.php');
 	}
 
