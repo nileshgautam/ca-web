@@ -5,7 +5,7 @@
     </div>
         <!-- Warning Section Ends -->
         <!-- Required Jquery -->
-        <script type="text/javascript" src="<?php echo base_url('usertheme/')?>assets/js/jquery/jquery.min.js"></script>
+      
         <script type="text/javascript" src="<?php echo base_url('usertheme/')?>assets/js/jquery-ui/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('usertheme/')?>assets/js/popper.js/popper.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('usertheme/')?>assets/js/bootstrap/js/bootstrap.min.js"></script>

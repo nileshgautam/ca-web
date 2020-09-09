@@ -17,25 +17,28 @@
     <meta name="keywords" content="free dashboard template, free admin, free bootstrap template, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="codedthemes">
     <!-- Favicon icon -->
-    <link rel="icon" href="<?php echo base_url('usertheme/assets/images/favicon.ico')?>" type="image/x-icon">
+    <link rel="icon" href="<?php echo base_url('usertheme/assets/images/favicon.ico') ?>" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/bootstrap/css/bootstrap.min.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/bootstrap/css/bootstrap.min.css') ?>">
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/themify-icons/themify-icons.css')?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/font-awesome/css/font-awesome.min.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/themify-icons/themify-icons.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/font-awesome/css/font-awesome.min.css') ?>">
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/icofont/css/icofont.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/icofont/css/icofont.css') ?>">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/style.css')?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/jquery.mCustomScrollbar.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('usertheme/assets/css/modal-direction.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/jquery.mCustomScrollbar.css') ?>">
+
 </head>
 
 <body>
+    <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery/jquery.min.js"></script>
     <div class="fixed-button">
         <a href="#" target="_blank" class="btn btn-md btn-primary">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
+            <i class="fa fa-up-arrow" aria-hidden="true"></i> 
         </a>
     </div>
     <!-- Pre-loader start -->
