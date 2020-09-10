@@ -34,7 +34,14 @@
     <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery/jquery.min.js"></script>
     <!-- Notiflix for alert messages -->
     <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.css" />
-        <script src="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.js"></script>
+        <script src="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.js">
+    
+
+    </script>
+
+    <script>
+            let baseUrl="<?php echo base_url()?>";
+    </script>
 </head>
 
 <body>

@@ -166,35 +166,79 @@ class User extends CI_Controller
 
     public function helpdesk($services_id = null)
     {
+        $condition = array('customer_id' => $_SESSION['userInfo']['user_id']);
+        $tableName = 'helpdesk';
+
+        $result = $this->MainModel->selectAllFromTableOrderBy($tableName, 'date_time', 'desc', $condition);
+
+        $data['tickets'] = isset($result) ? $result : 0;
+
+
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
-        $this->load->view('user/help/helpdesk');
+        $this->load->view('user/help/helpdesk', $data);
         $this->load->view('user/layout/footer');
     }
-	
-	public function view_ticket($services_id = null)
-	{
-		$this->load->view('user/layout/header.php');
-		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/help/view-ticket');
-		$this->load->view('user/layout/footer.php');
-	}
 
-	public function chatroom($services_id = null)
-	{
-		$this->load->view('user/layout/header.php');
-		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/help/chatroom');
-		$this->load->view('user/layout/footer.php');
-	}
+    public function view_ticket($services_id = null)
+    {
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/help/view-ticket');
+        $this->load->view('user/layout/footer.php');
+    }
 
-	public function setting($services_id = null)
-	{
-		$this->load->view('user/layout/header.php');
-		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/setting');
-		$this->load->view('user/layout/footer.php');
-	}
+    public function chatroom($services_id = null)
+    {
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/help/chatroom');
+        $this->load->view('user/layout/footer.php');
+    }
 
-	
-}
+    public function setting($services_id = null)
+    {
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/setting');
+        $this->load->view('user/layout/footer.php');
+    }
+
+
+    public function new_ticket($services_id = null)
+    {   $upload_ready =false;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST)) {
+
+
+                // inserting details
+
+                $subject = validateInput($_POST['subject']);
+                $description = validateInput($_POST['description']);
+                $tableName = 'helpdesk';
+
+                //Creating array for database 
+                $timestamp = date("Y-m-d H:i:s");
+
+                $ticketId = $this->MainModel->getNewIDorNo('helpdesk', "TCI0-");
+
+                $file_name='abcd';
+
+                $query = array('customer_id' => $_SESSION['userInfo']['user_id'], 'ticket_id' => $ticketId, 'subject' => $subject, 'query' => $description, 'files' => $file_name, 'date_time' => $timestamp);
+
+                // Inserting Helpdesk data into the database;
+                $result = $this->MainModel->insertInto($tableName, $query);
+
+                if ($result > 0) {
+                    echo $response = json_encode(array('message' => 'Success! Ticket created', 'type' => 'success'), true);
+                } else {
+                    echo $response = json_encode(array('message' => 'Error! Opps... Contact IT', 'type' => 'danger'), true);
+                }
+            }
+        }
+        }  
+    }  
+  
+
+
