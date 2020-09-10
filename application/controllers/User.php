@@ -27,7 +27,7 @@ class User extends CI_Controller
         $data['user_services'] = $this->MainModel->selectAllFromWhere("user_services", array("user_id" => $id));
         for ($i = 0; $i < count($data['user_services']); $i++) {
             $sId = $data['user_services'][$i]['service_id'];
-            $result = $this->MainModel->selectAllFromWhere("services", array("id" => $sId));
+            $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));
             array_push($data['services'], array_merge($data['user_services'][$i], $result[0]));
         }
 

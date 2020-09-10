@@ -19,6 +19,7 @@ $('#new-ticket').submit(function(e) {
             if (response.type === 'success' || response.type === 'danger') {
                 $('#newTicket').modal('hide');
                 response.type == 'success' ? Notiflix.Notify.Success(response.message) : Notiflix.Notify.Failure(response.message);
+                location.reload();
             }
 
             // show response from the php script.
