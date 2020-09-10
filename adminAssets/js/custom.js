@@ -100,10 +100,8 @@ $(document).ready(function () {
     $('#servicesForm').on('submit', function (e) {
         e.preventDefault();
         let category = $('select[name="category"]').val()
-        if (category != "") {
-            let data = packageData();
-            let formData = new FormData(document.getElementById(`servicesForm`));
-            formData.append('packages', JSON.stringify(data))
+        if (category != "") {            
+            let formData = new FormData(document.getElementById(`servicesForm`));            
             let url = BASE_URL + 'Admin/saveServices';
             AjaxPost(formData, url, successCallBack, AjaxError)
 
@@ -122,25 +120,58 @@ $(document).ready(function () {
 
     });
 
+    //Save packages
+    $('#packageForm').on('submit', function (e) {
+        e.preventDefault();
+        let service = $('select[name="service_id"]').val()
+        if (service != "") {
+            let data = packageData();
+            let formData = new FormData(document.getElementById(`packageForm`));
+            formData.append('packages', JSON.stringify(data))
+            let url = BASE_URL + 'Admin/savePackage';
+            AjaxPost(formData, url, successCallBack, AjaxError)
+
+            function successCallBack(content) {
+                let result = JSON.parse(content);
+                $('#exampleModal').modal('hide');
+                result[0] == 'success' ? Notiflix.Notify.Success(result[1]) : Notiflix.Notify.Failure(result[1]);
+                setTimeout(function () { window.location.reload(); }, 2000);
+
+            }
+        } else {
+            Notiflix.Notify.Failure('Service Required');
+            $('select[name="service_id"]').focus()
+        }
+
+
+    });
+
+
     function packageData() {
         let basicPack = [];
         let essentialPack = [];
         let premiumPack = [];
+        let basicPack1 = [];
+        let essentialPack1 = [];
+        let premiumPack1 = [];
         let bPrice = $('input[name="bPrice"]').val();
         let ePrice = $('input[name="ePrice"]').val();
         let pPrice = $('input[name="pPrice"]').val();
         $('#selectedServices option').each(function () {
             basicPack.push($(this).val());
+            basicPack1.push($(this).text());
         });
         $('#pSelectedServices option').each(function () {
             premiumPack.push($(this).val());
+            premiumPack1.push($(this).text());
         });
         $('#eSelectedServices option').each(function () {
             essentialPack.push($(this).val());
+            essentialPack1.push($(this).text());
         });
-        let package = [{ name: 'Basic', price: bPrice, services: basicPack },
-        { name: 'Essential', price: ePrice, services: essentialPack },
-        { name: 'Premium', price: pPrice, services: premiumPack }]
+        let package = [{ name: 'Basic', price: bPrice, servicesId: basicPack,servicesNames:basicPack1 },
+        { name: 'Essential', price: ePrice, servicesId: essentialPack,servicesNames:essentialPack1 },
+        { name: 'Premium', price: pPrice, servicesId: premiumPack,servicesNames: premiumPack1}]
 
         return package;
     }

@@ -24,7 +24,8 @@ $(document).ready(function(){
         let price = $(this).val();
         let package = $(this).attr('package');
         $('#package').val(package);
-        $('#payPrice').text('₹ '+price)
+        $('#payPrice').text('₹ '+price);
+        $('#price').val(price)
     });
 
     })

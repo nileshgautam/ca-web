@@ -83,5 +83,11 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+defined('Payment_Received')      OR define('Payment_Received', 'Payment Received');
+defined('Documents_to_be_uploaded')      OR define('Documents_to_be_uploaded', 'Documents to be uploaded');
+defined('Partial_Documents_Uploaded')      OR define('Partial_Documents_Uploaded', 'Partial Documents Uploaded');
+defined('Documents_Uploaded')      OR define('Documents_Uploaded', 'Documents Uploaded');
+defined('Work_in_Progress')      OR define('Work_in_Progress', 'Work in Progress');
+defined('Work_Completed')      OR define('Work_Completed', 'Work Completed');
 define('ADMIN', 'Admin');
 define('USER', 'User');
