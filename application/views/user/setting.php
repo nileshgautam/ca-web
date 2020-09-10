@@ -6,7 +6,6 @@
     </div>
 
     <div class="card">
-
       <form action="" class="p-3">
         <strong for="">Profile</strong>
         <div class="form-group"><label for="first-name">First Name</label>
@@ -24,7 +23,6 @@
           <input type="submit" value="Update" class="form-control btn-sm btn-primary col-sm-2 float-right">
         </div>
       </form>
-
       <form action="" method="post" class="p-3">
         <strong class="py-2 mb-2">Change password</strong>
         <div class="form-group"><label for="new-password">New Password</label>
@@ -34,13 +32,10 @@
           <label for="confirm-password">Confirm Password</label>
           <input type="password" name="confirm-password" id="confirm-password" class="form-control">
         </div>
-
         <div class="form-group ">
           <a class="form-control btn-sm btn-danger col-sm-2 float-right text-center" href="<?php echo base_url('User/') ?>">Cancel</a>
           <input type="submit" value="Update" class="form-control btn-sm btn-primary col-sm-2 float-right">
         </div>
-
-
       </form>
     </div>
 

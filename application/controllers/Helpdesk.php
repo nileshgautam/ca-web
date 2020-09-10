@@ -4,7 +4,7 @@ use function PHPSTORM_META\override;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller
+class Helpdesk extends CI_Controller
 {
 	var $UserDtl;
 	public function __construct()
@@ -76,21 +76,7 @@ class User extends CI_Controller
 		$this->load->view('user/layout/footer.php');
 	}
 
-
-	public function create_ticket($ticket = null)
-	{
-		// $this->load->view('user/layout/header.php');
-		// $this->load->view('user/layout/sidenav.php');
-		// $this->load->view('user/setting');
-		// $this->load->view('user/layout/footer.php');
-	}
-
-
-
-
-
-
-
+	
 	// public function upload_pdf()
 	// {
 	// 	// my_print($_POST);

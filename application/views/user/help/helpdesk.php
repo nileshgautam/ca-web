@@ -170,14 +170,11 @@
                             </div>
                             <div class="form-group">
                                 <a class="form-control btn-sm btn-danger rounded col-sm-4 float-right text-center text-white" data-dismiss="modal" aria-label="Close">Cancel</a>
-                                <input type="submit" value="Submit" class="form-control rounded btn-sm btn-primary col-sm-4">
+                                <input type="submit" value="Submit" class="form-control rounded btn-sm btn-primary col-sm-4 .
+                                ">
                             </div>
-
-
                         </form>
                     </div>
-
-
                 </div>
 
 
