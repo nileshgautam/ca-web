@@ -27,6 +27,9 @@
         <script src="<?php echo base_url('usertheme/')?>assets/js/pcoded.min.js"></script>
         <script src="<?php echo base_url('usertheme/')?>assets/js/vartical-demo.js"></script>
         <script src="<?php echo base_url('usertheme/')?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+        <script type="text/javascript" src="<?php echo base_url('usertheme/')?>assets/js/custom.js"></script>
 </body>
 
 </html>

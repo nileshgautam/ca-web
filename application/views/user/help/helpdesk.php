@@ -154,19 +154,19 @@
                     </div>
 
                     <div class="card">
-                        <form action="" class="p-3">
+                        <form action="" id="new-ticket" class="p-3">
 
                             <div class="form-group">
                                 <label>Subject</label>
-                                <input type="text" name="" id="" class="form-control">
+                                <input type="text" name="subject" id="subject" class="form-control">
                             </div>
                             <label>Description</label>
                             <div class="form-group">
-                                <textarea name="" id="" cols="96" rows="10" class="form-control"></textarea>
+                                <textarea name="description" id="description" cols="96" rows="10" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Add Atachment</label>
-                                <input type="file" class="form-control" name="file">
+                                <input type="file" class="form-control" name="file" id="file">
                             </div>
                             <div class="form-group">
                                 <a class="form-control btn-sm btn-danger rounded col-sm-4 float-right text-center text-white" data-dismiss="modal" aria-label="Close">Cancel</a>
