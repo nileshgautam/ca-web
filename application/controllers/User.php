@@ -168,7 +168,33 @@ class User extends CI_Controller
     {
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
-        $this->load->view('user/helpdesk');
+        $this->load->view('user/help/helpdesk');
         $this->load->view('user/layout/footer');
     }
+	
+	public function view_ticket($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/help/view-ticket');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	public function chatroom($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/help/chatroom');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	public function setting($services_id = null)
+	{
+		$this->load->view('user/layout/header.php');
+		$this->load->view('user/layout/sidenav.php');
+		$this->load->view('user/setting');
+		$this->load->view('user/layout/footer.php');
+	}
+
+	
 }
