@@ -1,4 +1,3 @@
-
 <div class="row business-info m-0">
 	<div class="col-sm-6 ">
 		<div class="head-para">
@@ -99,7 +98,7 @@ Or Grow your Company in -->
 												<div class="card-body">
 													<h6 class="card-title"><?php echo $services[$i]['service_name'] ?></h6>
 													<?php
-													$packages = json_decode($services[$i]['service_packages'], true);
+													$packages = json_decode($services[$i]['packages'], true);													
 													if ($packages[0]['price'] != 0) { ?>
 														<label for="packages">Packages</label>
 														<form action="" class="p-form">
@@ -108,7 +107,7 @@ Or Grow your Company in -->
 															<input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[2]['price']?>
 															<div class="mt-2">
 																<small>Prices Inclusive of all taxes</small>
-																<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['id'])?>" class="c-btn">Get Started</a>
+																<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['service_id'])?>" class="c-btn">Get Started</a>
 															</div>
 														</form>
 													<?php } else { ?>

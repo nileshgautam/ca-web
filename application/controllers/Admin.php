@@ -11,9 +11,9 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		date_default_timezone_set("Asia/Kolkata"); //Set server date an time to Asia
-		
+
 		if (!isset($_SESSION['userInfo']) || $_SESSION['userInfo']['role'] != 'Admin')		   // On first entry re-direct to logi screen
-		{			
+		{
 			redirect(base_url('Login'));
 		} else {
 			$this->UserDtl = $_SESSION['userInfo'];
@@ -21,8 +21,8 @@ class Admin extends CI_Controller
 	}
 	private function load_view($views = [], $vars = [])
 	{
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidenav');
 		// print_r($views);die;
 		if (is_array($views)) {
 			foreach ($views as $view) {
@@ -31,14 +31,14 @@ class Admin extends CI_Controller
 		} else {
 			$this->load->view('admin/' . $views, $vars);
 		}
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('admin/layout/footer');
 	}
 	public function index()
 	{
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
-		$this->load->view('admin/adminDashboard.php');
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidenav');
+		$this->load->view('admin/adminDashboard');
+		$this->load->view('admin/layout/footer');
 	}
 	public function countries()
 	{
@@ -97,10 +97,10 @@ class Admin extends CI_Controller
 	public function showServices()
 	{
 		$data['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
-		$this->load->view('admin/showServices.php', $data);
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidenav');
+		$this->load->view('admin/showServices', $data);
+		$this->load->view('admin/layout/footer');
 	}
 
 	public function addServices($id = '')
@@ -111,10 +111,10 @@ class Admin extends CI_Controller
 		}
 		$data['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
 		$data['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
-		$this->load->view('admin/layout/header.php');
-		$this->load->view('admin/layout/sidenav.php');
-		$this->load->view('admin/addServices.php', $data);
-		$this->load->view('admin/layout/footer.php');
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidenav');
+		$this->load->view('admin/addServices', $data);
+		$this->load->view('admin/layout/footer');
 	}
 
 	public function saveServices()
@@ -148,7 +148,6 @@ class Admin extends CI_Controller
 			'banner_image' => '',
 			'service_side_image' => '',
 			'label_points' => json_encode($features),
-			'service_packages	' => $_POST['packages'],
 			'priority' => '',
 		);
 
@@ -160,10 +159,44 @@ class Admin extends CI_Controller
 			} else {
 				echo json_encode(array('error', 'Service could not be add, Contact to IT'));
 			}
-		}else{
+		} else {
 			echo json_encode(array('error', 'Service already exist'));
 		}
 	}
 
+	public function addPackages($id = '')
+	{
+		if ($id != "") {
+			$data['selectedService'] = $this->MainModel->selectAllFromWhere("services", array("id" => $id));
+			$data['submitType'] = 'update';
+		}
+		$data['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
+		$data['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidenav');
+		$this->load->view('admin/add_packages', $data);
+		$this->load->view('admin/layout/footer');
+	}
 
+	public function savePackage()
+	{
+		$sId = $_POST['service_id'];
+		$package = $_POST['packages'];
+		$validate = $this->MainModel->selectAllFromWhere("service_packages", array("service_id" => $sId));
+		$result = '';
+		if (!$validate) {
+			$insertdata = array(				'service_id' => $sId,
+				'packages' => $_POST['packages'],
+
+			);
+			$result = $this->MainModel->insertInto('service_packages', $insertdata);
+			if ($result) {
+				echo json_encode(array('success', 'Package successfully added'));
+			} else {
+				echo json_encode(array('error', 'Package could not be add, Contact to IT'));
+			}
+		} else {
+			echo json_encode(array('error', 'Selected service Already have packages'));
+		}
+	}
 }

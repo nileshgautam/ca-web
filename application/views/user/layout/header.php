@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Gradient Able bootstrap admin template by codedthemes </title>
+    <title>CA Web User</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,14 +30,19 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/style.css')?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/jquery.mCustomScrollbar.css')?>">
+    <!-- jquery -->
+    <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery/jquery.min.js"></script>
+    <!-- Notiflix for alert messages -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.css" />
+        <script src="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.js"></script>
 </head>
 
 <body>
-    <div class="fixed-button">
+    <!-- <div class="fixed-button">
         <a href="#" target="_blank" class="btn btn-md btn-primary">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
         </a>
-    </div>
+    </div> -->
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">

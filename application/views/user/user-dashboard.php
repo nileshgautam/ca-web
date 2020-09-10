@@ -5,7 +5,7 @@
         // echo '<pre>';
         // print_r($services);
         if(count($services)>0){
-        for ($i = 0; $i < count($services); $i++) {                       
+        for ($i = 0; $i < count($services); $i++) {                          
             ?>
             <div class="col-md-6 py-2">
                 <!-- Widget: user widget style 2 -->
@@ -26,12 +26,12 @@
                             <span>Price </span> <span class="float-right"><?php echo $services[$i]['price'] ?></span>
                         </div>
                         <div class="nav-item">
-                            <span>Purchage Date</span> <span class="float-right"><?php echo $services[$i]['timeStamp'] ?></span>
+                            <span>Purchase Date</span> <span class="float-right"><?php echo $services[$i]['timeStamp'] ?></span>
                         </div>
                         <div class="py-2">
 
                         
-                        <a href="<?php echo base_url('upload-document') ?>" class="btn-sm offset-8 badge bg-success">
+                        <a href="<?php echo base_url('User/upload_document/').base64_encode($services[$i]['service_id']) ?>" class="btn-sm offset-8 badge bg-success">
                            <i class="ti-upload"></i> Upload document
                         </a>
                         </div>

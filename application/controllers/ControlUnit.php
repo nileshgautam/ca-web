@@ -22,7 +22,7 @@ class ControlUnit extends CI_Controller
 	public function index()
 	{
 		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASCS');
-		$page['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
+		$page['services'] = $this->MainModel->getAllServices();		
 		$page['title'] = 'CA Web';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/index');
@@ -32,7 +32,7 @@ class ControlUnit extends CI_Controller
 	public function service($id = '')
 	{
 		$id = base64_decode($id);
-		$page['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $id));
+		$page['service'] = $this->MainModel->getservicesWithPackage($id);				
 		$page['title'] = 'Proprietorship Company';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/services');

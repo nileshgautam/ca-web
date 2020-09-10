@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="index.html">
+                        <a href="<?php echo base_url('User')?>">
                             <img class="" src="<?php echo base_url()?>assets/image/logo.png" alt="Theme-Logo"  height="30"/>
                         </a>
                         <a class="mobile-options">
@@ -139,7 +139,7 @@
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
-                                    <a href="#">
+                                    <a href="<?php echo base_url('User')?>">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>

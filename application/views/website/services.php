@@ -52,7 +52,7 @@
 
                 <div class="row" id='packages'>
                     <?php
-                    $packages = json_decode($service[0]['service_packages'], true);
+                    $packages = json_decode($service[0]['packages'], true);                   
                     if ($packages[0]['price'] > 0) {
                         for ($i = 0; $i < count($packages); $i++) {
                     ?>
@@ -65,8 +65,8 @@
                                     </div>
                                     <div class="row mt-25">
                                         <?php
-                                        if (count($packages[$i]['services']) > 0) {
-                                            $pServices = $packages[$i]['services'];
+                                        if (count($packages[$i]['servicesNames']) > 0) {
+                                            $pServices = $packages[$i]['servicesNames'];
                                             for ($j = 0; $j < count($pServices); $j++) {
                                         ?>
                                                 <span class="col-sm-1">
@@ -95,7 +95,7 @@
                             <input type="text" name="contact" placeholder="Contact Number" class="form-contron-1" required>
                             <input type="text" name="state" placeholder="State" class="form-contron-1" required>
                             <input hidden value="<?php echo current_url() ?>" name='redirection' required>
-                            <input hidden value="<?php echo $service[0]['id'] ?>" id="serviceId" name='serviceId' required>
+                            <input hidden value="<?php echo $service[0]['service_id'] ?>" id="serviceId" name='serviceId' required>
                             <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['price'] : $service[0]['service_price'] ?>" id="price" name='price' required>
                             <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['name'] : 'single' ?>" id="package" name='package' required>
                             <div class="text-center py-2">
