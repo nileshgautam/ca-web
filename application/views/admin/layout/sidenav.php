@@ -173,6 +173,12 @@
                                       <p>Services</p>
                                   </a>
                               </li>
+                              <li class="nav-item">
+                                  <a href="<?php echo base_url('Admin/addPackages') ?>" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Service Packages</p>
+                                  </a>
+                              </li>
                               <!-- <li class="nav-item">
                               <a href="pages/forms/validation.html" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>

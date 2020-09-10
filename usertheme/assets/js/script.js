@@ -129,3 +129,17 @@ var nav = $('.fixed-button');
          nav.removeClass('active');
      }
  });
+
+//  myscript starts from here
+
+$('#documentTable').on('change','input[type="file"]',function(){
+    $(this).parent().parent().trigger('submit');    
+})
+
+$('#documentTable').on('click','img',function(){
+    let src = $(this).attr('src');
+    let alt = $(this).attr('alt');
+    $('#exampleModalLabel').text(alt)    
+    $('#exampleModal .modal-body').html(`<img src="${src}" alt="${alt}" >`);
+    $('#exampleModal').modal('show');
+})

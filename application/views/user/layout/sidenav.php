@@ -17,6 +17,15 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
+                        <a href="<?php echo base_url('User')?>">
+                            <img class="" src="<?php echo base_url()?>assets/image/logo.png" alt="Theme-Logo"  height="30"/>
+                        </a>
+                        <a class="mobile-options">
+                            <i class="ti-more"></i>
+                        </a>
+=======
+>>>>>>> 601b5f5b1f3fd4c0a79697b2cc63d95ee3b676c1
                     </div>
                     <a href="index.html">
                         <img class="" src="<?php echo base_url() ?>assets/image/logo.png" alt="Theme-Logo" height="30" />
@@ -67,7 +76,60 @@
                                             </p>
                                             <span class="notification-time">30 minutes ago</span>
                                         </div>
-                                    </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="user-profile header-notification">
+                                <a href="#!">
+                                    <img src="<?php echo base_url('usertheme/')?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
+                                    <span>John Doe</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                    <li>
+                                        <a href="#!">
+                                            <i class="ti-settings"></i> Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="user-profile.html">
+                                            <i class="ti-user"></i> Profile
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="auth-lock-screen.html">
+                                            <i class="ti-lock"></i> Lock Screen
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('logout')?>">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="active">
+                                    <a href="<?php echo base_url('User')?>">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
                                 </li>
                                 <li>
                                     <div class="media">

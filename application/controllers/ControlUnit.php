@@ -22,7 +22,7 @@ class ControlUnit extends CI_Controller
 	public function index()
 	{
 		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASCS');
-		$page['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
+		$page['services'] = $this->MainModel->getAllServices();		
 		$page['title'] = 'CA Web';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/index');
@@ -32,19 +32,24 @@ class ControlUnit extends CI_Controller
 	public function service($id = '')
 	{
 		$id = base64_decode($id);
-		$page['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $id));
+		$page['service'] = $this->MainModel->getservicesWithPackage($id);				
 		$page['title'] = 'Proprietorship Company';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/services');
 		$this->load->view('website/layout/footer');
 	}
 
+	public function payment(){
+		$data['selectedService'] = $_POST;
+		$data['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $data['selectedService']['serviceId']));
+		$this->load->view('website/layout/header');
+		$this->load->view('website/payment',$data);
+		$this->load->view('website/layout/footer');
+	}
+	
 	public function sendMessage()
-	{
-		// print_r($_POST);
-
-		// // print_r($password);
-		// die;
+	{		
+		// print_r($_POST);die;
 		$password = $this->passwordGenerate(8);
 		$insertData = array(
 			'name' => validateInput($_POST['uName']),
@@ -53,17 +58,20 @@ class ControlUnit extends CI_Controller
 			'state' => validateInput($_POST['state']),
 			'password' => $password,
 			'role' => 'User',
-			'status' => 'A'
+			'status' => 'A',
+			
 		);
 		$insertData['user_id'] =   $this->MainModel->getNewIDorNo('users', "USR-");
 		$userService = array(
 			'user_id' => $insertData['user_id'],
 			'service_id' => validateInput($_POST['serviceId']),
 			'package' => validateInput($_POST['package']),
-
+			'status' => Payment_Received,
+			'price' => validateInput($_POST['price'])
 		);
 
 		$validate = $this->MainModel->selectAllFromWhere("users", array("email" => $insertData['email']));
+		
 		if (!$validate) {
 			$this->load->helper('email');
 			$to = $insertData['email'];
@@ -85,14 +93,23 @@ class ControlUnit extends CI_Controller
 				redirect($_POST['redirection']);
 			}
 		} else {
-			$this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
+			$userService['user_id'] = $validate[0]['user_id'];
+			$result1 = $this->MainModel->insertInto('user_services', $userService);
+				if ($result1) {
+
+					$this->session->set_flashdata('success', 'Please Login your account for further process');
+					redirect($_POST['redirection']);
+				} else {
+					$this->session->set_flashdata('error', 'Please Try Again');
+					redirect($_POST['redirection']);
+				}
+			// $this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
 			redirect($_POST['redirection']);
 		}
 	}
 
 	function passwordGenerate($length)
 	{
-
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		return substr(str_shuffle($chars), 0, $length);
 	}
