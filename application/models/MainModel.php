@@ -225,8 +225,8 @@ class MainModel extends ci_model
 	{
 		$this->db->select('*');
 		$this->db->from('services s');
-		$this->db->join('service_packages SP', 'SP.service_id = s.id', 'left');		
-		$this->db->where('s.id', $id);
+		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');		
+		$this->db->where('s.serviceId', $id);
 		$result = $this->db->get()->result_array();
 		if ($this->db->affected_rows()) {
 			return $result;
@@ -239,7 +239,7 @@ class MainModel extends ci_model
 	{
 		$this->db->select('*');
 		$this->db->from('services s');
-		$this->db->join('service_packages SP', 'SP.service_id = s.id', 'left');		
+		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');		
 		$result = $this->db->get()->result_array();
 		if ($this->db->affected_rows()) {
 			return $result;
@@ -248,13 +248,28 @@ class MainModel extends ci_model
 		}
 	}
 
-	public function getUserServices($id=null)
+	public function getUserServices($id=null,$userId = null)
 	{
 		$this->db->select('*');
 		$this->db->from('services s');
-		$this->db->join('service_packages SP', 'SP.service_id = s.id', 'left');
-		$this->db->join('user_services US', 'US.service_id = SP.service_id', 'left');
-		$this->db->where('s.id', $id);			
+		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');
+		$this->db->join('user_services US', 'US.service_id = s.serviceId', 'left');
+		$this->db->where('s.serviceId', $id);
+		$this->db->where('US.user_id', $userId);			
+		$result = $this->db->get()->result_array();
+		if ($this->db->affected_rows()) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	public function getPaymentsWithServices($userId = null)
+	{
+		$this->db->select('*');
+		$this->db->from('payments p');
+		$this->db->join('services s', 'p.serviceId = s.serviceId', 'left');		
+		$this->db->where('p.user_id', $userId);			
 		$result = $this->db->get()->result_array();
 		if ($this->db->affected_rows()) {
 			return $result;

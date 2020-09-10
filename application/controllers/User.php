@@ -27,7 +27,7 @@ class User extends CI_Controller
         $data['user_services'] = $this->MainModel->selectAllFromWhere("user_services", array("user_id" => $id));
         for ($i = 0; $i < count($data['user_services']); $i++) {
             $sId = $data['user_services'][$i]['service_id'];
-            $result = $this->MainModel->selectAllFromWhere("services", array("id" => $sId));
+            $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));
             array_push($data['services'], array_merge($data['user_services'][$i], $result[0]));
         }
 
@@ -129,6 +129,7 @@ class User extends CI_Controller
     public function upload_document($services_id = null)
     {
         $data['documents'] =  $this->getRequiredDocuments($services_id);
+        // print_r($data['documents']);die;
         $data['uploadwedDocs'] = $this->MainModel->selectAllFromWhere("uploaded_documents", array("user_id" => $_SESSION['userInfo']['user_id']));
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
@@ -138,7 +139,8 @@ class User extends CI_Controller
 
     public function getRequiredDocuments($services_id = null)
     {
-        $data['services'] = $this->MainModel->getUserServices(base64_decode($services_id));
+        $data['services'] = $this->MainModel->getUserServices(base64_decode($services_id),$_SESSION['userInfo']['user_id']);
+        // print_r($data['services']);die;
         $packages = json_decode($data['services'][0]['packages'], true);
         switch ($data['services'][0]['package']) {
             case 'Basic':
@@ -152,15 +154,19 @@ class User extends CI_Controller
             case 'Premium':
                 $ids = "'" . implode("','", $packages[2]['servicesId']) . "'";
                 return array($data['documents'] = $this->CustomModel->getREquiredDocuments($ids), $packages[2]['servicesNames']);
+            case 'single':                
+                return array($data['documents'] = $this->CustomModel->getREquiredDocuments($data['services'][0]['serviceId']),$data['documents'] = $data['services']);
                 break;
         }
     }
 
     public function payment_receipts($services_id = null)
     {
+        $data['payments'] = $this->MainModel->getPaymentsWithServices($_SESSION['userInfo']['user_id']);
+        // echo "<pre>";print_r($data['payments']);die;
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
-        $this->load->view('user/payment-receipts');
+        $this->load->view('user/payment-receipts',$data);
         $this->load->view('user/layout/footer');
     }
 
@@ -171,30 +177,28 @@ class User extends CI_Controller
         $this->load->view('user/help/helpdesk');
         $this->load->view('user/layout/footer');
     }
-	
-	public function view_ticket($services_id = null)
-	{
-		$this->load->view('user/layout/header.php');
-		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/help/view-ticket');
-		$this->load->view('user/layout/footer.php');
-	}
 
-	public function chatroom($services_id = null)
-	{
-		$this->load->view('user/layout/header.php');
-		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/help/chatroom');
-		$this->load->view('user/layout/footer.php');
-	}
+    public function view_ticket($services_id = null)
+    {
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/help/view-ticket');
+        $this->load->view('user/layout/footer.php');
+    }
 
-	public function setting($services_id = null)
-	{
-		$this->load->view('user/layout/header.php');
-		$this->load->view('user/layout/sidenav.php');
-		$this->load->view('user/setting');
-		$this->load->view('user/layout/footer.php');
-	}
+    public function chatroom($services_id = null)
+    {
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/help/chatroom');
+        $this->load->view('user/layout/footer.php');
+    }
 
-	
+    public function setting($services_id = null)
+    {
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/setting');
+        $this->load->view('user/layout/footer.php');
+    }
 }

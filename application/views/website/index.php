@@ -86,7 +86,7 @@ Or Grow your Company in -->
 			<hr class="divider">
 
 			<div class="tab-content" id="pills-tabContent">
-				<?php if (isset($services) && isset($categories)) {
+				<?php if (isset($services) && isset($categories)) {					
 					for ($j = 0; $j < count($categories); $j++) { ?>
 						<div class="tab-pane fade <?php echo $j == 0 ? 'show active' : '' ?>" id="pills-area<?php echo $j + 1 ?>" role="tabpanel" aria-labelledby="pills-tab<?php echo $j + 1 ?>">
 							<div class="row">
@@ -115,7 +115,7 @@ Or Grow your Company in -->
 														<span class="d-block float-right"> ₹ <?php echo $services[$i]['service_price'] ?></span>
 														<div class="mt-2">
 															<small>Prices Inclusive of all taxes</small>
-															<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['id'])?>" class="c-btn">Get Started</a>
+															<a href="<?php echo base_url('ControlUnit/service/').base64_encode($services[$i]['serviceId'])?>" class="c-btn">Get Started</a>
 														</div>
 													<?php } ?>
 												</div>

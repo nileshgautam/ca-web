@@ -12,29 +12,29 @@
             <!-- Table row -->
             <div class="row">
               <div class="col-12 table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="paymentTable">
                   <thead>
                     <tr>
                       <th>Purchased Date</th>
+                      <th>Tranzaction Id</th>
                       <th>Service</th>
-                      <th>Package</th>
-                      <th>Description</th>
+                      <th>Package</th>                      
                       <th>Subtotal</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php for($i=0; $i<5; $i++){
-                      
-
-                      ?>
-                    <tr>
-                      <td>12/08/2020</td>
-                      <td>Startup service</td>
-                      <td>Basic</td>
-                      <td>El snort testosterone trophy driving gloves handsome</td>
-                      <td>$64.50</td>
-                    </tr>
-                    <?php }?>
+                    <?php
+                    if (isset($payments) && !empty($payments)) {
+                      for ($i = 0; $i < count($payments); $i++) { ?>
+                        <tr>
+                          <td><?php echo $payments[$i]['dateTime'] ?></td>
+                          <td><?php echo $payments[$i]['tranzactionId'] ?></td>
+                          <td><?php echo $payments[$i]['service_name'] ?></td>
+                          <td><?php echo $payments[$i]['package'] ?></td>                          
+                          <td><?php echo $payments[$i]['price'] ?></td>
+                        </tr>
+                    <?php }
+                    } ?>
                   </tbody>
                 </table>
               </div>
@@ -50,3 +50,9 @@
   </section>
   <!-- /.content -->
 </div>
+
+<script>
+  $(document).ready( function () {
+    $('#paymentTable').DataTable();
+} );
+</script>

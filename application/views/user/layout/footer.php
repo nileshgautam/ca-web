@@ -3,11 +3,11 @@
         </div>
         </div>
         <!-- Warning Section Ends -->
-        <!-- Required Jquery -->        
+        <!-- Required Jquery -->
         <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery-ui/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/popper.js/popper.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/bootstrap/js/bootstrap.min.js"></script>
-        
+
         <!-- jquery slimscroll js -->
         <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
         <!-- modernizr js -->
@@ -26,6 +26,11 @@
         <script src="<?php echo base_url('usertheme/') ?>assets/js/pcoded.min.js"></script>
         <script src="<?php echo base_url('usertheme/') ?>assets/js/vartical-demo.js"></script>
         <script src="<?php echo base_url('usertheme/') ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <!-- DataTables -->
+        <script src="<?php echo base_url() ?>adminAssets/js/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url() ?>adminAssets/js/dataTables.bootstrap4.min.js"></script>
+        <script src="<?php echo base_url() ?>adminAssets/js/dataTables.responsive.min.js"></script>
+        <script src="<?php echo base_url() ?>adminAssets/js/responsive.bootstrap4.min.js"></script>
         </body>
 
         </html>

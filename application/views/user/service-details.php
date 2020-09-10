@@ -24,24 +24,27 @@
                     <td>Action</td>
                   </thead>
                   <tbody id="documentTable">
-                    <?php if (count($documents[0]) > 0) {
+                    <?php 
+                    // echo "<pre>";
+                    // print_r($documents);
+                    if (count($documents[0]) > 0) {
                       for ($i = 0; $i < count($documents[0]); $i++) {
                         $document = json_decode($documents[0][$i]['documents'], true);
                         for ($j = 0; $j < count($document); $j++) {
                           $rowspan = count($document);
                           // echo "<pre>";
-                          // print_r($document);
+                          // print_r($documents[1][$i]);
                           // print_r($uploadwedDocs);
                           // die;
                     ?>
                           <tr>
                             <?php if ($j == 0) { ?>
                               <td style="vertical-align:middle" rowspan=<?php echo $rowspan ?>><?php echo $i + 1 ?></td>
-                              <td style="vertical-align:middle" rowspan=<?php echo $rowspan ?>><?php echo $documents[1][$i] ?></td>
+                              <td style="vertical-align:middle" rowspan=<?php echo $rowspan ?>><?php echo isset($documents[1][0]['service_name']) ? $documents[1][0]['service_name'] : $documents[1][$i]?></td>
                             <?php } ?>
                             <td><?php echo $document[$j] ?></td>
                             <td>
-                              <?php if (count($uploadwedDocs) > 0) {
+                              <?php if (isset($uploadwedDocs) && !empty($uploadwedDocs)) {
                                 $files = null;
                                 for ($k = 0; $k < count($uploadwedDocs); $k++) {
                                   if ($document[$j] == $uploadwedDocs[$k]['document_name']) {

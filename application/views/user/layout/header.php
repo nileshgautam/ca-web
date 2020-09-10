@@ -35,6 +35,9 @@
     <!-- Notiflix for alert messages -->
     <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.css" />
         <script src="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.js"></script>
+    <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/responsive.bootstrap4.min.css">
 </head>
 
 <body>

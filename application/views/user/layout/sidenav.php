@@ -17,15 +17,6 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <a href="<?php echo base_url('User')?>">
-                            <img class="" src="<?php echo base_url()?>assets/image/logo.png" alt="Theme-Logo"  height="30"/>
-                        </a>
-                        <a class="mobile-options">
-                            <i class="ti-more"></i>
-                        </a>
-=======
->>>>>>> 601b5f5b1f3fd4c0a79697b2cc63d95ee3b676c1
                     </div>
                     <a href="index.html">
                         <img class="" src="<?php echo base_url() ?>assets/image/logo.png" alt="Theme-Logo" height="30" />
@@ -83,16 +74,16 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="<?php echo base_url('usertheme/')?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span><?php echo $_SESSION['userInfo']['name'] ?></span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
-                                        <a href="#!">
+                                        <a href="<?php echo base_url('User/setting')?>">
                                             <i class="ti-settings"></i> Settings
                                         </a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="user-profile.html">
                                             <i class="ti-user"></i> Profile
                                         </a>
@@ -102,7 +93,7 @@
                                         <a href="auth-lock-screen.html">
                                             <i class="ti-lock"></i> Lock Screen
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="<?php echo base_url('logout')?>">
                                             <i class="ti-layout-sidebar-left"></i> Logout

@@ -6,23 +6,6 @@
 
 <div class="business-services-info">
     <div class="container">
-        <!-- <div class="">
-            <div class="col-sm-12">
-                <nav class="navbar">
-                    <div class="logo">
-                        <img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
-                    </div>
-                    <ul>
-                        <li><a href="">Business Startups</a> </li>
-                        <li><a href="">GST Registration</a> </li>
-                        <li><a href="">Income Tax</a></li>
-                        <li><a href="">Compliance</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div> -->
-
-
         <div class="row">
             <div class="col-sm-7">
                 <div class="text-white">
@@ -78,8 +61,8 @@
                                     </div>
                                 </div>
                             </div>
-                    <?php }
-                    } ?>
+                    <?php } 
+                    }?>
 
                 </div>
             </div>
@@ -95,9 +78,9 @@
                             <input type="text" name="contact" placeholder="Contact Number" class="form-contron-1" required>
                             <input type="text" name="state" placeholder="State" class="form-contron-1" required>
                             <input hidden value="<?php echo current_url() ?>" name='redirection' required>
-                            <input hidden value="<?php echo $service[0]['service_id'] ?>" id="serviceId" name='serviceId' required>
-                            <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['price'] : $service[0]['service_price'] ?>" id="price" name='price' required>
-                            <input hidden value="<?php echo $packages[0]['price'] != '0' ? $packages[0]['name'] : 'single' ?>" id="package" name='package' required>
+                            <input hidden value="<?php echo $service[0]['serviceId'] ?>" id="serviceId" name='serviceId' required>
+                            <input hidden value="<?php echo isset($packages[0]['price']) ? $packages[0]['price'] : $service[0]['service_price'] ?>" id="price" name='price' required>
+                            <input hidden value="<?php echo isset($packages[0]['price']) ? $packages[0]['name'] : 'single' ?>" id="package" name='package' required>
                             <div class="text-center py-2">
                                 <button type="submit" id="payBtn" class="btn btn-submit">Pay for Essential Plan <span class="ml-20" id='payPrice'> ₹ <?php echo $packages[0]['price'] > 0 ? $packages[0]['price'] : $service[0]['service_price'] ?></span><span><img src="<?php echo base_url('assets/image/icon/speed.png') ?>" alt="" height="16"></span></button>
                             </div>

@@ -22,7 +22,7 @@ class ControlUnit extends CI_Controller
 	public function index()
 	{
 		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASCS');
-		$page['services'] = $this->MainModel->getAllServices();		
+		$page['services'] = $this->MainModel->getAllServices();
 		$page['title'] = 'CA Web';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/index');
@@ -32,23 +32,24 @@ class ControlUnit extends CI_Controller
 	public function service($id = '')
 	{
 		$id = base64_decode($id);
-		$page['service'] = $this->MainModel->getservicesWithPackage($id);				
+		$page['service'] = $this->MainModel->getservicesWithPackage($id);
 		$page['title'] = 'Proprietorship Company';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/services');
 		$this->load->view('website/layout/footer');
 	}
 
-	public function payment(){
+	public function payment()
+	{
 		$data['selectedService'] = $_POST;
-		$data['service'] = $this->MainModel->selectAllFromWhere("services", array("id" => $data['selectedService']['serviceId']));
+		$data['service'] = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $data['selectedService']['serviceId']));
 		$this->load->view('website/layout/header');
-		$this->load->view('website/payment',$data);
+		$this->load->view('website/payment', $data);
 		$this->load->view('website/layout/footer');
 	}
-	
+
 	public function sendMessage()
-	{		
+	{
 		// print_r($_POST);die;
 		$password = $this->passwordGenerate(8);
 		$insertData = array(
@@ -59,7 +60,7 @@ class ControlUnit extends CI_Controller
 			'password' => $password,
 			'role' => 'User',
 			'status' => 'A',
-			
+
 		);
 		$insertData['user_id'] =   $this->MainModel->getNewIDorNo('users', "USR-");
 		$userService = array(
@@ -69,9 +70,15 @@ class ControlUnit extends CI_Controller
 			'status' => Payment_Received,
 			'price' => validateInput($_POST['price'])
 		);
-
+		$tranzactionData = array(
+			'serviceId' => 	validateInput($_POST['serviceId']),
+			'package' => 	validateInput($_POST['package']),
+			'price' => validateInput($_POST['price']),
+			'user_id' => $insertData['user_id']
+		);
+		$tranzactionData['tranzactionId'] =   $this->MainModel->getNewIDorNo('payments', "TRAN-");
 		$validate = $this->MainModel->selectAllFromWhere("users", array("email" => $insertData['email']));
-		
+
 		if (!$validate) {
 			$this->load->helper('email');
 			$to = $insertData['email'];
@@ -80,6 +87,7 @@ class ControlUnit extends CI_Controller
 			if (sentmail($to, $sub, $mess)) {
 				$result = $this->MainModel->insertInto('users', $insertData);
 				$result1 = $this->MainModel->insertInto('user_services', $userService);
+				$result2 = $this->MainModel->insertInto('payments', $tranzactionData);
 				if ($result && $result1) {
 
 					$this->session->set_flashdata('success', 'Please Check Your Mail for further process');
@@ -94,15 +102,17 @@ class ControlUnit extends CI_Controller
 			}
 		} else {
 			$userService['user_id'] = $validate[0]['user_id'];
+			$tranzactionData['user_id'] = $validate[0]['user_id'];
 			$result1 = $this->MainModel->insertInto('user_services', $userService);
-				if ($result1) {
+			$result2 = $this->MainModel->insertInto('payments', $tranzactionData);
+			if ($result1) {
 
-					$this->session->set_flashdata('success', 'Please Login your account for further process');
-					redirect($_POST['redirection']);
-				} else {
-					$this->session->set_flashdata('error', 'Please Try Again');
-					redirect($_POST['redirection']);
-				}
+				$this->session->set_flashdata('success', 'Please Login your account for further process');
+				redirect($_POST['redirection']);
+			} else {
+				$this->session->set_flashdata('error', 'Please Try Again');
+				redirect($_POST['redirection']);
+			}
 			// $this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
 			redirect($_POST['redirection']);
 		}
