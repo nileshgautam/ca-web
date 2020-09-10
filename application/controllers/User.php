@@ -171,6 +171,8 @@ class User extends CI_Controller
 
         $result = $this->MainModel->selectAllFromTableOrderBy($tableName, 'date_time', 'desc', $condition);
 
+        // print_r($result);
+
         $data['tickets'] = isset($result) ? $result : 0;
 
 
