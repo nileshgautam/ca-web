@@ -19,13 +19,18 @@
 
 // }, false);
 
-$(document).ready(function(){    
-    $('#packages').on('click','input[type="radio"]',function(){
+$(document).ready(function () {
+    $('#packages').on('click', 'input[type="radio"]', function () {
         let price = $(this).val();
         let package = $(this).attr('package');
         $('#package').val(package);
-        $('#payPrice').text('₹ '+price);
+        $('#payPrice').text('₹ ' + price);
         $('#price').val(price)
     });
 
-    })
+    // $('.dropdown').hover(function () {
+    //     $('.btn', this).trigger('click');
+    // });
+
+})
+

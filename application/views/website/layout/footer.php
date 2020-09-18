@@ -72,7 +72,7 @@
 					</div>
 				</div>
 
-				<div class="">
+				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
@@ -91,7 +91,7 @@
 			</div>
 			<div class="col-sm-3">
 				<span class="address-title-primary">Delhi Office</span>
-				<div class="">
+				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
@@ -110,7 +110,7 @@
 			</div>
 			<div class="col-sm-3">
 				<span class="address-title-primary">Singapore Office</span>
-				<div class="">
+				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
@@ -129,7 +129,7 @@
 			</div>
 			<div class="col-sm-3">
 				<span class="address-title-primary">UAE Office</span>
-				<div class="">
+				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2"> <span><img src="<?php echo base_url('assets/image/icon/location.png') ?>" alt="location" class="h-15"></span></div>
 						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
@@ -165,6 +165,20 @@
 	</div>
 </footer>
 <!-- end footer -->
+
+  <!-- Message pop up -->
+  <?php if (!empty($this->session->flashdata('error'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('error'); ?>';
+       Notiflix.Notify.Failure(error)
+    </script>
+<?php } ?>
+<?php if (!empty($this->session->flashdata('success'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('success'); ?>';
+        Notiflix.Notify.Success(error)
+    </script>
+<?php } ?>
 
 
 <!-- Optional JavaScript -->

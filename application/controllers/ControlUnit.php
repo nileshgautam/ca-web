@@ -21,7 +21,10 @@ class ControlUnit extends CI_Controller
 	 */
 	public function index()
 	{
-		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASCS');
+		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$page['countries'] = $this->MainModel->selectAllFromTableOrderBy('countries', 'country_name', 'ASC');
+		$page['featureLabel'] = $this->MainModel->selectAllFromTable('feature_label');
+		$page['clients'] = $this->MainModel->selectAllFromTable('client_details');
 		$page['services'] = $this->MainModel->getAllServices();
 		$page['title'] = 'CA Web';
 		$this->load->view('website/layout/header', $page);
@@ -50,6 +53,7 @@ class ControlUnit extends CI_Controller
 
 	public function sendMessage()
 	{
+
 		// print_r($_POST);die;
 		$password = $this->passwordGenerate(8);
 		$insertData = array(
@@ -115,6 +119,29 @@ class ControlUnit extends CI_Controller
 			}
 			// $this->session->set_flashdata('error', 'Please Check Your Mail and find crediential as we alredy sent you');
 			redirect($_POST['redirection']);
+		}
+	}
+
+	function contactUs()
+	{
+		if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone'])) {
+			$insertData = array(
+				'name' => $_POST['name'],
+				'email' => $_POST['email'],
+				'phone' => $_POST['phone']
+			);
+			$result = $this->MainModel->insertInto('leads', $insertData);
+			if ($result) {
+
+				$this->session->set_flashdata('success', 'Thanks, for your interest we will contact you soon');
+				redirect(base_url());
+			} else {
+				$this->session->set_flashdata('error', 'Something wrong, Try Again');
+				redirect(base_url());
+			}
+		} else {
+			$this->session->set_flashdata('error', 'All fields are required');
+			redirect(base_url());
 		}
 	}
 

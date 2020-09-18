@@ -131,7 +131,7 @@
     <script>
       let error = '<?php echo $this->session->flashdata('error'); ?>';
       console.log(error)
-      Notiflix.Notify.Failure(error)
+      Notiflix.Notify.Warning(error)
     </script>
   <?php } ?>
   <?php if (!empty($this->session->flashdata('success'))) { ?>

@@ -109,7 +109,6 @@
                     <div class="row">
                         <div class="col-auto text-center">
                             <img class="media-object wid-60 img-radius mb-2" src="<?php echo base_url('usertheme/') ?>assets/images/helpdesk.png" alt="Generic placeholder image " height="50">
-
                         </div>
                         <div class="col">
                             <div class="comment-top">
@@ -127,13 +126,9 @@
                                 <p></p>
                                 <p>Thanks...</p>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
 

@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="index.html">
+                    <a href="<?php echo base_url('User') ?>">
                         <img class="" src="<?php echo base_url() ?>assets/image/logo.png" alt="Theme-Logo" height="30" />
                     </a>
                     <a class="mobile-options">

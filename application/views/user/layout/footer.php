@@ -31,6 +31,7 @@
         <script src="<?php echo base_url() ?>adminAssets/js/dataTables.bootstrap4.min.js"></script>
         <script src="<?php echo base_url() ?>adminAssets/js/dataTables.responsive.min.js"></script>
         <script src="<?php echo base_url() ?>adminAssets/js/responsive.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/custom.js"></script>
         </body>
 
         </html>

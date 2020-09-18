@@ -28,16 +28,20 @@
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/icon/icofont/css/icofont.css') ?>">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/style.css')?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/jquery.mCustomScrollbar.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/style.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/jquery.mCustomScrollbar.css') ?>">
     <!-- jquery -->
     <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery/jquery.min.js"></script>
     <!-- Notiflix for alert messages -->
     <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.css" />
-        <script src="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.js"></script>
+    <script src="<?php echo base_url() ?>adminAssets/notiflix/notiflix-2.4.0.min.js"></script>
     <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/responsive.bootstrap4.min.css">
+    <!-- base url -->
+    <script>
+        let baseUrl = "<?php echo base_url() ?>";
+    </script>
 </head>
 
 <body>

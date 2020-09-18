@@ -21438,3 +21438,15 @@ table.footable-paging-center>tfoot>tr.footable-paging>td {
 .font-weight-500 {
     font-weight: 500;
 }
+
+#documentTable .ti-upload{
+    font-size: 20px;
+}
+
+#documentTable td:last-child{
+    text-align: center;
+}
+
+.pcoded-content .card{
+    margin-bottom:10px;
+}

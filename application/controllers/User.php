@@ -83,9 +83,10 @@ class User extends CI_Controller
 
             if ($upload_ready) {
                 $config['upload_path'] = './' . 'uploads/' . $_SESSION['userInfo']['user_id'];
-                $config['allowed_types'] = 'jpeg|jpg|png';
+                $config['allowed_types'] = 'jpeg|jpg|png|doc|docx|pdf';
                 $config['max_size'] = '100000';
                 $config['file_name'] = $fileName;
+                $config['remove_spaces'] = FALSE;
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('file')) {
                     $this->session->set_flashdata("error",  $this->upload->display_errors());
@@ -139,7 +140,7 @@ class User extends CI_Controller
 
     public function getRequiredDocuments($services_id = null)
     {
-        $data['services'] = $this->MainModel->getUserServices(base64_decode($services_id),$_SESSION['userInfo']['user_id']);
+        $data['services'] = $this->MainModel->getUserServices(base64_decode($services_id), $_SESSION['userInfo']['user_id']);
         // print_r($data['services']);die;
         $packages = json_decode($data['services'][0]['packages'], true);
         switch ($data['services'][0]['package']) {
@@ -154,8 +155,8 @@ class User extends CI_Controller
             case 'Premium':
                 $ids = "'" . implode("','", $packages[2]['servicesId']) . "'";
                 return array($data['documents'] = $this->CustomModel->getREquiredDocuments($ids), $packages[2]['servicesNames']);
-            case 'single':                
-                return array($data['documents'] = $this->CustomModel->getREquiredDocuments($data['services'][0]['serviceId']),$data['documents'] = $data['services']);
+            case 'single':
+                return array($data['documents'] = $this->CustomModel->getREquiredDocuments($data['services'][0]['serviceId']), $data['documents'] = $data['services']);
                 break;
         }
     }
@@ -166,15 +167,21 @@ class User extends CI_Controller
         // echo "<pre>";print_r($data['payments']);die;
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
-        $this->load->view('user/payment-receipts',$data);
+        $this->load->view('user/payment-receipts', $data);
         $this->load->view('user/layout/footer');
     }
 
     public function helpdesk($services_id = null)
     {
+        $condition = array('customer_id' => $_SESSION['userInfo']['user_id']);
+        $tableName = 'helpdesk';
+        $result = $this->MainModel->selectAllFromTableOrderBy($tableName, 'date_time', 'DESC', $condition);       
+        $data['tickets'] = isset($result) ? $result : 0;
+
+
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
-        $this->load->view('user/help/helpdesk');
+        $this->load->view('user/help/helpdesk', $data);
         $this->load->view('user/layout/footer');
     }
 
@@ -200,5 +207,40 @@ class User extends CI_Controller
         $this->load->view('user/layout/sidenav.php');
         $this->load->view('user/setting');
         $this->load->view('user/layout/footer.php');
+    }
+
+    public function new_ticket($services_id = null)
+    {
+        $upload_ready = false;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST)) {
+
+
+                // inserting details
+
+                $subject = validateInput($_POST['subject']);
+                $description = validateInput($_POST['description']);
+                $tableName = 'helpdesk';
+
+                //Creating array for database 
+                $timestamp = date("Y-m-d H:i:s");
+
+                $ticketId = $this->MainModel->getNewIDorNo('helpdesk', "TCI0-");
+
+                $file_name = 'abcd';
+
+                $query = array('customer_id' => $_SESSION['userInfo']['user_id'], 'ticket_id' => $ticketId, 'subject' => $subject, 'query' => $description, 'files' => $file_name, 'date_time' => $timestamp);
+
+                // Inserting Helpdesk data into the database;
+                $result = $this->MainModel->insertInto($tableName, $query);
+
+                if ($result > 0) {
+                    echo $response = json_encode(array('message' => 'Success! Ticket created', 'type' => 'success'), true);
+                } else {
+                    echo $response = json_encode(array('message' => 'Error! Opps... Contact IT', 'type' => 'danger'), true);
+                }
+            }
+        }
     }
 }
