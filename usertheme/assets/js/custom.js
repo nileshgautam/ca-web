@@ -1,4 +1,3 @@
-console.log('hi i am in');
 
 $('#new-ticket').submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.

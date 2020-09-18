@@ -68,13 +68,14 @@ class User extends CI_Controller
 
 
             if (file_exists($dirName . '/' . $fileName)) {
-                // $override = 'true';
-                // if ($override == 'true') {
-                //     rename('./' . $reportPath . '/' . $fileName . '.pdf', './' . $BKPreportPath . '/' . $fileName . '_bkp_' . date("Ymd_His") . '.pdf');
-                //     $upload_ready = true;
-                // } else {
-                $this->session->set_flashdata('success', 'File already exist.');
-                redirect($_POST['current_url']);
+                $override = 'true';
+                if ($override == 'true') {
+                    $fileName = date("Ymd_His").$_FILES['file']['name'];
+                    $insertData['Document_path'] = $dirName . '/' .  $fileName;
+                    $upload_ready = true;
+                } //else {
+                // $this->session->set_flashdata('success', 'File already exist.');
+                // redirect($_POST['current_url']);
                 // echo json_encode(array('success' => true, "file_exist" => true, 'message' =>  "File already exist."));
                 // }
             } else {

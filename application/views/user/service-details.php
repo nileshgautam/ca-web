@@ -53,9 +53,20 @@
                                 }
 
                                 if ($files != null) {
+                                  $name = explode('/',$files['Document_path']);
+                                  $name = end($name);                                  
+                                  $ext = explode('.',$name);
+                                  $ext = end($ext);                                  
                               ?>
                                   <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
-                                  <img src="<?php echo base_url($files['Document_path']) ?>" width="30" alt="<?php echo $document[$j] ?>">           
+                                  <img src="<?php if($ext == 'pdf'){
+                                    echo base_url('assets/image/icon/pdf.svg');
+                                  }else if($ext == 'doc' || $ext == 'docx'){
+                                    echo base_url('assets/image/icon/word.svg');
+                                  }else{
+                                  echo base_url($files['Document_path']);
+                                  }
+                                  ?>" width="30" file_src ="<?php echo base64_encode(base_url($files['Document_path'])) ?>" type="<?php echo $ext ?>" alt="<?php echo $document[$j] ?>">           
 
                                   <?php } else { 
                                   ?>

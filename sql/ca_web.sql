@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 18, 2020 at 09:34 AM
+-- Generation Time: Sep 18, 2020 at 10:56 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -306,15 +306,17 @@ CREATE TABLE IF NOT EXISTS `uploaded_documents` (
   `Document_path` varchar(200) NOT NULL,
   `dateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `uploaded_documents`
 --
 
 INSERT INTO `uploaded_documents` (`id`, `user_id`, `service_id`, `document_name`, `Document_path`, `dateTime`) VALUES
-(1, 'USR-200910002', '3', 'Aadhar Card', 'uploads/USR-200910002/download (1).png', '2020-09-18 12:55:08'),
-(2, 'USR-200910002', '3', 'Pan Card', 'uploads/USR-200910002/review comments.pdf', '2020-09-18 13:25:28');
+(1, 'USR-200910002', '3', 'Aadhar Card', 'uploads/USR-200910002/download.png', '2020-09-18 16:17:06'),
+(2, 'USR-200910002', '3', 'Pan Card', 'uploads/USR-200910002/20200918_161711download.png', '2020-09-18 16:17:11'),
+(3, 'USR-200910002', '3', 'Bank Passbook', 'uploads/USR-200910002/review comments.pdf', '2020-09-18 16:19:15'),
+(4, 'USR-200910002', '3', 'Electricity Bill', 'uploads/USR-200910002/20200918_161919review comments.pdf', '2020-09-18 16:19:19');
 
 -- --------------------------------------------------------
 
