@@ -107,15 +107,45 @@
             <div><img src="<?php echo base_url('assets/image/index/Capture.png') ?>" alt=""></div>
         </div>
         <div class="col-sm-6">
-            <div class="content py-5">
+            <div class="content p-4">
                 <h4>What is a</h4>
                 <h2><?php echo $service[0]['service_name'] ?></h2>
-                <p><?php echo $service[0]['service_description'] ?></p>
+                <p class="text-justify"><?php echo $service[0]['service_description'] ?></p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- advantages -->
+<section class="container">
+    <div class="row mt-4" id="advantages">
+        <div class="col-sm-6">
+            <div class="content p-4">
+                <h2>Advantages</h2>
+                <p class="text-justify"><?php echo $service[0]['advantages'] ?></p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div><img src="<?php echo base_url('assets/image/index/advantages.jpg') ?>" alt=""></div>
+        </div>
+    </div>
+</section>
+
+<!-- disadvantages -->
+<section class="container">
+    <div class="row mt-4" id="disadvantages">
+        <div class="col-sm-6">
+            <div><img src="<?php echo base_url('assets/image/index/disadvantages.jpg') ?>" alt=""></div>
+        </div>
+        <div class="col-sm-6">
+            <div class="content p-4">
+                <h2>Disadvantages</h2>
+                <p class="text-justify"><?php echo $service[0]['disadvantages'] ?></p>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 
 
@@ -127,7 +157,7 @@
         </div>
     </div>
     <div class="row" id="">
-        <?php if (isset($service[0]['label_points'])) {
+        <?php if (isset($service[0]['label_points'])) {           
             $label = json_decode($service[0]['label_points'], true);
             $img = ['f4.png', 'f2.png', 'f3.png', 'f5.png', 'f6.png', 'f1.png'];
             for ($i = 0; $i < count($label); $i++) {

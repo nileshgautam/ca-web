@@ -25,20 +25,68 @@ class ControlUnit extends CI_Controller
 		$page['countries'] = $this->MainModel->selectAllFromTableOrderBy('countries', 'country_name', 'ASC');
 		$page['featureLabel'] = $this->MainModel->selectAllFromTable('feature_label');
 		$page['clients'] = $this->MainModel->selectAllFromTable('client_details');
-		$page['services'] = $this->MainModel->getAllServices();
+		$page['sub_categories'] = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
+		$page['gServices'] = $this->servicesArray();	
+		$page['services'] = $this->MainModel->getAllServices();	
+
 		$page['title'] = 'CA Web';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/index');
 		$this->load->view('website/layout/footer');
 	}
 
+
+	function servicesArray()
+	{
+		$categories = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$sub_categories = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
+		$services = $this->MainModel->getAllServices();
+
+		$services1 = [];
+		for ($i = 0; $i < count($categories); $i++) {
+			$subId = [];
+			for ($j = 0; $j < count($sub_categories); $j++) {
+				for ($k = 0; $k < count($services); $k++) {
+					if ($categories[$i]['id'] == $services[$k]['category_id'] && $sub_categories[$j]['id'] == $services[$k]['sub_category']) {
+						$sbId =  $services[$k]['sub_category'];
+						if (!in_array($sbId, $subId)) {
+							$services1[$services[$k]['sub_cat_name']] = array($services[$k]);
+							array_push($subId, $sbId);
+						} else {
+							array_push($services1[$services[$k]['sub_cat_name']], $services[$k]);
+						}
+					}
+				}
+			}
+		}
+
+		return $services1;
+		// echo "<pre>";
+		// print_r($services1);
+		// die;
+	}
+
 	public function service($id = '')
 	{
+		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$page['sub_categories'] = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
+		$page['gServices'] = $this->servicesArray();	
+		$page['services'] = $this->MainModel->getAllServices();	
 		$id = base64_decode($id);
 		$page['service'] = $this->MainModel->getservicesWithPackage($id);
 		$page['title'] = 'Proprietorship Company';
 		$this->load->view('website/layout/header', $page);
 		$this->load->view('website/services');
+		$this->load->view('website/layout/footer');
+	}
+
+	public function videoCunsultation(){
+		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$page['sub_categories'] = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
+		$page['gServices'] = $this->servicesArray();	
+		$page['services'] = $this->MainModel->getAllServices();	
+		$this->load->view('website/layout/header',$page);
+		$this->load->view('website/videoConsultation');
 		$this->load->view('website/layout/footer');
 	}
 

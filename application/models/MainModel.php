@@ -239,7 +239,8 @@ class MainModel extends ci_model
 	{
 		$this->db->select('*');
 		$this->db->from('services s');
-		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');		
+		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');
+		$this->db->join('sub_category SC', 'SC.id = s.sub_category', 'left');			
 		$result = $this->db->get()->result_array();
 		if ($this->db->affected_rows()) {
 			return $result;

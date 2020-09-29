@@ -6,11 +6,12 @@
 
     :root {
     	--body-bg-color: #fff;
-    	--main-header-bg-color: hsl(354, 75%, 49%);
-    	--second-header-bg-color: hsl(354, 75%, 49%);
-    	--footer-bg-color: #04253d;
+    	--main-header-bg-color: #1e68c8;
+    	--second-header-bg-color: rgba(0, 212, 255, 1);
+    	--footer-bg-color: linear-gradient(90deg, rgba(30, 104, 200, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
     	--text-color: #04253d;
     	--bg-light-gray: #dddddd;
+    	--btn-bg: #0663B5;
     }
 
     body {
@@ -73,7 +74,7 @@
     /* navbar end */
 
     #header {
-    	background: var(--main-header-bg-color);
+    	background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
     }
 
     /* Custom City/recent city css  */
@@ -166,16 +167,16 @@
     /* section css */
 
     .heading-why-us {
-    	background: pink;
+    	background: var(--btn-bg);
     	padding: 5px 16px;
     	border-radius: 25px;
-    	color: var(--main-header-bg-color);
+    	color: white;
     	font-weight: 500;
     }
 
     .what-we-do {
-    	color: var(--main-header-bg-color);
-    	background: pink;
+    	color: white;
+    	background: var(--btn-bg);
     	padding: 2px 20px;
     	border-radius: 25px;
     }
@@ -302,7 +303,7 @@
     }
 
     .a-btn-primary:hover {
-    	color: rgba(246, 87, 114, 0.993);
+    	color: var(--main-header-bg-color);
     	background: #fff;
     	font-weight: 500;
     	text-decoration: none;
@@ -340,7 +341,7 @@
     }
 
     .address-title-primary {
-    	color: var(--main-header-bg-color);
+    	color: white;
     	margin-left: 25px;
     	font-size: 18px;
 
@@ -391,7 +392,8 @@
     }
 
     .footer-address-section {
-    	background-color: var(--footer-bg-color);
+    	background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(30, 104, 200, 1)0%, rgba(9, 9, 121, 1) 69%) !important;
+    	;
     	color: white;
     	padding: 35px 120px;
     }
@@ -434,7 +436,7 @@
 
     .footer-service-link ul li a:hover {
     	font-size: 13px;
-    	color: rgba(246, 87, 114, 0.993);
+    	color: var(--main-header-bg-color);
     	font-weight: 500;
     }
 
@@ -456,20 +458,20 @@
     }
 
     .footer-nav ul li a {
-    	color: gray;
+    	color: white;
     	font-size: 14px;
     	text-decoration: none;
     }
 
     .footer-nav ul li a:hover {
-    	color: var(--main-header-bg-color);
+    	color: white;
     }
 
     /* Footer nav end */
     /* Utilities */
 
     .business-info {
-    	background-color: var(--main-header-bg-color);
+    	background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
     }
 
     .business-services-info {
@@ -486,11 +488,11 @@
     	font-size: 12px;
     	min-height: 225px;
     	min-width: 207px;
-	}
-	
-	.form-section .card{
-		background: #ebebeb;
-	}
+    }
+
+    .form-section .card {
+    	background: #ebebeb;
+    }
 
     .mt-25 {
     	margin-top: 25px;
@@ -565,7 +567,7 @@
 
     .btn-submit {
     	border-radius: 27px;
-    	background-color: var(--footer-bg-color);
+    	background-color: var(--main-header-bg-color);
     	color: white;
     	padding: 1px 15px;
     	font-size: 14px;
@@ -647,7 +649,7 @@
 
     .md-form {
     	position: relative;
-    	margin-top: 1.5rem;
+    	/* margin-top: 1.5rem; */
     	margin-bottom: 1.5rem;
     }
 
@@ -773,6 +775,85 @@
 
     .clientForm .form-control {
     	flex: 0 0 49% !important;
-		max-width: 49% !important;
-		margin: 0 0.2rem 0.2rem 0;
+    	max-width: 49% !important;
+    	margin: 0 0.2rem 0.2rem 0;
     }
+
+    .form-section,
+    .form-section .card {
+    	position: unset;
+    }
+
+    .dropdown-menu {
+    	min-width: 50rem;
+
+    }
+
+    /* .dropdown-menu .col-sm-4 {
+		display:inline-block;
+		
+	} */
+
+    .dropdown-item {
+    	padding: 0 1.25rem;
+    	font-size: 14px;
+    }
+
+    span.dropdown-item {
+    	font-weight: 700;
+    	margin-top: 0.5rem;
+    	font-size: 14px;
+    }
+
+    span.dropdown-item:hover {
+    	color: black;
+    	padding-top: 0;
+    	padding-bottom: 0;
+    }
+
+    .title-select {
+    	padding-top: 16px !important;
+    	padding-bottom: 6px !important;
+    	font-size: 16px !important;
+    }
+
+    .play-pause {
+    	position: absolute;
+    	top: 15%;
+    	left: 44%;
+    	font-size: 45px;
+    	color: white;
+    	display: none;
+    }
+
+    .videoContainer:hover .play-pause {
+    	display: block;
+	}	
+	
+	#videoContain .card{		
+		box-shadow: 0px 0px 19px 0px rgba(145,145,145,1);
+		margin-top: 10px;
+		/* margin-left:auto; */
+		margin-right: 10px;
+		max-width:32.333333%
+		
+	}
+	#videoContain .card-title{		
+		font-weight: 700;
+			
+	}
+
+	.btn-themeColor{
+		background: var(--btn-bg);
+		float: right;
+		border-radius: 25px;
+		margin-right: 10px;
+		margin-bottom: 0.5rem;
+		color:white;
+	}
+
+	#advantages span.heading,#disadvantages span.heading{
+		font-weight: 700;
+	}
+
+

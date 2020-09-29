@@ -28,9 +28,20 @@ $(document).ready(function () {
         $('#price').val(price)
     });
 
-    // $('.dropdown').hover(function () {
-    //     $('.btn', this).trigger('click');
-    // });
+    $('.play-pause').on('click', function () {
+        let myVideo = document.getElementById("video1"); 
+        if (myVideo.paused){
+            myVideo.play();
+            $(this).find('i').removeClass('fa-play-circle-o');
+            $(this).find('i').addClass('fa-pause-circle-o')
+        }           
+        else{
+            myVideo.pause();
+            $(this).find('i').removeClass('fa-pause-circle-o');
+            $(this).find('i').addClass('fa-play-circle-o')
+        }
+            
+    });
 
 })
 

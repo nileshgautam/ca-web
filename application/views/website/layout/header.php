@@ -30,55 +30,46 @@
           <img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
         </div>
         <ul>
+          <?php if (isset($categories)) {
+            for ($i = 0; $i < count($categories); $i++) { ?>
+              <li class="dropdown show">
+                <a class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <?php echo $categories[$i]['category'] ?>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left:<?php echo ($i * -7) . 'rem' ?>">
+                <div class="col-sm-12 row">
+                  <?php if (isset($gServices)) {
+                    $subId = [];
+                    foreach ($gServices as $key => $value) {
+                      if ($categories[$i]['id'] == $value[0]['category_id']) {
+                  ?>
+                        <div class="col-sm-4">
+                          <?php for ($j = 0; $j < count($value); $j++) {
+                            if ($categories[$i]['id'] == $value[$j]['category_id']) {
+                              $sbId =  $value[$j]['sub_category'];
+                          ?>
+                              <?php if (!in_array($sbId, $subId)) {
+                                array_push($subId, $sbId);
+                              ?>
+                                <span class="dropdown-item"><?php echo ucwords($value[$j]['sub_cat_name']); ?></span>
+                              <?php } ?>
 
-          <li class="dropdown show">
-            <a class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Business Startups
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
+                              <a class="dropdown-item" href="<?php echo base_url('ControlUnit/service/') . base64_encode($value[$j]['serviceId']) ?>"><?php echo $value[$j]['service_name'] ?></a>
 
-          <li class="dropdown show">
-            <a class="btn" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              GST Registration
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
+                          <?php
+                            }
+                          } ?>
+                        </div>
+                  <?php    }
+                    }
+                  } ?>
+                </div>
+                </div>
+              </li>
 
-          <li class="dropdown show">
-            <a class="btn" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Income Tax
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-
-          <li class="dropdown show">
-            <a class="btn" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Compliance
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-
-          <!-- <li><a href="">Business Startups</a> </li>
-          <li><a href="">GST Registration</a> </li> -->
-          <!-- <li><a href="">Income Tax</a></li>
-          <li><a href="">Compliance</a></li> -->
+          <?php
+            }
+          } ?>
         </ul>
       </nav>
     </div>

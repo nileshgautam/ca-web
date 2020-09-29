@@ -35,7 +35,7 @@ Or Grow your Company in -->
 					<?php if (isset($countries) && count($countries) > 0) {
 						for ($i = 0; $i < count($countries); $i++) { ?>
 							<div class="card">
-								<img src="<?php echo base_url('assets/image/cityimages/india.jpg') ?>" alt="">
+								<img src="<?php echo base_url('assets/image/cityimages/').$countries[$i]['country_image'] ?>" alt="">
 								<div class="title"><?php echo $countries[$i]['country_name'] ?></div>
 							</div>
 					<?php }
@@ -227,7 +227,7 @@ Or Grow your Company in -->
 			<div class="call-to-action">
 				<h2 class="">Ready to get started?</h2>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, dolore.</p>
-				<a class="a-btn-primary" data-toggle="modal" data-target="#exampleModal">Book A Free Video Consulation</a>
+				<a class="a-btn-primary" href="<?php echo base_url('ControlUnit/videoCunsultation')?>">Book Video Consultation</a>
 				<a class="a-btn-secondary" data-toggle="modal" data-target="#exampleModal">Contact Us</a>
 			</div>
 
@@ -249,18 +249,18 @@ Or Grow your Company in -->
 			</div>
 			<div class="modal-body">
 				<form action="<?php echo base_url('ControlUnit/contactUs')?>" method="post">
-					<div class="md-form mb-5">
+					<div class="md-form">
 						<i class="fa fa-user-o prefix grey-text"></i>
 						<input type="text" name="name" class="form-control validate" required placeholder="Your Name">
 
 					</div>
-					<div class="md-form mb-5">
+					<div class="md-form">
 						<i class="fa fa-envelope prefix grey-text"></i>
 						<input type="email" name="email" class="form-control validate" required placeholder="Email">
 
 					</div>
 
-					<div class="md-form mb-4">
+					<div class="md-form">
 						<i class="fa fa-phone-square prefix grey-text"></i>
 						<input type="number" name="phone" class="form-control validate" required placeholder='Phone No.'>
 
@@ -275,3 +275,18 @@ Or Grow your Company in -->
 	</div>
 </div>
 </div>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5f72c050f0e7167d001490f5/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+
+</script>
+<!--End of Tawk.to Script-->
