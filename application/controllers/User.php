@@ -30,7 +30,8 @@ class User extends CI_Controller
             $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));
             array_push($data['services'], array_merge($data['user_services'][$i], $result[0]));
         }
-
+        $data['fLogin'] = $_SESSION['userInfo']['fLogin'];
+        
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
         $this->load->view('user/user-dashboard', $data);
@@ -70,7 +71,7 @@ class User extends CI_Controller
             if (file_exists($dirName . '/' . $fileName)) {
                 $override = 'true';
                 if ($override == 'true') {
-                    $fileName = date("Ymd_His").$_FILES['file']['name'];
+                    $fileName = date("Ymd_His") . $_FILES['file']['name'];
                     $insertData['Document_path'] = $dirName . '/' .  $fileName;
                     $upload_ready = true;
                 } //else {
@@ -125,6 +126,48 @@ class User extends CI_Controller
         redirect("login");
     }
 
+    public function updatePassword()
+    {
+        if (isset($_POST['new-password'])) {
+            $pass = $_POST['new-password'];
+            $email = $_SESSION['userInfo']['email'];
+            $result =  $this->MainModel->updateWhere("users", array('password' => $pass), array("email" => $email));
+            if ($result) {
+                $this->session->set_flashdata("success",  "Password changed Successfully");
+                redirect(base_url('User/index'));
+            } else {
+                $this->session->set_flashdata("success",  "Password could not change");
+                redirect(base_url('User/index'));
+            }
+        } else {
+            $this->session->set_flashdata("error",  "No password found");
+            redirect(base_url('User/index'));
+        }
+    }
+
+    public function updateProfile()
+    {
+        if (isset($_POST['name']) && isset($_POST['number']) && isset($_POST['state'])) {
+            $email = $_SESSION['userInfo']['email'];
+            $data = array(
+                'name'  => $_POST['name'],
+                'contact_no'  => $_POST['number'],
+                'state'  => $_POST['state']
+            );
+            $result =  $this->MainModel->updateWhere("users", $data, array("email" => $email));
+            if ($result) {
+                $this->session->set_flashdata("success",  "Profile Updated");
+                redirect(base_url('User/index'));
+            } else {
+                $this->session->set_flashdata("success",  "Profile could not be updated");
+                redirect(base_url('User/index'));
+            }
+        } else {
+            $this->session->set_flashdata("error",  "Insufficient information sent");
+            redirect(base_url('User/index'));
+        }
+    }
+
 
 
 
@@ -176,7 +219,7 @@ class User extends CI_Controller
     {
         $condition = array('customer_id' => $_SESSION['userInfo']['user_id']);
         $tableName = 'helpdesk';
-        $result = $this->MainModel->selectAllFromTableOrderBy($tableName, 'date_time', 'DESC', $condition);       
+        $result = $this->MainModel->selectAllFromTableOrderBy($tableName, 'date_time', 'DESC', $condition);
         $data['tickets'] = isset($result) ? $result : 0;
 
 
@@ -204,9 +247,11 @@ class User extends CI_Controller
 
     public function setting($services_id = null)
     {
+        $id = $_SESSION['userInfo']['user_id'];
+        $data['user'] = $this->MainModel->selectAllFromTableOrderBy("users", 'id', 'ASC', array("user_id" => $id));
         $this->load->view('user/layout/header.php');
         $this->load->view('user/layout/sidenav.php');
-        $this->load->view('user/setting');
+        $this->load->view('user/setting',$data);
         $this->load->view('user/layout/footer.php');
     }
 

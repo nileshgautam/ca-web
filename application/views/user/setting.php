@@ -6,24 +6,31 @@
     </div>
 
     <div class="card">
-      <form action="" class="p-3">
-        <strong for="">Profile</strong>
-        <div class="form-group"><label for="first-name">First Name</label>
-          <input type="text" name="first-name" id="first-name" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="last-name">Last Name</label>
-          <input type="text" name="last-name" id="last-name" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="dob">Date Of Birth</label>
-          <input type="date" name="dob" id="dob" class="form-control">
-        </div>
-        <div class="form-group ">
-          <input type="submit" value="Update" class="form-control btn-sm btn-primary col-sm-2 float-right">
-        </div>
+      <form action="<?php echo base_url('User/updateProfile') ?>" method="post" class="p-3">
+        <strong class="col-sm-12 profile">Profile</strong>     
+          
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<?php echo $user[0]['name']?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" readonly name="email" value="<?php echo $user[0]['email']?>" id="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="number">Phone No.</label>
+            <input type="text" name="number" id="number" value="<?php echo $user[0]['contact_no']?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" name="state" id="state" value="<?php echo $user[0]['state']?>" class="form-control">
+          </div>
+          <div class="form-group ">
+            <input type="submit" value="Update" class="form-control btn-sm btn-primary col-sm-2 float-right">
+          </div>
+      
       </form>
-      <form action="" method="post" class="p-3">
+      <form action="<?php echo base_url('User/updatePassword') ?>" method="post" class="p-3 pass-form">
         <strong class="py-2 mb-2">Change password</strong>
         <div class="form-group"><label for="new-password">New Password</label>
           <input type="password" name="new-password" id="new-password" class="form-control">

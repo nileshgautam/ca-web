@@ -171,6 +171,7 @@ class ControlUnit extends CI_Controller
 				'password' => $password,
 				'role' => 'User',
 				'status' => 'A',
+				'fLogin' => 0
 
 			);
 			$insertData['user_id'] =   $this->MainModel->getNewIDorNo('users', "USR-");
@@ -203,7 +204,7 @@ class ControlUnit extends CI_Controller
 					if ($result && $result1) {
 						$this->MainModel->deleteFromTable('usertemp', array('email' => $details[0]['email']));
 						$this->session->set_flashdata('success', 'Please Check Your Mail for further process');
-						redirect(base_url('Login'));
+						redirect(base_url('Login/validate/').base64_encode(json_encode(array($insertData['email'],$password))));
 					} else {
 						$this->session->set_flashdata('error', 'Please Try Again');
 						redirect($details[0]['redirection']);

@@ -21,10 +21,10 @@
                             for ($i = 0; $i < count($keyHL); $i++) {
                                 if (isset($keyHL[$i]) && !empty($keyHL[$i])) {
                         ?>
-                                    <div class="col-sm-4 row">
-                                        <div class="col-sm-1"> <span>
+                                    <div class="col-sm-4 row pos-unset">
+                                        <div class="col-sm-1 pos-unset"> <span>
                                                 <img src="<?php echo base_url('assets/image/icon/correct.png') ?>" alt="" height="16"></span></div>
-                                        <div class="col-sm-10"><?php echo $keyHL[$i] ?></div>
+                                        <div class="col-sm-10 pos-unset"><?php echo $keyHL[$i] ?></div>
                                     </div>
                         <?php }
                             }

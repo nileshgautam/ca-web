@@ -32,6 +32,20 @@
         <script src="<?php echo base_url() ?>adminAssets/js/dataTables.responsive.min.js"></script>
         <script src="<?php echo base_url() ?>adminAssets/js/responsive.bootstrap4.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/custom.js"></script>
+
+        <!-- Message pop up -->
+        <?php if (!empty($this->session->flashdata('error'))) { ?>
+                <script>
+                        let error = '<?php echo $this->session->flashdata('error'); ?>';
+                        Notiflix.Notify.Failure(error)
+                </script>
+        <?php } ?>
+        <?php if (!empty($this->session->flashdata('success'))) { ?>
+                <script>
+                        let error = '<?php echo $this->session->flashdata('success'); ?>';
+                        Notiflix.Notify.Success(error)
+                </script>
+        <?php } ?>
         </body>
 
         </html>
