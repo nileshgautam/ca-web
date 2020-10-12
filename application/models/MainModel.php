@@ -225,7 +225,7 @@ class MainModel extends ci_model
 	{
 		$this->db->select('*');
 		$this->db->from('services s');
-		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');		
+		$this->db->join('service_packages SP', 'SP.service_id = s.serviceId', 'left');				
 		$this->db->where('s.serviceId', $id);
 		$result = $this->db->get()->result_array();
 		if ($this->db->affected_rows()) {

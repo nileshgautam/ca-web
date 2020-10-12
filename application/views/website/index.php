@@ -27,7 +27,7 @@ Or Grow your Company in -->
 		<div class="row ">
 			<div class="col-sm-3 pl-5">
 				<h5 class="title-primary">Register, Form, Build Or Grow your Company in</h5>
-				<p class="text-danger title-3 ">Trusted by over 10,000 business owners worldwide</p>
+				<p class="text-primary title-3 ">Trusted by over 10,000 business owners worldwide</p>
 
 			</div>
 			<div class="col-sm-9">
@@ -81,7 +81,7 @@ Or Grow your Company in -->
 										<div class="col-sm-4">
 											<div class="card">
 												<a href="<?php echo base_url('ControlUnit/service/') . base64_encode($services[$i]['service_id']) ?>">
-													<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.png') ?>" alt="Card image cap"></a>
+													<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.PNG') ?>" alt="Card image cap"></a>
 												<div class="card-body">
 													<h6 class="card-title"><?php echo $services[$i]['service_name'] ?></h6>
 													<?php

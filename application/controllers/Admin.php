@@ -185,7 +185,8 @@ class Admin extends CI_Controller
 		$validate = $this->MainModel->selectAllFromWhere("service_packages", array("service_id" => $sId));
 		$result = '';
 		if (!$validate) {
-			$insertdata = array(				'service_id' => $sId,
+			$insertdata = array(
+				'service_id' => $sId,
 				'packages' => $_POST['packages'],
 
 			);
@@ -197,6 +198,59 @@ class Admin extends CI_Controller
 			}
 		} else {
 			echo json_encode(array('error', 'Selected service Already have packages'));
+		}
+	}
+
+	public function addSection()
+	{
+		$data['services'] = $this->MainModel->selectAllFromTableOrderBy('services', 'service_name', 'ASC');
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/layout/sidenav');
+		$this->load->view('admin/add_section', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function saveSection()
+	{
+		if (isset($_FILES) && isset($_POST['service'])) {
+			$result = uploadFile($_FILES);
+			if ($result[0] == 'success') {
+				$image = '<div><img src="' . base_url('adminAssets/img/') . $result[1] . '" alt=""></div>';				
+				
+				$desc = '<div class="content p-4">' . validateInput($_POST['desc']) . '</div>';
+				$html = '<section class="container">
+							<div class="row mt-4" id="disadvantages">
+							<div class="col-sm-6">' .
+					($_POST['imgSide'] == 'left' ? $image : $desc)
+					. '</div>
+							<div class="col-sm-6">' .
+					($_POST['imgSide'] == 'left' ? $desc : $image)
+					. '</div>
+			
+							</div>
+						</section>';
+				print_r($html);
+				$data = array(
+					'service_id' => validateInput($_POST['service']),
+					'section_html' => $html,
+					'sec_image' => $result[1]
+				);
+				$result1 = $this->MainModel->insertInto('pagesections', $data);
+				if ($result1) {
+					$this->session->set_flashdata("success",  "Section Added successfully");
+					redirect(base_url('Admin/addSection'));
+
+				} else {
+					$this->session->set_flashdata("error",  "Section could not be Added, Contact to IT");
+					redirect(base_url('Admin/addSection'));
+				}
+			}else{
+				$this->session->set_flashdata("error",  "Image could not be uploaded Contact to IT");
+				redirect(base_url('Admin/addSection'));
+			}
+		} else {
+			$this->session->set_flashdata("error",  "No data found, Either fill all fields or contact to IT");
+			redirect(base_url('Admin/addSection'));
 		}
 	}
 }

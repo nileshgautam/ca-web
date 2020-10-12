@@ -24,7 +24,7 @@ class User extends CI_Controller
     {
         $id = $_SESSION['userInfo']['user_id'];
         $data['services'] = [];
-        $data['user_services'] = $this->MainModel->selectAllFromWhere("user_services", array("user_id" => $id));
+        $data['user_services'] = $this->MainModel->selectAllFromTableOrderBy("user_services", 'id', 'DESC', array("user_id" => $id));
         for ($i = 0; $i < count($data['user_services']); $i++) {
             $sId = $data['user_services'][$i]['service_id'];
             $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));

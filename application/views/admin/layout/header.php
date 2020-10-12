@@ -17,6 +17,8 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/responsive.bootstrap4.min.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/summernote-bs4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->

@@ -35,8 +35,24 @@
 <script src="<?php echo base_url()?>adminAssets/js/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url()?>adminAssets/js/Chart.min.js"></script>
+<!-- Summernote -->
+<script src="<?php echo base_url()?>adminAssets/js/summernote-bs4.min.js"></script>
 
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url()?>adminAssets/js/dashboard2.js"></script>
+
+  <!-- Message pop up -->
+  <?php if (!empty($this->session->flashdata('error'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('error'); ?>';
+       Notiflix.Notify.Failure(error)
+    </script>
+<?php } ?>
+<?php if (!empty($this->session->flashdata('success'))) { ?>
+    <script>
+        let error = '<?php echo $this->session->flashdata('success'); ?>';
+        Notiflix.Notify.Success(error)
+    </script>
+<?php } ?>
 </body>
 </html>

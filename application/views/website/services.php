@@ -4,11 +4,11 @@
     }
 </style>
 
-<div class="business-services-info">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-7">
-                <div class="text-white">
+<div class="business-services-info pos-unset">
+    <div class="container pos-unset">
+        <div class="row pos-unset">
+            <div class="col-sm-7 pos-unset">
+                <div class="text-white pos-unset">
                     <h2><?php echo $service[0]['service_name'] ?></h2>
                     <!-- <h4>Registration</h1> -->
                     <p>
@@ -18,13 +18,16 @@
                     <div class="row">
                         <?php if (isset($service[0]['keyhighlight_points'])) {
                             $keyHL = json_decode($service[0]['keyhighlight_points'], true);
-                            for ($i = 0; $i < count($keyHL); $i++) { ?>
-                                <div class="col-sm-4 row">
-                                    <div class="col-sm-1"> <span>
-                                            <img src="<?php echo base_url('assets/image/icon/correct.png') ?>" alt="" height="16"></span></div>
-                                    <div class="col-sm-10"><?php echo $keyHL[$i] ?></div>
-                                </div>
+                            for ($i = 0; $i < count($keyHL); $i++) {
+                                if (isset($keyHL[$i]) && !empty($keyHL[$i])) {
+                        ?>
+                                    <div class="col-sm-4 row">
+                                        <div class="col-sm-1"> <span>
+                                                <img src="<?php echo base_url('assets/image/icon/correct.png') ?>" alt="" height="16"></span></div>
+                                        <div class="col-sm-10"><?php echo $keyHL[$i] ?></div>
+                                    </div>
                         <?php }
+                            }
                         } ?>
                     </div>
 
@@ -68,7 +71,7 @@
             </div>
             <div class="col-sm-5 form-section">
                 <div class="card">
-                    <img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.png') ?>" alt="Card image cap" width="500">
+                    <img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.PNG') ?>" alt="Card image cap" width="500">
                     <div class="card-body">
                         <strong>Get Started Now</strong>
 
@@ -117,6 +120,7 @@
 </section>
 
 <!-- advantages -->
+<?php if (isset($service[0]['advantages']) && !empty($service[0]['advantages'])) { ?>
 <section class="container">
     <div class="row mt-4" id="advantages">
         <div class="col-sm-6">
@@ -130,23 +134,73 @@
         </div>
     </div>
 </section>
+<?php } ?>
 
 <!-- disadvantages -->
-<section class="container">
-    <div class="row mt-4" id="disadvantages">
-        <div class="col-sm-6">
-            <div><img src="<?php echo base_url('assets/image/index/disadvantages.jpg') ?>" alt=""></div>
+<?php if (isset($service[0]['disadvantages']) && !empty($service[0]['disadvantages'])) { ?>
+    <section class="container">
+        <div class="row mt-4" id="disadvantages">
+            <div class="col-sm-6">
+                <div><img src="<?php echo base_url('assets/image/index/disadvantages.jpg') ?>" alt=""></div>
+            </div>
+            <div class="col-sm-6">
+                <div class="content p-4">
+                    <h2>Disadvantages</h2>
+                    <p class="text-justify"><?php echo $service[0]['disadvantages'] ?></p>
+                </div>
+            </div>
+
         </div>
-        <div class="col-sm-6">
-            <div class="content p-4">
-                <h2>Disadvantages</h2>
-                <p class="text-justify"><?php echo $service[0]['disadvantages'] ?></p>
+    </section>
+<?php } ?>
+
+<!-- Registration Process -->
+<?php if (isset($service[0]['registration_process']) && !empty($service[0]['registration_process'])) { ?>
+    <section class="container">
+        <div class="row mt-4" id="registration_process">
+            <div class="col-sm-6">
+                <div><img src="<?php echo base_url('assets/image/index/onlineRegistration.jpg') ?>" alt=""></div>
+            </div>
+            <div class="col-sm-6">
+                <div class="content p-4">
+                    <h2>Registration Process</h2>
+                    <p class="text-justify"><?php echo $service[0]['registration_process'] ?></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+<?php } ?>
+
+<!-- Post Incorporate -->
+<?php if (isset($service[0]['post_incorporation_compliances']) && !empty($service[0]['post_incorporation_compliances'])) { ?>
+    <section class="container">
+        <div class="row mt-4" id="registration_process">
+            <div class="col-sm-6">
+                <div class="content p-4">
+                    <h2>Post Incorporation Compliances</h2>
+                    <p class="text-justify"><?php echo $service[0]['post_incorporation_compliances'] ?></p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div><img src="<?php echo base_url('assets/image/index/compliance.jpg') ?>" alt=""></div>
             </div>
         </div>
+    </section>
+<?php } ?>
 
-    </div>
-</section>
 
+
+
+<!-- dynamic Sections -->
+<?php if (isset($sectionData) && !empty($sectionData)) {
+    foreach ($sectionData as $key => $value) {
+        $section = html_entity_decode($value['section_html']);
+        echo $section;
+?>
+
+<?php }
+} ?>
 
 
 <!-- Proprietorship Company -->
@@ -157,7 +211,7 @@
         </div>
     </div>
     <div class="row" id="">
-        <?php if (isset($service[0]['label_points'])) {           
+        <?php if (isset($service[0]['label_points'])) {
             $label = json_decode($service[0]['label_points'], true);
             $img = ['f4.png', 'f2.png', 'f3.png', 'f5.png', 'f6.png', 'f1.png'];
             for ($i = 0; $i < count($label); $i++) {
@@ -168,7 +222,6 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $label[$i]['heading'] ?></h5>
                             <p class="card-text"><?php echo $label[$i]['description'] ?></p>
-
                         </div>
                     </div>
                 </div>
@@ -179,6 +232,7 @@
 
 </section>
 <!-- Proprietorship Company end-->
+
 
 <!-- Message pop up -->
 <?php if (!empty($this->session->flashdata('error'))) { ?>
