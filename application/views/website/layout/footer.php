@@ -19,7 +19,7 @@
 		<hr class="divider">
 	</div>
 	<!-- footer service link start -->
-	<div class="footer-service-link container">
+	<!-- <div class="footer-service-link container">
 		<div class="row p-30">
 			<div class="col-sm-3">
 				<span class="service-title-danger">Start your</span>
@@ -60,7 +60,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Footer Address starts -->
 	<div class="container-fluid footer-address-section">
 		<div class="container">
@@ -75,17 +75,17 @@
 				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-map-marker fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13"><?php echo BA ?></div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-phone fs-25" aria-hidden="true"></i></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
+						<a href="tel:080-8758652" class="text-light"><p class="address-phone f-13"><?php echo BP ?></p> </a>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-envelope fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">contactus@email.com</div>
+						<a href="mailto:contactus@email.com" class="text-light"><div class="col-sm-10 f-13"><?php echo BE ?></div></a>
 					</div>
 				</div>
 			</div>
@@ -94,17 +94,17 @@
 				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-map-marker fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13"><?php echo DA ?></div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-phone fs-25" aria-hidden="true"></i></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
+						<a href="tel:080-8758652" class="text-light">	<p class="address-phone f-13"><?php echo DP ?></p> </a>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-envelope fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">contactus@email.com</div>
+						<a href="mailto:contactus@email.com" class="text-light"><div class="col-sm-10 f-13"><?php echo DE ?></div></a>
 					</div>
 				</div>
 			</div>
@@ -113,17 +113,17 @@
 				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-map-marker fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13"><?php echo SA ?></div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-phone fs-25" aria-hidden="true"></i></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
+						<a href="tel:080-8758652" class="text-light">	<p class="address-phone f-13"><?php echo SP ?></p> </a>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-envelope fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">contactus@email.com</div>
+						<a href="mailto:contactus@email.com" class="text-light"><div class="col-sm-10 f-13"><?php echo SE ?></div></a>
 					</div>
 				</div>
 			</div>
@@ -132,17 +132,17 @@
 				<div class="address-div">
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-map-marker fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">The Business Centre 61 Wellfield Road, Roath Cardiff</div>
+						<div class="col-sm-10 f-13"><?php echo UA ?></div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-phone fs-25" aria-hidden="true"></i></span></div>
 						<div class="col-sm-10">
-							<p class="address-phone f-13">080-8758652 | +91 98765 43210</p>
+						<a href="tel:080-8758652" class="text-light">	<p class="address-phone f-13"><?php echo UP ?></p> </a>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-2 p-0"> <span class="float-right"><i class="fa fa-envelope fs-25" aria-hidden="true"></i></span></div>
-						<div class="col-sm-10 f-13">contactus@email.com</div>
+						<a href="mailto:contactus@email.com" class="text-light"><div class="col-sm-10 f-13"><?php echo UE ?></div></a>
 					</div>
 				</div>
 			</div>
@@ -150,11 +150,11 @@
 		</div>
 		<nav class="footer-nav">
 			<ul>
-				<li> <a href="#">Home</a> </li>
-				<li> <a href="#">About Us</a> </li>
-				<li> <a href="#">Career</a> </li>
-				<li> <a href="#">Accounting Calendar</a> </li>
-				<li> <a href="#">Contact Us</a> </li>
+				<li> <a href="<?php echo base_url()?>">Home</a> </li>
+				<li> <a href="<?php echo base_url()?>#aboutUs">About Us</a> </li>
+				<li> <a style="cursor:no-drop;color:gray">Career</a> </li>
+				<li> <a href="<?php echo base_url('ControlUnit/businessCalendar')?>">Accounting Calendar</a> </li>
+				<li> <a href="<?php echo base_url('ControlUnit/contactUs')?>">Contact Us</a> </li>
 				<li> <a href="#">Privacy Policy</a> </li>
 				<li> <a href="#">Terms & Conditions</a> </li>
 				<li> <a href="#">Refund Policy</a> </li>
@@ -187,7 +187,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="<?php echo base_url('assets/js/custom.js')?>"></script>
-
+<script src="<?php echo base_url('assets/js/calender.js')?>"></script>
 
 </body>
 

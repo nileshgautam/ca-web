@@ -25,11 +25,13 @@ class User extends CI_Controller
         $id = $_SESSION['userInfo']['user_id'];
         $data['services'] = [];
         $data['user_services'] = $this->MainModel->selectAllFromTableOrderBy("user_services", 'id', 'DESC', array("user_id" => $id));
+        if(isset($data['user_services']) && !empty($data['user_services'])){
         for ($i = 0; $i < count($data['user_services']); $i++) {
             $sId = $data['user_services'][$i]['service_id'];
             $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));
             array_push($data['services'], array_merge($data['user_services'][$i], $result[0]));
         }
+    }
         $data['fLogin'] = $_SESSION['userInfo']['fLogin'];
         
         $this->load->view('user/layout/header');
@@ -133,8 +135,9 @@ class User extends CI_Controller
             $email = $_SESSION['userInfo']['email'];
             $result =  $this->MainModel->updateWhere("users", array('password' => $pass), array("email" => $email));
             if ($result) {
-                $this->session->set_flashdata("success",  "Password changed Successfully");
-                redirect(base_url('User/index'));
+                $this->session->set_flashdata("success",  "Password changed Successfully, Login with your new password");
+                $this->session->unset_userdata('userInfo');
+                redirect("login");
             } else {
                 $this->session->set_flashdata("success",  "Password could not change");
                 redirect(base_url('User/index'));

@@ -15,49 +15,53 @@ class Login extends ci_controller
 	}
 	public function register()
 	{
-		redirect('Login');
+		
 		$this->load->view('login/header');
 		$this->load->view('login/register');
 		$this->load->view('login/footer');
 	}
 	public function register_user()
 	{
-		redirect('Login');
-		if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['role'])) {
+		
+		if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['number'])) {
 			$insertData = array(
 				'name' => validateInput($_POST['name']),
-				'password' => validateInput($_POST['password']),
 				'email' => validateInput($_POST['email']),
+				'contact_no' => validateInput($_POST['number']),
+				'state' => validateInput($_POST['state']),
+				'password' => validateInput($_POST['password']),
+				'role' => 'User',
 				'status' => 'A',
-				'role' => validateInput($_POST['role']),
+				'fLogin' => 1
 			);
+			$insertData['user_id'] =   $this->MainModel->getNewIDorNo('users', "USR-");
 
 			$checkExist = $this->MainModel->selectAllFromWhere("users", array("email" => $insertData['email']));
 
 			if (!$checkExist) {
-				$insertData['user_id'] =	$this->MainModel->getNewIDorNo("users");
-
 				$result = $this->MainModel->insertInto('users', $insertData);
 
-				if ($result) {
-					$final = $this->MainModel->selectAllFromWhere("users", array("user_id" => $insertData['user_id']));
-					$this->session->set_userdata("userInfo", $final[0]);
-					echo json_encode(array('success' => true, 'message' => 'Registered successfully'));
+				if ($result) {				
+					// $this->session->set_userdata("userInfo", $insertData);
+					$this->session->set_flashdata('success', 'Registered Successfully');
+					redirect(base_url('Login'));
 				} else {
-					echo json_encode(array('success' => false, 'message' => 'Server error.'));
+					$this->session->set_flashdata('error', 'Could not register try after some time');
+					redirect(base_url('Login/Register'));
 				}
 			} else {
-				echo json_encode(array('success' => false, 'message' => 'Email already exists'));
+				$this->session->set_flashdata('error', 'Account Already Exist');
+				redirect(base_url('Login/Register'));
 			}
 		} else {
-			echo json_encode(array('success' => false, 'message' => 'Insufficient details sent, Please contact admin.'));
+			$this->session->set_flashdata('error', 'Insufficient detail send contact to admin');
+			redirect(base_url('Login/Register'));
 		}
 		exit();
 	}
 
 	public function index()
 	{
-
 		$this->load->view('login/header');
 		$this->load->view('login/index');
 		$this->load->view('login/footer');
@@ -102,6 +106,40 @@ class Login extends ci_controller
 			redirect($this->index());
 		}
 	}
+
+	public function validateMail(){
+		if(isset($_POST['email']) && !empty($_POST['email'])){
+			$email = $_POST['email'];
+			$result = $this->MainModel->selectAllFromWhere("users", array("email" => $email, "status" => 'A'));
+			if($result){
+				echo json_encode(array('success',$result));
+			}else{
+				echo json_encode(array('error','Invalid Email'));
+			}
+		}else{
+			echo json_encode(array('error','Please enter your Email'));
+		}
+	}
+
+	public function updatePassword()
+    {
+        if (isset($_POST['new-password'])) {
+            $pass = $_POST['new-password'];
+            $email = $_POST['email'];
+            $result =  $this->MainModel->updateWhere("users", array('password' => $pass), array("email" => $email));
+            if ($result) {
+				// print_r($result);die;
+                $this->session->set_flashdata("success",  "Password changed Successfully, Login with your new password");                
+                redirect("login");
+            } else {
+                $this->session->set_flashdata("success",  "Password could not change");
+                redirect(base_url('User/index'));
+            }
+        } else {
+            $this->session->set_flashdata("error",  "No password found");
+            redirect(base_url('User/index'));
+        }
+    }
 
 	public function logout()
 	{

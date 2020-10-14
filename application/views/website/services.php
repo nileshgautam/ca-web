@@ -1,3 +1,18 @@
+<?php
+if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) {
+    //Request hash
+    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+    if (strcasecmp($contentType, 'application/json') == 0) {
+        $data = json_decode(file_get_contents('php://input'));
+        $hash = hash('sha512', $data->key . '|' . $data->txnid . '|' . $data->amount . '|' . $data->pinfo . '|' . $data->fname . '|' . $data->email . '|||||' . $data->udf5 . '||||||' . $data->salt);
+        $json = array();
+        $json['success'] = $hash;
+        echo json_encode($json);
+    }
+    exit(0);
+}
+?>
+
 <style>
     #header {
         background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 49%) !important;
@@ -75,10 +90,31 @@
                     <div class="card-body">
                         <strong>Get Started Now</strong>
 
-                        <form action="<?php echo base_url('ControlUnit/payment') ?>" method='post' class="row m-0 clientForm">
-                            <input type="text" name="uName" placeholder="Full Name" class="form-control col-sm-6" required>
-                            <input type="email" name="email" placeholder="Email Address" class="form-control col-sm-6" required>
-                            <input type="text" name="contact" placeholder="Contact Number" class="form-control col-sm-6" required>
+                        <form id="payment_form" class="row m-0 clientForm">
+                            <input type="hidden" id="udf5" name="udf5" value="BOLT_KIT_PHP7" />
+                            <!-- Response Url -->
+                            <input type="hidden" id="surl" name="surl" value="<?php echo base_url('ControlUnit/sendMessage'); ?>" />
+                            <!-- Merchant Key -->
+                            <input type="text" hidden id="key" name="key" placeholder="Merchant Key" value="LEdYnPa6" />
+                            <!-- Merchant Salt -->
+                            <input type="text" hidden id="salt" name="salt" placeholder="Merchant Salt" value="OkEIcHWWhQ" />
+                            <!-- Hash -->
+                            <input type="text" hidden id="hash" name="hash" placeholder="Hash" value="" />
+                            <!-- Tranzaction Id -->
+                            <input type="text" hidden class="form-control-plaintext" id="txnid" name="txnid" placeholder="Transaction ID" value="<?php echo  "TXN" . rand(10000, 99999999) ?>" />
+                            <!-- Amount -->
+                            <input type="text" hidden class="form-control-plaintext" id="amount" name="amount" placeholder="Amount" value="<?php echo $packages[0]['price'] > 0 ? $packages[0]['price'] : $service[0]['service_price'] ?>" />
+                            <!-- Service Info -->
+                            <input type="text" hidden class="form-control-plaintext" id="pinfo" name="pinfo" placeholder="Product Info" value="<?php echo $service[0]['service_name'] ?>" />
+                            <!-- User Name -->
+                            <input type="text" class="form-control col-sm-6" required id="fname" name="fname" placeholder="First Name" />
+                            <!-- <input type="text" name="uName" placeholder="Full Name" class="form-control col-sm-6" required> -->
+                            <!-- Email -->
+                            <input type="text" class="form-control col-sm-6" required id="email" name="email" placeholder="Email Address" />
+                            <!-- <input type="email" name="email" placeholder="Email Address" class="form-control col-sm-6" required> -->
+                            <!-- Mobile No. -->
+                            <input type="text" class="form-control col-sm-6" required id="mobile" name="mobile" placeholder="Mobile/Cell Number" />
+                            <!-- <input type="text" name="contact" placeholder="Contact Number" class="form-control col-sm-6" required> -->
                             <input type="text" name="state" placeholder="State" class="form-control col-sm-6" required>
                             <input hidden value="<?php echo current_url() ?>" name='redirection' required>
                             <input hidden value="<?php echo $service[0]['serviceId'] ?>" id="serviceId" name='serviceId' required>
@@ -87,6 +123,7 @@
                             <div class="text-center py-2 col-sm-12">
                                 <button type="submit" id="payBtn" class="btn btn-submit">Pay for Essential Plan <span class="ml-20" id='payPrice'> ₹ <?php echo $packages[0]['price'] > 0 ? $packages[0]['price'] : $service[0]['service_price'] ?></span><span><img src="<?php echo base_url('assets/image/icon/speed.png') ?>" alt="" height="16"></span></button>
                             </div>
+                            <input id="pay" class="btn btn-info float-right ml-auto" type="hidden" value="Pay" onclick="launchBOLT(); return false;" /></div>
 
                             <!-- <button class="btn-rounded"></button> -->
                         </form>
@@ -121,19 +158,19 @@
 
 <!-- advantages -->
 <?php if (isset($service[0]['advantages']) && !empty($service[0]['advantages'])) { ?>
-<section class="container">
-    <div class="row mt-4" id="advantages">
-        <div class="col-sm-6">
-            <div class="content p-4">
-                <h2>Advantages</h2>
-                <p class="text-justify"><?php echo $service[0]['advantages'] ?></p>
+    <section class="container">
+        <div class="row mt-4" id="advantages">
+            <div class="col-sm-6">
+                <div class="content p-4">
+                    <h2>Advantages</h2>
+                    <p class="text-justify"><?php echo $service[0]['advantages'] ?></p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div><img src="<?php echo base_url('assets/image/index/advantages.jpg') ?>" alt=""></div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div><img src="<?php echo base_url('assets/image/index/advantages.jpg') ?>" alt=""></div>
-        </div>
-    </div>
-</section>
+    </section>
 <?php } ?>
 
 <!-- disadvantages -->
@@ -189,9 +226,6 @@
     </section>
 <?php } ?>
 
-
-
-
 <!-- dynamic Sections -->
 <?php if (isset($sectionData) && !empty($sectionData)) {
     foreach ($sectionData as $key => $value) {
@@ -201,7 +235,6 @@
 
 <?php }
 } ?>
-
 
 <!-- Proprietorship Company -->
 <section id="services-feature" class="container">
@@ -233,7 +266,6 @@
 </section>
 <!-- Proprietorship Company end-->
 
-
 <!-- Message pop up -->
 <?php if (!empty($this->session->flashdata('error'))) { ?>
     <script>
@@ -247,3 +279,91 @@
         Notiflix.Notify.Success(error)
     </script>
 <?php } ?>
+
+<script type="text/javascript">
+    $('#payment_form').bind('keyup blur', function() {
+        $.ajax({
+            url: '',
+            type: 'post',
+            data: JSON.stringify({
+                key: $('#key').val(),
+                salt: $('#salt').val(),
+                txnid: $('#txnid').val(),
+                amount: $('#amount').val(),
+                pinfo: $('#pinfo').val(),
+                fname: $('#fname').val(),
+                email: $('#email').val(),
+                mobile: $('#mobile').val(),
+                udf5: $('#udf5').val()
+            }),
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(json) {
+                if (json['error']) {
+                    $('#alertinfo').html('<i class="fa fa-info-circle"></i>' + json['error']);
+                } else if (json['success']) {
+                    $('#hash').val(json['success']);
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('#payment_form').on('submit', function(e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        let formData = new FormData(document.getElementById(`payment_form`));            
+            let url = BASE_URL + 'ControlUnit/payment';
+            AjaxPost(formData, url, successCallBack, AjaxError)
+
+            function successCallBack(content) {
+                let result = JSON.parse(content);
+                if(result[0] == 'success'){
+                    $('#pay').trigger('click');
+                }
+
+            }
+    });
+
+    function launchBOLT() {
+        bolt.launch({
+            key: $('#key').val(),
+            txnid: $('#txnid').val(),
+            hash: $('#hash').val(),
+            amount: $('#amount').val(),
+            firstname: $('#fname').val(),
+            email: $('#email').val(),
+            phone: $('#mobile').val(),
+            productinfo: $('#pinfo').val(),
+            udf5: $('#udf5').val(),
+            surl: $('#surl').val(),
+            furl: $('#surl').val(),
+            mode: 'dropout'
+        }, {
+            responseHandler: function(BOLT) {
+                console.log(BOLT.response.txnStatus);
+                if (BOLT.response.txnStatus != 'CANCEL') {
+
+                    var fr = '<form action=\"' + $('#surl').val() + '\" method=\"post\">' +
+                        '<input type=\"hidden\" name=\"key\" value=\"' + BOLT.response.key + '\" />' +
+                        '<input type=\"hidden\" name=\"salt\" value=\"' + $('#salt').val() + '\" />' +
+                        '<input type=\"hidden\" name=\"txnid\" value=\"' + BOLT.response.txnid + '\" />' +
+                        '<input type=\"hidden\" name=\"amount\" value=\"' + BOLT.response.amount + '\" />' +
+                        '<input type=\"hidden\" name=\"productinfo\" value=\"' + BOLT.response.productinfo + '\" />' +
+                        '<input type=\"hidden\" name=\"firstname\" value=\"' + BOLT.response.firstname + '\" />' +
+                        '<input type=\"hidden\" name=\"email\" value=\"' + BOLT.response.email + '\" />' +
+                        '<input type=\"hidden\" name=\"udf5\" value=\"' + BOLT.response.udf5 + '\" />' +
+                        '<input type=\"hidden\" name=\"mihpayid\" value=\"' + BOLT.response.mihpayid + '\" />' +
+                        '<input type=\"hidden\" name=\"status\" value=\"' + BOLT.response.status + '\" />' +
+                        '<input type=\"hidden\" name=\"hash\" value=\"' + BOLT.response.hash + '\" />' +
+                        '</form>';
+                    var form = jQuery(fr);
+                    jQuery('body').append(form);
+                    form.submit();
+                }
+            },
+            catchException: function(BOLT) {
+                alert(BOLT.message);
+            }
+        });
+    }
+</script>

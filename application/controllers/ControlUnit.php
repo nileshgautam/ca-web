@@ -93,13 +93,33 @@ class ControlUnit extends CI_Controller
 		$this->load->view('website/layout/footer');
 	}
 
+	public function contactUs(){
+		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$page['sub_categories'] = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
+		$page['gServices'] = $this->servicesArray();
+		$page['services'] = $this->MainModel->getAllServices();
+		$this->load->view('website/layout/header', $page);
+		$this->load->view('website/contactUs');
+		$this->load->view('website/layout/footer');
+	}
+
+	public function businessCalendar(){
+		$page['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
+		$page['sub_categories'] = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
+		$page['gServices'] = $this->servicesArray();
+		$page['services'] = $this->MainModel->getAllServices();
+		$this->load->view('website/layout/header', $page);
+		$this->load->view('website/BusinessCalendar');
+		$this->load->view('website/layout/footer');
+	}
+
 	public function payment()
 	{
-		if (isset($_POST['uName']) && isset($_POST['email']) && isset($_POST['contact']) && isset($_POST['state']) && isset($_POST['redirection']) && isset($_POST['serviceId']) && isset($_POST['price']) && isset($_POST['package'])) {
+		if (isset($_POST['fname']) && isset($_POST['email']) && isset($_POST['mobile']) && isset($_POST['state']) && isset($_POST['redirection']) && isset($_POST['serviceId']) && isset($_POST['price']) && isset($_POST['package'])) {
 			$insertData = array(
-				'name' => validateInput($_POST['uName']),
+				'name' => validateInput($_POST['fname']),
 				'email' => validateInput($_POST['email']),
-				'number' => validateInput($_POST['contact']),
+				'number' => validateInput($_POST['mobile']),
 				'amount' => validateInput($_POST['price']),
 				'serviceId' => validateInput($_POST['serviceId']),
 				'package' => validateInput($_POST['package']),
@@ -109,26 +129,11 @@ class ControlUnit extends CI_Controller
 			);
 			$result = $this->MainModel->insertInto('usertemp', $insertData);
 			if ($result) {
-				redirect(base_url('ControlUnit/payuMoney'));
+				echo json_encode(array('success','data saved'));
 			} else {
-				$this->session->set_flashdata('error', 'Insufficient information sent try again some time later');
-				redirect($_POST['redirection']);
+				echo json_encode(array('error','data not saved'));
 			}
-		}
-		// $data['categories'] = $this->MainModel->selectAllFromTableOrderBy('categories', 'category', 'ASC');
-		// $data['sub_categories'] = $this->MainModel->selectAllFromTableOrderBy('sub_category', 'sub_cat_name', 'ASC');
-		// $data['gServices'] = $this->servicesArray();
-		// $data['services'] = $this->MainModel->getAllServices();
-		// $data['selectedService'] = $_POST;
-		// $data['service'] = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $data['selectedService']['serviceId']));
-		// echo "<pre>";
-		// print_r($_POST);
-		// die;
-		// $this->load->view('website/layout/header', $data);
-		// $this->load->view('website/payment');
-		// $this->load->view('website/layout/footer');
-
-		// 
+		}		 
 	}
 
 	public function payuMoney()
@@ -146,21 +151,9 @@ class ControlUnit extends CI_Controller
 		// $this->load->view('payuMoney/index',$data);
 	}
 
-	public function payuMoneyResponse()
-	{
-		echo "<pre>";
-		print_r($_POST);
-		die;
-		$this->load->view('payuMoney/response');
-	}
-
 	public function sendMessage()
 	{
-		$details = $this->MainModel->selectAllFromTableOrderBy('usertemp', 'id', 'ASC');
-		// echo "<pre>";
-		// print_r($details);
-		// print_r($_POST);
-		// die;
+		$details = $this->MainModel->selectAllFromTableOrderBy('usertemp', 'id', 'ASC');		
 		if (isset($_POST['status']) && !empty($_POST['status']) && $_POST['status'] == 'success') {
 			$password = $this->passwordGenerate(8);
 			$insertData = array(
@@ -196,7 +189,7 @@ class ControlUnit extends CI_Controller
 				$this->load->helper('email');
 				$to = $insertData['email'];
 				$sub = 'No Reply';
-				$mess = 'Dear ' . $_POST['uName'] . ',' . '<br>' . 'Find your creadiential and click on below link for further process' . '<br>' . 'link: ' . base_url('Login') . '<br>User Name: ' . $insertData['email'] . '<br>' . 'Password: ' . $password;
+				$mess = 'Dear ' . $insertData['name'] . ',' . '<br>' . 'Find your creadiential and click on below link for further process' . '<br>' . 'link: ' . base_url('Login') . '<br>User Name: ' . $insertData['email'] . '<br>' . 'Password: ' . $password;
 				if (sentmail($to, $sub, $mess)) {
 					$result = $this->MainModel->insertInto('users', $insertData);
 					$result1 = $this->MainModel->insertInto('user_services', $userService);
@@ -235,26 +228,27 @@ class ControlUnit extends CI_Controller
 		}
 	}
 
-	function contactUs()
+	function saveContactUs()
 	{
 		if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone'])) {
 			$insertData = array(
 				'name' => $_POST['name'],
 				'email' => $_POST['email'],
-				'phone' => $_POST['phone']
+				'phone' => $_POST['phone'],
+				'query' => $_POST['msg'],
 			);
 			$result = $this->MainModel->insertInto('leads', $insertData);
 			if ($result) {
 
 				$this->session->set_flashdata('success', 'Thanks, for your interest we will contact you soon');
-				redirect(base_url());
+				redirect(base_url('ControlUnit/contactUs'));
 			} else {
 				$this->session->set_flashdata('error', 'Something wrong, Try Again');
-				redirect(base_url());
+				redirect(base_url('ControlUnit/contactUs'));
 			}
 		} else {
 			$this->session->set_flashdata('error', 'All fields are required');
-			redirect(base_url());
+			redirect(base_url('ControlUnit/contactUs'));
 		}
 	}
 

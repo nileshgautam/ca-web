@@ -7,34 +7,32 @@
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-            <div class="col-lg-6 d-none d-lg-block bg-register-image" style=" background: url('<?php echo base_url('assets/admin/img/bg.jpg'); ?>');"></div>
+            <div class="col-lg-6 d-none d-lg-block bg-register-image" style=" background: url('<?php echo base_url('assets/image/index/bg1.jpg'); ?>');background-size: 100% 100%;"></div>
             <div class="col-lg-6">
               <div class="p-5">
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                 </div>
-                <form id="form1" method="post">
+                <form id="form1" method="post" action="<?php echo base_url('Login/register_user')?>">                  
                   <div class="form-group">
-                    <select class="form-control" name="role">
-                      <option>Select role</option>
-                      <option selected>User</option>
-                   
-                    </select>
+                    <input type="text" name="name" class="form-control" placeholder="Name" required>
 
                   </div>
                   <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Name">
-
+                    <input type="text" name="email" class="form-control has-error" placeholder="Email Address" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="email" class="form-control has-error" placeholder="Email Address">
+                    <input type="number" name="number" class="form-control has-error" placeholder="Phone No." required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="state" class="form-control has-error" placeholder="State" required>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="password" name="password" class="form-control" placeholder="Password">
+                      <input type="password" id="new-password" name="password" class="form-control" placeholder="Password" required>
                     </div>
                     <div class="col-sm-6">
-                      <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
+                      <input type="password" id="confirm-password" name="cpassword" class="form-control" placeholder="Confirm Password" required>
                     </div>
                   </div>
                   <button id="btn" class="btn btn-primary btn-user btn-block">
@@ -64,4 +62,3 @@
 
   </div>
 </div>
-<script src="<?php echo base_url("assets/js/scripts/register.js") ?>"></script>

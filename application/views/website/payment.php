@@ -19,9 +19,9 @@
         return base_url('ControlUnit/payuMoneyResponse');
     }
 ?>
-    <section class="container">
-        <div class="row">
-            <div class="card col-sm-9 mt-3 card-custom p-0">
+    <section class="container pos-unset">
+        <div class="row pos-unset">
+            <div class="card col-sm-9 mt-3 card-custom pos-unset p-0">
                 <div class="card-body">
                     <div class="main">
                         <div>
@@ -38,40 +38,40 @@
                             <!-- Hash -->
                             <input type="text" hidden id="hash" name="hash" placeholder="Hash" value="" />
 
-                            <div class="form-group row col-sm-12 mb-0">
-                                <label class="col-sm-4 col-form-label">Transaction/Order ID:</label>
-                                <div class="col-sm-8">
+                            <div class="form-group row col-sm-12 pos-unset mb-0">
+                                <label class="col-sm-4 pos-unset col-form-label">Transaction/Order ID:</label>
+                                <div class="col-sm-8 pos-unset">
                                     <input type="text" readonly class="form-control-plaintext" id="txnid" name="txnid" placeholder="Transaction ID" value="<?php echo  "TXN" . rand(10000, 99999999) ?>" />
                                 </div>
 
                             </div>
 
-                            <div class="form-group row col-sm-12 mb-0">
-                                <label class="col-sm-4 col-form-label">Amount:</label>
-                                <div class="col-sm-8"><input type="text" readonly class="form-control-plaintext" id="amount" name="amount" placeholder="Amount" value="<?php echo $details[0]['amount'] ?>" /></div>
+                            <div class="form-group row col-sm-12 pos-unset mb-0">
+                                <label class="col-sm-4 pos-unset col-form-label">Amount:</label>
+                                <div class="col-sm-8 pos-unset"><input type="text" readonly class="form-control-plaintext" id="amount" name="amount" placeholder="Amount" value="<?php echo $details[0]['amount'] ?>" /></div>
                             </div>
 
-                            <div class="form-group row col-sm-12 mb-0">
-                                <label class="col-sm-4 col-form-label">Service:</label>
-                                <div class="col-sm-8"><input type="text" readonly class="form-control-plaintext" id="pinfo" name="pinfo" placeholder="Product Info" value="<?php echo $service[0]['service_name'] ?>" /></div>
+                            <div class="form-group row pos-unset col-sm-12 pos-unset mb-0">
+                                <label class="col-sm-4 pos-unset col-form-label">Service:</label>
+                                <div class="col-sm-8 pos-unset"><input type="text" readonly class="form-control-plaintext" id="pinfo" name="pinfo" placeholder="Product Info" value="<?php echo $service[0]['service_name'] ?>" /></div>
                             </div>
 
-                            <div class="form-group row col-sm-12 mb-0">
-                                <label class="col-sm-4 col-form-label">User Name:</label>
-                                <div class="col-sm-8"><input type="text" readonly class="form-control-plaintext" id="fname" name="fname" placeholder="First Name" value="<?php echo $details[0]['name'] ?>" /></div>
+                            <div class="form-group row col-sm-12 pos-unset mb-0">
+                                <label class="col-sm-4 pos-unset col-form-label">User Name:</label>
+                                <div class="col-sm-8 pos-unset"><input type="text" readonly class="form-control-plaintext" id="fname" name="fname" placeholder="First Name" value="<?php echo $details[0]['name'] ?>" /></div>
                             </div>
 
-                            <div class="form-group row col-sm-12 mb-0">
-                                <label class="col-sm-4 col-form-label">Email ID:</label>
-                                <div class="col-sm-8"><input type="text" readonly class="form-control-plaintext" id="email" name="email" placeholder="Email ID" value="<?php echo $details[0]['email'] ?>" /></div>
+                            <div class="form-group row col-sm-12 pos-unset mb-0">
+                                <label class="col-sm-4 pos-unset col-form-label">Email ID:</label>
+                                <div class="col-sm-8 pos-unset"><input type="text" readonly class="form-control-plaintext" id="email" name="email" placeholder="Email ID" value="<?php echo $details[0]['email'] ?>" /></div>
                             </div>
 
-                            <div class="form-group row col-sm-12 mb-0">
-                                <label class="col-sm-4 col-form-label">Mobile/Cell Number:</label>
+                            <div class="form-group row col-sm-12 pos-unset mb-0">
+                                <label class="col-sm-4 pos-unset col-form-label">Mobile/Cell Number:</label>
                                 <div class="col-sm-8"><input type="text" readonly class="form-control-plaintext" id="mobile" name="mobile" placeholder="Mobile/Cell Number" value="<?php echo $details[0]['number'] ?>" /></div>
                             </div>
 
-                            <div class="form-group row col-sm-12">
+                            <div class="form-group row pos-unset col-sm-12">
                                 <input class="btn btn-info float-right ml-auto" type="submit" value="Pay" onclick="launchBOLT(); return false;" /></div>
                         </form>
                     </div>                    

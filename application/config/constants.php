@@ -91,3 +91,21 @@ defined('Work_in_Progress')      OR define('Work_in_Progress', 'Work in Progress
 defined('Work_Completed')      OR define('Work_Completed', 'Work Completed');
 define('ADMIN', 'Admin');
 define('USER', 'User');
+
+// Defining constants for differ addresses
+// banglore
+defined('BA') OR define('BA','The Business Centre 61 Wellfield Road, Roath Cardiff');
+defined('BP') OR define('BP','080-8758652 | +91 98765 43210');
+defined('BE') OR define('BE','contactus@email.com');
+// Delhi
+defined('DA') OR define('DA','The Business Centre 61 Wellfield Road, Roath Cardiff');
+defined('DP') OR define('DP','080-8758652 | +91 98765 43210');
+defined('DE') OR define('DE','contactus@email.com');
+//Singapore
+defined('SA') OR define('SA','The Business Centre 61 Wellfield Road, Roath Cardiff');
+defined('SP') OR define('SP','080-8758652 | +91 98765 43210');
+defined('SE') OR define('SE','contactus@email.com');
+//UAE
+defined('UA') OR define('UA','The Business Centre 61 Wellfield Road, Roath Cardiff');
+defined('UP') OR define('UP','080-8758652 | +91 98765 43210');
+defined('UE') OR define('UE','contactus@email.com');

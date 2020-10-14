@@ -3,7 +3,7 @@
     <!-- Outer Row -->
     <div class="row justify-content-center" style="height:100%;">
 
-      <div class="col-xl-10 col-lg-12 col-md-9"  style="align-self: center;">
+      <div class="col-xl-10 col-lg-12 col-md-9" style="align-self: center;">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
@@ -17,10 +17,10 @@
                   </div>
                   <form id="form1" method="post" action="<?php echo base_url('Login/validate') ?>">
                     <div class="form-group">
-                      <input type="text" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" name="email" class="form-control" aria-describedby="emailHelp" required placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control" placeholder="Password">
+                      <input type="password" name="password" class="form-control" required placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -43,8 +43,9 @@
                   <!-- <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div> -->
-                  <div class="text-center">
-                    <a class="small" href="<?php echo base_url('Login/register') ?>">Create an Account!</a>
+                  <div >
+                    <a class="small" id="register" href="<?php echo base_url('Login/register') ?>">Register</a>
+                    <a class="small float-right" id="fPassword" href="#">Forgot Password!</a>
                   </div>
                 </div>
               </div>
@@ -57,17 +58,17 @@
     </div>
 
   </div>
-  
+
   <!-- Message pop up -->
-<?php if (!empty($this->session->flashdata('error'))) { ?>
+  <?php if (!empty($this->session->flashdata('error'))) { ?>
     <script>
-        let error = '<?php echo $this->session->flashdata('error'); ?>';
-       Notiflix.Notify.Failure(error)
+      let error = '<?php echo $this->session->flashdata('error'); ?>';
+      Notiflix.Notify.Failure(error)
     </script>
-<?php } ?>
-<?php if (!empty($this->session->flashdata('success'))) { ?>
+  <?php } ?>
+  <?php if (!empty($this->session->flashdata('success'))) { ?>
     <script>
-        let error = '<?php echo $this->session->flashdata('success'); ?>';
-        Notiflix.Notify.Success(error)
+      let error = '<?php echo $this->session->flashdata('success'); ?>';
+      Notiflix.Notify.Success(error)
     </script>
-<?php } ?>
+  <?php } ?>

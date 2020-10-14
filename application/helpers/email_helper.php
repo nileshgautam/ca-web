@@ -16,6 +16,16 @@ $config = array(
 'charset' => 'iso-8859-1'
 );
 
+// $config = array(
+//     'protocol' => 'mail',
+//     'smtp_host' => 'techlyt.com',
+//     'smtp_port' => 465,
+//     'smtp_user' => 'info@techlyt.com',
+//     'smtp_pass' => 'peC5Z2nCs-,Y',
+//     'mailtype' => 'html',
+//     'charset' => 'iso-8859-1'
+//     );
+
 $CI->load->library('email', $config);
 $CI->email->set_newline("\r\n");
 $CI->email->initialize($config);

@@ -7,9 +7,9 @@
 			<div class="get-free">
 				<h5>Get Free Consultation Now</h5>
 				<form action="" class="action-form">
-					<div class="action-button-one col-sm-8">
-						<input type="text" placeholder="Your Email Address" class="input-style-2">
-						<a href="#" class="btn consult">Consult Online <img class="l-arraow" src="<?php echo base_url('assets/image/icon/next.png') ?>" alt="" height="12"> </a></div>
+					<div class="action-button-one col-sm-8 pos-unset">
+						<a class="input-style-2 consult-left col-sm-6 pos-unset"></a>
+						<a href="<?php echo base_url('ControlUnit/videoCunsultation') ?>" class="btn col-sm-6 pos-unset consult">Consult Online <i class="fa fa-angle-right" aria-hidden="true"></i> </a></div>
 				</form>
 			</div>
 		</div>
@@ -35,7 +35,7 @@ Or Grow your Company in -->
 					<?php if (isset($countries) && count($countries) > 0) {
 						for ($i = 0; $i < count($countries); $i++) { ?>
 							<div class="card">
-								<img src="<?php echo base_url('assets/image/cityimages/').$countries[$i]['country_image'] ?>" alt="">
+								<img src="<?php echo base_url('assets/image/cityimages/') . $countries[$i]['country_image'] ?>" alt="">
 								<div class="title"><?php echo $countries[$i]['country_name'] ?></div>
 							</div>
 					<?php }
@@ -80,7 +80,7 @@ Or Grow your Company in -->
 									if ($categories[$j]['id'] == $services[$i]['category_id']) { ?>
 										<div class="col-sm-4">
 											<div class="card">
-												<a href="<?php echo base_url('ControlUnit/service/') . base64_encode($services[$i]['service_id']) ?>">
+												<a href="<?php echo base_url('ControlUnit/service/') . base64_encode($services[$i]['serviceId']) ?>">
 													<img class="card-img-top" src="<?php echo base_url('assets/image/services/p1.PNG') ?>" alt="Card image cap"></a>
 												<div class="card-body">
 													<h6 class="card-title"><?php echo $services[$i]['service_name'] ?></h6>
@@ -160,9 +160,29 @@ Or Grow your Company in -->
 </section>
 <!-- Why choose us end -->
 
+<!-- About Us start -->
+<section class="container" id="aboutUs">
+<div class="row">
+		<div class="col-sm-12">
+			<h2 class="section-heading-primary">About Us</h2>
+		</div>
+	</div>
+	<div class="row" id="advantages">
+		<div class="col-sm-6">
+			<div class="about-img"></div>
+		</div>
+		<div class="col-sm-6">
+			<div class="content p-4">				
+				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- About Us End -->
 
 <!-- Our client start -->
-<section class="clients-container container">
+<section class="clients-container container mt-4">
 	<div class="row">
 		<div class="col-sm-12">
 			<h2 class="section-heading-primary">Our Clients</h2>
@@ -182,7 +202,7 @@ Or Grow your Company in -->
 
 
 <!-- Our testimonial start -->
-<section id="client-review" class="container">
+<section id="client-review" class="container mt-4">
 	<div class="row">
 		<div class="col-sm-12">
 			<h2 class="section-heading-primary">Customer Reviews</h2>
@@ -226,9 +246,9 @@ Or Grow your Company in -->
 		<div class="col-sm-12">
 			<div class="call-to-action">
 				<h2 class="">Ready to get started?</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, dolore.</p>
-				<a class="a-btn-primary" href="<?php echo base_url('ControlUnit/videoCunsultation')?>">Book Video Consultation</a>
-				<a class="a-btn-secondary" data-toggle="modal" data-target="#exampleModal">Contact Us</a>
+				<p>Would like to connect with an expert ?</p>
+				<a class="a-btn-primary" href="<?php echo base_url('ControlUnit/videoCunsultation') ?>">Book Video Consultation</a>
+				<a class="a-btn-secondary" href="<?php echo base_url('ControlUnit/contactUs') ?>">Contact Us</a>
 			</div>
 
 		</div>
@@ -238,7 +258,7 @@ Or Grow your Company in -->
 
 <!-- Contact us form modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -248,7 +268,7 @@ Or Grow your Company in -->
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="<?php echo base_url('ControlUnit/contactUs')?>" method="post">
+				<form action="<?php echo base_url('ControlUnit/contactUs') ?>" method="post">
 					<div class="md-form">
 						<i class="fa fa-user-o prefix grey-text"></i>
 						<input type="text" name="name" class="form-control validate" required placeholder="Your Name">
@@ -273,20 +293,21 @@ Or Grow your Company in -->
 			</form>
 		</div>
 	</div>
-</div>
+</div> -->
 </div>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5f72c050f0e7167d001490f5/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-
+	var Tawk_API = Tawk_API || {},
+		Tawk_LoadStart = new Date();
+	(function() {
+		var s1 = document.createElement("script"),
+			s0 = document.getElementsByTagName("script")[0];
+		s1.async = true;
+		s1.src = 'https://embed.tawk.to/5f72c050f0e7167d001490f5/default';
+		s1.charset = 'UTF-8';
+		s1.setAttribute('crossorigin', '*');
+		s0.parentNode.insertBefore(s1, s0);
+	})();
 </script>
 <!--End of Tawk.to Script-->

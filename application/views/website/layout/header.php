@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+  <title>Global Biz Setup</title>
   <!-- Required meta tags -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
@@ -25,7 +26,10 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
     }
   </style>
   <link rel="stylesheet" href="<?php echo base_url('assets/css/') ?>index.css">
-  <title><?php echo $title; ?></title>
+ <!-- baseUrl -->
+ <script>const BASE_URL = '<?php echo base_url() ?>';</script>
+ <!-- Ajax Post library -->
+ <script src="<?php echo base_url()?>adminAssets/js/MyScriptLibrary.js"></script>
 </head>
 
 <body>
@@ -35,23 +39,23 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
       <nav class="navbar">
 
         <div class="logo">
-          <img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com">
+          <a href="<?php echo base_url()?>" ><img src="<?php echo base_url('assets/') ?>image/logo.png" alt="ca.com"></a>
         </div>
         <ul>
           <?php if (isset($categories)) {
             for ($i = 0; $i < count($categories); $i++) { ?>
               <li class="dropdown show">
-                <a class="btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn" href="#" role="button" id="dropdownMenuLink"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <?php echo $categories[$i]['category'] ?>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left:<?php echo ($i * -8) . 'rem' ?>">
-                <div class="col-sm-12 row">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="left:-140px">
+                <div class="col-sm-12 row m-0">
                   <?php if (isset($gServices)) {
                     $subId = [];
                     foreach ($gServices as $key => $value) {
                       if ($categories[$i]['id'] == $value[0]['category_id']) {
                   ?>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6 items p-0">
                           <?php for ($j = 0; $j < count($value); $j++) {
                             if ($categories[$i]['id'] == $value[$j]['category_id']) {
                               $sbId =  $value[$j]['sub_category'];
@@ -59,7 +63,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
                               <?php if (!in_array($sbId, $subId)) {
                                 array_push($subId, $sbId);
                               ?>
-                                <span class="dropdown-item"><?php echo ucwords($value[$j]['sub_cat_name']); ?></span>
+                                <span class="dropdown-item p-0"><?php echo ucwords($value[$j]['sub_cat_name']); ?></span>
                               <?php } ?>
 
                               <a class="dropdown-item" href="<?php echo base_url('ControlUnit/service/') . base64_encode($value[$j]['serviceId']) ?>"><?php echo $value[$j]['service_name'] ?></a>
@@ -78,6 +82,7 @@ color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/B
           <?php
             }
           } ?>
+          <li class="dropdown"><a class="btn" href="<?php echo base_url('Login') ?>">Sign in</a></li>
         </ul>
       </nav>
     </div>
