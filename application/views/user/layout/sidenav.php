@@ -67,23 +67,23 @@
                                             </p>
                                             <span class="notification-time">30 minutes ago</span>
                                         </div>
-                                    </li>
-                                </ul>
-                            </li>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li class="user-profile header-notification">
-                                <a href="#!">
-                                    <img src="<?php echo base_url('usertheme/')?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
-                                    <span><?php echo $_SESSION['userInfo']['name'] ?></span>
-                                    <i class="ti-angle-down"></i>
-                                </a>
-                                <ul class="show-notification profile-notification">
-                                    <li>
-                                        <a href="<?php echo base_url('User/setting')?>">
-                                            <i class="ti-settings"></i> Settings
-                                        </a>
-                                    </li>
-                                    <!-- <li>
+                        <li class="user-profile header-notification">
+                            <a href="#!">
+                                <img src="<?php echo base_url('usertheme/') ?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
+                                <span><?php echo $_SESSION['userInfo']['name'] ?></span>
+                                <i class="ti-angle-down"></i>
+                            </a>
+                            <ul class="show-notification profile-notification">
+                                <li>
+                                    <a href="<?php echo base_url('User/setting') ?>">
+                                        <i class="ti-settings"></i> Settings
+                                    </a>
+                                </li>
+                                <!-- <li>
                                         <a href="user-profile.html">
                                             <i class="ti-user"></i> Profile
                                         </a>
@@ -94,66 +94,16 @@
                                             <i class="ti-lock"></i> Lock Screen
                                         </a>
                                     </li> -->
-                                    <li>
-                                        <a href="<?php echo base_url('logout')?>">
+                                <li>
+                                    <?php if ($_SESSION['userInfo']['role'] == 'User') { ?>
+                                        <a href="<?php echo base_url('User/logout') ?>">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
-
-                    <nav class="pcoded-navbar">
-                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                        <div class="pcoded-inner-navbar main-menu">
-
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="active">
-                                    <a href="<?php echo base_url('User')?>">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <i class="ti-user"></i>
-                                        <div class="media-body">
-                                            <h5 class="notification-user">Joseph William</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.
-                                            </p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li class="user-profile header-notification">
-                            <a href="#!">
-                                <img src="<?php echo base_url('usertheme/') ?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
-                                <i class="ti-angle-down"></i>
-                            </a>
-                            <ul class="show-notification profile-notification">
-                                <li>
-                                    <a href="<?php echo base_url('User/setting')?>">
-                                        <i class="ti-settings"></i> Settings
-                                    </a>
-                                </li>
-                          
-                                <li>
-                                    <a href="<?php echo base_url('logout') ?>">
-                                        <i class="ti-layout-sidebar-left"></i> Logout
-                                    </a>
+                                    <?php } else if ($_SESSION['userInfo']['role'] == 'Backend') { ?>
+                                        <a href="<?php echo base_url('BackendTeam/logout') ?>">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    <?php } ?>
                                 </li>
                             </ul>
                         </li>
@@ -169,41 +119,156 @@
                     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                     <div class="pcoded-inner-navbar main-menu">
 
-                        
+                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="active">
-                                <a href="#">
+                                <a href="<?php echo base_url('User') ?>">
                                     <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
+                            <li>
+                                <div class="media">
+                                    <i class="ti-user"></i>
+                                    <div class="media-body">
+                                        <h5 class="notification-user">Joseph William</h5>
+                                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.
+                                        </p>
+                                        <span class="notification-time">30 minutes ago</span>
+                                    </div>
+                                </div>
+                            </li>
+
                         </ul>
-                        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Menus
-                        </div>
-                        <ul class="pcoded-item pcoded-left-item">
-                            <li>
-                                <a href="<?php echo base_url('User/index') ?>">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Services</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('User/payment_receipts') ?>">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Payment/Receipts</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('User/helpdesk') ?>">
-                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Helpdesk</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-            
-                            </li>
+                        </li>
+
+                        <li class="user-profile header-notification">
+                            <a href="#!">
+                                <img src="<?php echo base_url('usertheme/') ?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">
+                                <span>John Doe</span>
+                                <i class="ti-angle-down"></i>
+                            </a>
+                            <ul class="show-notification profile-notification">
+                                <li>
+                                    <a href="<?php echo base_url('User/setting') ?>">
+                                        <i class="ti-settings"></i> Settings
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <?php if ($_SESSION['userInfo']['role'] == 'User') { ?>
+                                        <a href="<?php echo base_url('User/logout') ?>">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    <?php } else if ($_SESSION['userInfo']['role'] == 'Backend') { ?>
+                                        <a href="<?php echo base_url('BackendTeam/logout') ?>">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    <?php } ?>
+                                </li>
+                            </ul>
+                        </li>
                         </ul>
                     </div>
-                </nav>
+            </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+
+
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="active">
+                                    <a href="#">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Menus
+                        </div> -->
+                            <?php if ($_SESSION['userInfo']['role'] == 'User') { ?>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="<?php echo base_url('User/index') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Services</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('User/payment_receipts') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Payment/Receipts</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('User/helpdesk') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Helpdesk</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('User/recommendation') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-cube" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Recommendation</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('User/packages') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-cubes" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Packages</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('User/generic') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-th-large" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Generic</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('User/others') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Others</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
+                                </ul>
+                            <?php } else if ($_SESSION['userInfo']['role'] == 'Backend') { ?>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="<?php echo base_url('BackendTeam/index') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">User Documents</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url('BackendTeam/helpdesk') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Helpdesk</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
+                                </ul>
+                            <?php } ?>
+                        </div>
+                    </nav>

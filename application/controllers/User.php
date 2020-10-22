@@ -25,15 +25,15 @@ class User extends CI_Controller
         $id = $_SESSION['userInfo']['user_id'];
         $data['services'] = [];
         $data['user_services'] = $this->MainModel->selectAllFromTableOrderBy("user_services", 'id', 'DESC', array("user_id" => $id));
-        if(isset($data['user_services']) && !empty($data['user_services'])){
-        for ($i = 0; $i < count($data['user_services']); $i++) {
-            $sId = $data['user_services'][$i]['service_id'];
-            $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));
-            array_push($data['services'], array_merge($data['user_services'][$i], $result[0]));
+        if (isset($data['user_services']) && !empty($data['user_services'])) {
+            for ($i = 0; $i < count($data['user_services']); $i++) {
+                $sId = $data['user_services'][$i]['service_id'];
+                $result = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $sId));
+                array_push($data['services'], array_merge($data['user_services'][$i], $result[0]));
+            }
         }
-    }
         $data['fLogin'] = $_SESSION['userInfo']['fLogin'];
-        
+
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
         $this->load->view('user/user-dashboard', $data);
@@ -42,13 +42,6 @@ class User extends CI_Controller
 
     public function uploadFile()
     {
-        // my_print($_SESSION['userInfo']);
-        // my_print($_POST);
-        // my_print($_FILES);
-        // my_print($_POST["redirectUrl"]);
-
-
-
         if (isset($_FILES["file"]["name"]) && isset($_POST["service_id"])) {
             $reportPath = 'uploads/';
             $fileName = $_FILES['file']['name'];
@@ -58,17 +51,16 @@ class User extends CI_Controller
 
             $insertData = array(
                 'user_id' => $_SESSION['userInfo']['user_id'],
+                'main_service_id' => validateInput($_POST['mService_id']),
                 'service_id' => validateInput($_POST['service_id']),
                 'document_name' => validateInput($_POST['document_name']),
-                'Document_path' => $dirName . '/' . $fileName
+                'Document_path' => $dirName . '/' . $fileName,
+                'status' => 'U',
+                'reason' => ''
             );
             if (!file_exists($dirName)) {
                 mkdir($dirName, 0755, true);
             }
-            // if (!file_exists('./' . $BKPreportPath)) {
-            //     mkdir('./' . $BKPreportPath, 0755, true);
-            // }
-
 
             if (file_exists($dirName . '/' . $fileName)) {
                 $override = 'true';
@@ -76,11 +68,7 @@ class User extends CI_Controller
                     $fileName = date("Ymd_His") . $_FILES['file']['name'];
                     $insertData['Document_path'] = $dirName . '/' .  $fileName;
                     $upload_ready = true;
-                } //else {
-                // $this->session->set_flashdata('success', 'File already exist.');
-                // redirect($_POST['current_url']);
-                // echo json_encode(array('success' => true, "file_exist" => true, 'message' =>  "File already exist."));
-                // }
+                }
             } else {
                 $upload_ready = true;
             }
@@ -95,37 +83,58 @@ class User extends CI_Controller
                 if (!$this->upload->do_upload('file')) {
                     $this->session->set_flashdata("error",  $this->upload->display_errors());
                     redirect($_POST['current_url']);
-                    //     echo $this->upload->display_errors();
-                    // echo json_encode(array('success' => false, 'message' =>  $this->upload->display_errors()));
                 } else {
-                    $validate = $this->MainModel->selectAllFromWhere("uploaded_documents", array("user_id" => $insertData['user_id'], "service_id" => $insertData['service_id'], 'Document_path' => $insertData['Document_path']));
+                    $condition = array("user_id" => $insertData['user_id'], "service_id" => $insertData['service_id'], 'document_name' => $insertData['document_name']);
+                    $validate = $this->MainModel->selectAllFromWhere("uploaded_documents", $condition);
+
                     if (!$validate) {
                         $data = $this->upload->data();
                         $result = $this->MainModel->insertInto('uploaded_documents', $insertData);
                         $this->session->set_flashdata("success",  "Uploaded successfully.");
                         redirect($_POST['current_url']);
-                        // if ($result) {
-                        //     echo json_encode(array('success', 'Package successfully added'));
-                        // } else {
-                        //     echo json_encode(array('error', 'Package could not be add, Contact to IT'));
-                        // }
-                    } //else {
-                    //     echo json_encode(array('error', 'Selected service Already have packages'));
-                    // }
-
-                    //  echo json_encode(array('success' => true, 'message' =>  "Uploaded successfully."));
+                    } else {
+                        if (unlink($validate[0]['Document_path'])) {
+                            $data = $this->upload->data();
+                            $result = $this->MainModel->updateWhere('uploaded_documents', $insertData, $condition);
+                            $this->session->set_flashdata("success",  "Successfully updated");
+                            redirect($_POST['current_url']);
+                        }
+                    }
                 }
             }
-        } else {
-            $this->session->set_flashdata("success",  "Insufficient Information sent.");
-            redirect($_POST['current_url']);
-            // echo json_encode(array('success' => false, 'message' =>  "Insufficient Information sent."));
         }
     }
     public function logout()
     {
         $this->session->unset_userdata('userInfo');
         redirect("login");
+    }
+
+    public function updateUserService()
+    {
+        if (isset($_POST['id']) && !empty($_POST['id'])) {
+            $data = array(
+                'status' => 'Documents Uploaded',
+                'docSubmit' => 'true'
+            );
+            $condition = array('user_id' => $_SESSION['userInfo']['user_id'], 'service_id' => $_POST['id']);
+            $result = $this->MainModel->updateWhere('user_services', $data, $condition);
+            if ($result) {
+                $this->load->helper('email');
+                $to = BACKEND_EMAIL;
+                $sub = 'Documents Uploaded';
+                $mess = 'Dear Backend Team' . ',' . '<br>' . 'User ' . $_SESSION['userInfo']['user_id'] . ' has been uploaded his required document for his service , Please pay attention for the next process';
+                if (sentmail($to, $sub, $mess)) {
+                    echo json_encode(array('success', 'Successfully Uploaded'));
+                } else {
+                    echo json_encode(array('error', 'Message not sent to backend team, Contact to IT'));
+                }
+            } else {
+                echo json_encode(array('error', 'Could not be Uploaded, contact to IT'));
+            }
+        } else {
+            echo json_encode(array('error', 'Insufficient data found contact to IT'));
+        }
     }
 
     public function updatePassword()
@@ -177,7 +186,7 @@ class User extends CI_Controller
     public function upload_document($services_id = null)
     {
         $data['documents'] =  $this->getRequiredDocuments($services_id);
-        // print_r($data['documents']);die;
+        $data['docService'] = $this->MainModel->selectAllFromWhere("user_services", array("user_id" => $_SESSION['userInfo']['user_id'], "service_id" => base64_decode($services_id)));
         $data['uploadwedDocs'] = $this->MainModel->selectAllFromWhere("uploaded_documents", array("user_id" => $_SESSION['userInfo']['user_id']));
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
@@ -220,27 +229,67 @@ class User extends CI_Controller
 
     public function helpdesk($services_id = null)
     {
-        $condition = array('customer_id' => $_SESSION['userInfo']['user_id']);
-        $tableName = 'helpdesk';
-        $result = $this->MainModel->selectAllFromTableOrderBy($tableName, 'date_time', 'DESC', $condition);
-        $data['tickets'] = isset($result) ? $result : 0;
-
-
+        $data['tickets'] = $this->getTicketReplyMergeData();
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
         $this->load->view('user/help/helpdesk', $data);
         $this->load->view('user/layout/footer');
     }
 
-    public function view_ticket($services_id = null)
+    public function getTicketReplyMergeData()
     {
+        $condition = array('customer_id' => $_SESSION['userInfo']['user_id']);
+        $result = $this->MainModel->selectAllFromTableOrderBy('helpdesk', 'id', 'DESC', $condition);
+        $result1 = $this->MainModel->getAllUserTickets($_SESSION['userInfo']['user_id']);
+        $mergedData = [];
+        if ($result && $result1) {
+            for ($i = 0; $i < count($result); $i++) {
+                $mergedData = [];
+                for ($k = 0; $k < count($result1); $k++) {
+                    if ($result[$i]['ticket_id'] == $result1[$k]['ticket_no']) {
+                        array_push($mergedData, $result1[$k]);
+                    }
+                }
+                $result[$i]['replies'] = $mergedData;
+            }
+
+            return $result;
+        }
+        return 0;
+    }
+
+    public function view_ticket($ticket_id = null)
+    {
+        $id = base64_decode($ticket_id);
+        $data['replies'] = $this->getTicketGroupedData($id);
         $this->load->view('user/layout/header.php');
         $this->load->view('user/layout/sidenav.php');
-        $this->load->view('user/help/view-ticket');
+        $this->load->view('user/help/view-ticket', $data);
         $this->load->view('user/layout/footer.php');
     }
 
-    public function chatroom($services_id = null)
+    public function getTicketGroupedData($id)
+    {
+        $result = $this->MainModel->selectAllFromWhere("helpdesk", array("ticket_id" => $id));
+        $result1 = $this->MainModel->selectAllFromWhere("helpdesk_reply", array("ticket_no" => $id));
+        $groupedData = [];
+        if ($result && $result1) {
+            for ($i = 0; $i < count($result); $i++) {
+                $groupedData = [];
+                for ($k = 0; $k < count($result1); $k++) {
+                    if ($result[$i]['ticket_id'] == $result1[$k]['ticket_no']) {
+                        array_push($groupedData, $result1[$k]);
+                    }
+                }
+                $result[$i]['replies'] = $groupedData;
+            }
+
+            return $result;
+        }
+        return 0;
+    }
+
+    public function chatroom($ticket_id = null)
     {
         $this->load->view('user/layout/header.php');
         $this->load->view('user/layout/sidenav.php');
@@ -254,40 +303,114 @@ class User extends CI_Controller
         $data['user'] = $this->MainModel->selectAllFromTableOrderBy("users", 'id', 'ASC', array("user_id" => $id));
         $this->load->view('user/layout/header.php');
         $this->load->view('user/layout/sidenav.php');
-        $this->load->view('user/setting',$data);
+        $this->load->view('user/setting', $data);
+        $this->load->view('user/layout/footer.php');
+    }
+
+    public function recommendation()
+    {
+
+        $data['packages'] = $this->MainModel->selectAllFromTableOrderBy("services", 'service_name', 'ASC', array("category_id" => '2'));
+        //    echo "<pre>"; print_r($data['recomm']);
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/packages', $data);
+        $this->load->view('user/layout/footer.php');
+    }
+
+    public function packages()
+    {
+        $data['packages'] = $this->MainModel->getPackageServices();
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/packages', $data);
+        $this->load->view('user/layout/footer.php');
+    }
+
+    public function generic()
+    {
+
+        $data['packages'] = $this->MainModel->selectAllFromTableOrderBy("services", 'service_name', 'ASC', array("category_id" => '8'));
+        //    echo "<pre>"; print_r($data['recomm']);
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/packages', $data);
+        $this->load->view('user/layout/footer.php');
+    }
+
+    public function others()
+    {
+
+        $data['packages'] = $this->MainModel->selectAllFromTableOrderBy("services", 'service_name', 'ASC', array("category_id" => '3'));
+        //    echo "<pre>"; print_r($data['recomm']);
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('user/packages', $data);
         $this->load->view('user/layout/footer.php');
     }
 
     public function new_ticket($services_id = null)
     {
-        $upload_ready = false;
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST)) {
-
-
-                // inserting details
-
-                $subject = validateInput($_POST['subject']);
-                $description = validateInput($_POST['description']);
-                $tableName = 'helpdesk';
-
-                //Creating array for database 
-                $timestamp = date("Y-m-d H:i:s");
-
-                $ticketId = $this->MainModel->getNewIDorNo('helpdesk', "TCI0-");
-
-                $file_name = 'abcd';
-
-                $query = array('customer_id' => $_SESSION['userInfo']['user_id'], 'ticket_id' => $ticketId, 'subject' => $subject, 'query' => $description, 'files' => $file_name, 'date_time' => $timestamp);
-
+        if (isset($_POST['subject']) && isset($_POST['description']) && isset($_POST['type'])) {
+            $uploadFile = uploadFile($_FILES, './queryUploads');
+            if ($uploadFile[0] == 'success') {
+                $ticketId = $this->MainModel->getNewIDorNo('helpdesk', "TCK-");
+                $query = array(
+                    'customer_id' => $_SESSION['userInfo']['user_id'],
+                    'ticket_id' => $ticketId,
+                    'subject' => validateInput($_POST['subject']),
+                    'query' => validateInput($_POST['description']),
+                    'files' => $uploadFile[1],
+                    'date_time' => date("Y-m-d H:i:s"),
+                    'type' => 'query'
+                );
                 // Inserting Helpdesk data into the database;
-                $result = $this->MainModel->insertInto($tableName, $query);
+                $result = $this->MainModel->insertInto('helpdesk', $query);
 
-                if ($result > 0) {
-                    echo $response = json_encode(array('message' => 'Success! Ticket created', 'type' => 'success'), true);
+                if ($result) {
+                    $this->session->set_flashdata("success",  "Ticket Generated");
+                    redirect(base_url('User/helpdesk'));
                 } else {
-                    echo $response = json_encode(array('message' => 'Error! Opps... Contact IT', 'type' => 'danger'), true);
+                    $this->session->set_flashdata("error",  "Ticket could not be generated");
+                    redirect(base_url('User/helpdesk'));
+                }
+            }
+        } else {
+            $this->session->set_flashdata("error",  "Insufficient information found, Contact to IT");
+            redirect(base_url('User/helpdesk'));
+        }
+    }
+
+    public function reply()
+    {
+        if (isset($_POST['ticket_id']) && isset($_POST['reply'])) {
+            $query = array(
+                'ticket_no' => validateInput($_POST['ticket_id']),
+                'reply' => validateInput($_POST['reply']),
+                'timeStamp' => date("Y-m-d H:i:s"),
+            );
+
+            if ($_SESSION['userInfo']['role'] == 'User') {
+                $query['reply_by'] = 'user';
+            } else {
+                $query['reply_by'] = 'backend';
+            }
+            // Inserting Helpdesk data into the database;
+            $result = $this->MainModel->insertInto('helpdesk_reply', $query);
+
+            if ($result) {
+                $this->session->set_flashdata("success",  "Message Sent");
+                if ($_SESSION['userInfo']['role'] == 'User') {
+                    redirect(base_url('User/helpdesk'));
+                } else {
+                    redirect(base_url('BackendTeam/helpdesk'));
+                }
+            } else {
+                $this->session->set_flashdata("error",  "Message could no be sent, try again late.");
+                if ($_SESSION['userInfo']['role'] == 'User') {
+                    redirect(base_url('User/helpdesk'));
+                } else {
+                    redirect(base_url('BackendTeam/helpdesk'));
                 }
             }
         }

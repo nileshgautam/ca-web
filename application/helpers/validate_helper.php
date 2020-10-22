@@ -23,6 +23,11 @@ function removeSpecialSymbol($string)
     return strtolower($string);
 }
 
+function removeNBSP($string){
+    $string = str_replace('&nbsp;', '', $string); 
+    return $string;
+}
+
 function my_print($array = "")
 {
     var_dump($array);

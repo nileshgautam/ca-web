@@ -155,9 +155,9 @@
 				<li> <a style="cursor:no-drop;color:gray">Career</a> </li>
 				<li> <a href="<?php echo base_url('ControlUnit/businessCalendar')?>">Accounting Calendar</a> </li>
 				<li> <a href="<?php echo base_url('ControlUnit/contactUs')?>">Contact Us</a> </li>
-				<li> <a href="#">Privacy Policy</a> </li>
-				<li> <a href="#">Terms & Conditions</a> </li>
-				<li> <a href="#">Refund Policy</a> </li>
+				<li> <a href="<?php echo base_url('assets/policiesPdf/Privacy Policy.pdf')?>" target="_blank">Privacy Policy</a> </li>
+				<li> <a href="<?php echo base_url('assets/policiesPdf/TERMS OF USE.pdf')?>" target="_blank">Terms & Conditions</a> </li>
+				<li> <a href="<?php echo base_url('assets/policiesPdf/REFUND POLICY.pdf')?>" target="_blank">Refund Policy</a> </li>
 			</ul>
 		</nav>
 		</div>

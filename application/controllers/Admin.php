@@ -213,7 +213,7 @@ class Admin extends CI_Controller
 	public function saveSection()
 	{
 		if (isset($_FILES) && isset($_POST['service'])) {
-			$result = uploadFile($_FILES);
+			$result = uploadFile($_FILES,'./adminAssets/img/');
 			if ($result[0] == 'success') {
 				$image = '<div><img src="' . base_url('adminAssets/img/') . $result[1] . '" alt=""></div>';				
 				

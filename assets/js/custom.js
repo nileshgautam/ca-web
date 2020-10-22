@@ -128,5 +128,31 @@ $(document).ready(function () {
        
     })
 
+    $('#mainMenu-trigger').on('click',function(){
+        let flag = $('.lines-button.x').hasClass('toggle-active');
+        if(flag){
+            $('.lines-button.x').removeClass('toggle-active')
+            $('.navbar ul').removeClass('opened-menu')
+        }else{
+            $('.lines-button.x').addClass('toggle-active')
+            $('.navbar ul').addClass('opened-menu')
+        }
+        
+    });
+
+    // $('li.dropdown').on('click',function(){
+    //     alert('hello')
+    //     let flag = $('.dropdown-menu').hasClass('show');
+    //     if(flag){
+    //         // $('.dropdown-menu').removeClass('show');
+    //         // $('.dropdown-menu').css('display','none');
+           
+    //     }else{
+    //         // $('.dropdown-menu').css('display','none');
+    //     }
+    // })
+
+    
+
 })
 

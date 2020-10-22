@@ -31,7 +31,7 @@
                             <div class="py-2">
 
 
-                                <a href="<?php echo base_url('User/upload_document/') . base64_encode($services[$i]['service_id']) ?>" class="btn-sm offset-8 badge bg-success">
+                                <a href="<?php echo base_url('User/upload_document/') . base64_encode($services[$i]['service_id']) ?>" class="btn-sm float-right bg-success">
                                     <i class="ti-upload"></i> Upload document
                                 </a>
                             </div>

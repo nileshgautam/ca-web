@@ -109,3 +109,6 @@ defined('SE') OR define('SE','contactus@email.com');
 defined('UA') OR define('UA','The Business Centre 61 Wellfield Road, Roath Cardiff');
 defined('UP') OR define('UP','080-8758652 | +91 98765 43210');
 defined('UE') OR define('UE','contactus@email.com');
+
+//Emails costants
+defined('BACKEND_EMAIL') OR define('BACKEND_EMAIL','yatharth.sharma@gennextit.com');

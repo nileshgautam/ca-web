@@ -11,6 +11,8 @@ class Login extends ci_controller
 			redirect(base_url('Admin'));
 		} else if (isset($_SESSION['userInfo']) && !empty($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'User') {
 			redirect(base_url('User'));
+		}else if (isset($_SESSION['userInfo']) && !empty($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'Backend'){
+			redirect(base_url('BackendTeam'));
 		}
 	}
 	public function register()
@@ -96,6 +98,8 @@ class Login extends ci_controller
 					
 				} else if ($result['role'] == 'Admin') {
 					redirect(base_url('Admin'));
+				}else if ($result['role'] == 'Backend') {
+					redirect(base_url('BackendTeam'));
 				}
 			} else {
 				$this->session->set_flashdata('error', 'Please enter valid crediential');

@@ -14,7 +14,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-6" style="position:unset">
+	<div class="col-sm-6 banner-right" style="position:unset">
 		<div><img src="<?php echo base_url('assets/image/index/bg2.png') ?>" alt="" height="" width="100%"></div>
 	</div>
 </div>
@@ -89,9 +89,9 @@ Or Grow your Company in -->
 													if ($packages[0]['price'] != 0) { ?>
 														<label for="packages">Packages</label>
 														<form action="" class="p-form">
-															<input type="radio" class="mr-1" name="packages" id="" checked> ₹ <?php echo $packages[0]['price'] ?>
-															<input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[1]['price'] ?>
-															<input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[2]['price'] ?>
+															<span><input type="radio" class="mr-1" name="packages" id="" checked> ₹ <?php echo $packages[0]['price'] ?></span>
+															<span><input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[1]['price'] ?></span>
+															<span><input type="radio" class="mr-1" name="packages" id=""> ₹ <?php echo $packages[2]['price'] ?></span>
 															<div class="mt-2">
 																<small>Prices Inclusive of all taxes</small>
 																<a href="<?php echo base_url('ControlUnit/service/') . base64_encode($services[$i]['service_id']) ?>" class="c-btn">Get Started</a>
@@ -162,7 +162,7 @@ Or Grow your Company in -->
 
 <!-- About Us start -->
 <section class="container" id="aboutUs">
-<div class="row">
+	<div class="row">
 		<div class="col-sm-12">
 			<h2 class="section-heading-primary">About Us</h2>
 		</div>
@@ -172,7 +172,7 @@ Or Grow your Company in -->
 			<div class="about-img"></div>
 		</div>
 		<div class="col-sm-6">
-			<div class="content p-4">				
+			<div class="content p-4">
 				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
@@ -208,33 +208,37 @@ Or Grow your Company in -->
 			<h2 class="section-heading-primary">Customer Reviews</h2>
 		</div>
 	</div>
-	<div class="row" id="testimonial">
+	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner" id="testimonial">
+			<?php if (isset($clients) && count($clients) > 0) {
+				for ($i = 0; $i < count($clients); $i++) {
+					if (!empty($clients[$i]['head_name'])) { ?>
+						<div class="carousel-item <?php if($i==0){echo 'active';}?>" data-interval="5000">
+							<div class="col-sm-3">
+								<div class="card">
+									<img class="card-img-top" src="<?php echo base_url('assets/image/') . $clients[$i]['head-img'] ?>" alt="Card image cap">
+									<div class="card-body">
+										<h6 class="card-title"><?php echo $clients[$i]['head_name'] ?></h6>
+										<p class=""><?php echo $clients[$i]['designation'] ?></p>
 
-		<?php if (isset($clients) && count($clients) > 0) {
-			for ($i = 0; $i < count($clients); $i++) {
-				if (!empty($clients[$i]['head_name'])) { ?>
-					<div class="col-sm-3">
-						<div class="card">
-							<img class="card-img-top" src="<?php echo base_url('assets/image/') . $clients[$i]['head-img'] ?>" alt="Card image cap">
-							<div class="card-body">
-								<h6 class="card-title"><?php echo $clients[$i]['head_name'] ?></h6>
-								<p class=""><?php echo $clients[$i]['designation'] ?></p>
-
-								<p class="card-text"><?php echo $clients[$i]['message'] ?></p>
-							</div>
-							<div class="mb-2">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
+										<p class="card-text"><?php echo $clients[$i]['message'] ?></p>
+									</div>
+									<div class="mb-2">
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-		<?php }
-			}
-		} ?>
+			<?php }
+				}
+			} ?>
 
+
+		</div>
 	</div>
 </section>
 <!-- Our testimonial end -->

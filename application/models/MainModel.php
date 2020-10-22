@@ -279,5 +279,59 @@ class MainModel extends ci_model
 		}
 	}
 
+	public function getPackageServices(){
+		$this->db->select('*');
+		$this->db->from('service_packages SP');
+		$this->db->join('services s', 'SP.service_id = s.serviceId', 'left');				
+		$result = $this->db->get()->result_array();
+		if ($this->db->affected_rows()) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	public function getAllTicketsWithUser(){
+		$this->db->select('*');
+		$this->db->from('helpdesk H');
+		$this->db->join('users U', 'U.user_id = H.customer_id', 'left');
+		$this->db->order_by('H.id', 'DESC');				
+		$result = $this->db->get()->result_array();
+		if ($this->db->affected_rows()) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	public function getAllUserTickets($userId = null){
+		$this->db->select('*');
+		$this->db->from('helpdesk H');
+		$this->db->join('helpdesk_reply R', 'R.ticket_no = H.ticket_id', 'left');	
+		$this->db->where('H.customer_id', $userId);					
+		$result = $this->db->get()->result_array();
+		if ($this->db->affected_rows()) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	public function getAllUserReplyTickets(){
+		$this->db->select('*');
+		$this->db->from('helpdesk H');
+		$this->db->join('helpdesk_reply R', 'R.ticket_no = H.ticket_id', 'left');						
+		$result = $this->db->get()->result_array();
+		if ($this->db->affected_rows()) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+
+
+
+
 	
 }

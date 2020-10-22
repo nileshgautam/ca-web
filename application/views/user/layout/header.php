@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>CA Web User</title>
+    <title>GlobalBizSetup User</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,6 +30,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/style.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('usertheme/assets/css/jquery.mCustomScrollbar.css') ?>">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/ui/trumbowyg.min.css">
     <!-- jquery -->
     <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/jquery/jquery.min.js"></script>
     <!-- Notiflix for alert messages -->
@@ -38,10 +39,17 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>adminAssets/css/responsive.bootstrap4.min.css">
+    <!-- PayU Money Scripts -->
+    <!-- BOLT Sandbox/test //-->
+    <script id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt- color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/Bolt-Logo-e14421724859591.png"></script>
+    <!-- BOLT Production/Live //-->
+    <!-- <script id="bolt" src="https://checkout-static.citruspay.com/bolt/run/bolt.min.js" bolt-color="e34524" bolt-logo="http://boltiswatching.com/wp-content/uploads/2015/09/Bolt-Logo-e14421724859591.png"></script> -->
     <!-- base url -->
     <script>
         let baseUrl = "<?php echo base_url() ?>";
     </script>
+    <!-- Ajax Post library -->
+  <script src="<?php echo base_url() ?>adminAssets/js/MyScriptLibrary.js"></script>
 </head>
 
 <body>
