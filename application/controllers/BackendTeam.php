@@ -181,7 +181,7 @@ class BackendTeam extends CI_Controller
 
             return $result;
         }
-        return 0;
+        return $result;
     }
 
     public function chatroom($services_id = null)

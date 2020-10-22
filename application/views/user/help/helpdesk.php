@@ -56,8 +56,9 @@
                                                 
                                                     <h6><i class="fa fa-user-circle-o" aria-hidden="true"></i> Last comment</h6>
                                                     <?php
+                                                    if(isset($tickets[$i]['replies'][$i])){
                                                     $len = count($tickets[$i]['replies']) - 1;
-                                                    echo " " . trim(html_entity_decode($tickets[$i]['replies'][$len]['reply'])); ?>
+                                                    echo " " . trim(html_entity_decode($tickets[$i]['replies'][$len]['reply'])); }else{echo "Your query is in process...";}?>
                                                 </div>
                                                 <div class="mt-2">
                                                 <?php if (isset($tickets[$i]['name'])) { ?>

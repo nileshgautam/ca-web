@@ -262,6 +262,7 @@ class User extends CI_Controller
     {
         $id = base64_decode($ticket_id);
         $data['replies'] = $this->getTicketGroupedData($id);
+        // echo "<pre>";print_r($data['replies']);die;
         $this->load->view('user/layout/header.php');
         $this->load->view('user/layout/sidenav.php');
         $this->load->view('user/help/view-ticket', $data);
@@ -286,7 +287,7 @@ class User extends CI_Controller
 
             return $result;
         }
-        return 0;
+        return $result;
     }
 
     public function chatroom($ticket_id = null)

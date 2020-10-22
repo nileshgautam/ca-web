@@ -23,7 +23,7 @@
                         </div>
                         <div class="col">
                             <div class="comment-top">
-                                <h4>You <small class="text-muted f-w-400">replied</small></h4>
+                                <h4>User <small class="text-muted f-w-400">Query</small></h4>
                                 <p><i class="ti-time"></i><?php echo " " . $replies[0]['date_time']; ?></p>
                             </div>
                             <div class="comment-content">
@@ -35,7 +35,9 @@
                 </div>
                 <div class="card-body hd-detail hdd-user border-bottom bg-light">
 
-                    <?php $gReplies = $replies[0]['replies'];
+                    <?php 
+                    if(isset($replies[0]['replies'])){
+                        $gReplies = $replies[0]['replies'];
                     for ($i = 0; $i < count($gReplies); $i++) { ?>
                         <div class="row" style="margin-bottom:1.25rem">
                             <?php if ($gReplies[$i]['reply_by'] == 'backend') { ?>
@@ -57,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php } }?>
 
                 </div>
             </div>
