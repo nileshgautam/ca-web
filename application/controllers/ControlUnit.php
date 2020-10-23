@@ -127,6 +127,7 @@ class ControlUnit extends CI_Controller
 				'redirection' => validateInput($_POST['redirection']),
 
 			);
+			$this->MainModel->truncateTable('usertemp');
 			$result = $this->MainModel->insertInto('usertemp', $insertData);
 			if ($result) {
 				echo json_encode(array('success','data saved'));

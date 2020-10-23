@@ -1,4 +1,3 @@
-
 <div class="pcoded-content">
     <div class="row">
         <div class="col p-5">
@@ -23,7 +22,7 @@
                         </div>
                         <div class="col">
                             <div class="comment-top">
-                                <h4>User <small class="text-muted f-w-400">Query</small></h4>
+                                <h4>Query</h4>
                                 <p><i class="ti-time"></i><?php echo " " . $replies[0]['date_time']; ?></p>
                             </div>
                             <div class="comment-content">
@@ -35,31 +34,37 @@
                 </div>
                 <div class="card-body hd-detail hdd-user border-bottom bg-light">
 
-                    <?php 
-                    if(isset($replies[0]['replies'])){
+                    <?php
+                    if (isset($replies[0]['replies'])) {
                         $gReplies = $replies[0]['replies'];
-                    for ($i = 0; $i < count($gReplies); $i++) { ?>
-                        <div class="row" style="margin-bottom:1.25rem">
-                            <?php if ($gReplies[$i]['reply_by'] == 'backend') { ?>
-                                <div class="col-auto text-center">
-                                    <img class="media-object wid-60 img-radius mb-2" src="<?php echo base_url('usertheme/') ?>assets/images/helpdesk.png" alt="Generic placeholder image " height="50">
-                                </div>
-                            <?php } else { ?>
-                                <div class="col-auto text-center">
-                                    <img class="media-object wid-60 img-radius mb-2" src="<?php echo base_url('usertheme/') ?>assets/images/u.png" alt="Generic placeholder image" height="50">
-                                </div>
-                            <?php } ?>
-                            <div class="col">
-                                <div class="comment-top">
-                                    <h4><?php echo $gReplies[$i]['reply_by'] == 'backend' ? 'Helpdesk' : 'You' ?><small class="text-muted f-w-400"> replied</small></h4>
-                                    <p><i class="ti-time"></i><?php echo " " . $gReplies[$i]['timeStamp']; ?></p>
-                                </div>
-                                <div class="comment-content">
-                                    <?php echo removeNBSP(html_entity_decode($gReplies[$i]['reply'])); ?>
+                        for ($i = 0; $i < count($gReplies); $i++) { ?>
+                            <div class="row" style="margin-bottom:1.25rem">
+                                <?php if ($gReplies[$i]['reply_by'] == 'backend') { ?>
+                                    <div class="col-auto text-center">
+                                        <img class="media-object wid-60 img-radius mb-2" src="<?php echo base_url('usertheme/') ?>assets/images/helpdesk.png" alt="Generic placeholder image " height="50">
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="col-auto text-center">
+                                        <img class="media-object wid-60 img-radius mb-2" src="<?php echo base_url('usertheme/') ?>assets/images/u.png" alt="Generic placeholder image" height="50">
+                                    </div>
+                                <?php } ?>
+                                <div class="col">
+                                    <div class="comment-top">
+                                        <?php if ($_SESSION['userInfo']['role'] == 'User') { ?>
+                                        <h4><?php echo $gReplies[$i]['reply_by'] == 'backend' ? 'Helpdesk' : 'You' ?><small class="text-muted f-w-400"> replied</small></h4>
+                                        <p><i class="ti-time"></i><?php echo " " . $gReplies[$i]['timeStamp']; ?></p>
+                                    <?php } else { ?>
+                                        <h4><?php echo $gReplies[$i]['reply_by'] == 'backend' ? 'You' : 'User' ?><small class="text-muted f-w-400"> replied</small></h4>
+                                        <p><i class="ti-time"></i><?php echo " " . $gReplies[$i]['timeStamp']; ?></p>
+                                    <?php } ?>
+                                    </div>
+                                    <div class="comment-content">
+                                        <?php echo removeNBSP(html_entity_decode($gReplies[$i]['reply'])); ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } }?>
+                    <?php }
+                    } ?>
 
                 </div>
             </div>
@@ -121,21 +126,27 @@
 <!-- Attachment Modal -->
 <!-- Modal -->
 <div class="modal fade" id="attachmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="max-width: max-content !important;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel">Attachment</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <a href="<?php echo base_url('queryUploads/'). $replies[0]['files']?>" download>
-    <img src="<?php echo base_url('queryUploads/'). $replies[0]['files']?>" alt="Attachment">
-    </a>
-      </div>      
+    <div class="modal-dialog" role="document" style="max-width: max-content !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Attachment</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $msg = '<p>You did not select a file to upload.</p>';
+                if (isset($replies[0]['files']) && !empty($replies[0]['files']) && $replies[0]['files'] != $msg) { ?>
+                    <a href="<?php echo base_url('queryUploads/') . $replies[0]['files'] ?>" download>
+                        <img src="<?php echo base_url('queryUploads/') . $replies[0]['files'] ?>" alt="Attachment">
+                    </a>
+                <?php } else {
+                    echo "No attachment Found.";
+                } ?>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>

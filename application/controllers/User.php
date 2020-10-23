@@ -187,7 +187,7 @@ class User extends CI_Controller
     {
         $data['documents'] =  $this->getRequiredDocuments($services_id);
         $data['docService'] = $this->MainModel->selectAllFromWhere("user_services", array("user_id" => $_SESSION['userInfo']['user_id'], "service_id" => base64_decode($services_id)));
-        $data['uploadwedDocs'] = $this->MainModel->selectAllFromWhere("uploaded_documents", array("user_id" => $_SESSION['userInfo']['user_id']));
+        $data['uploadwedDocs'] = $this->MainModel->selectAllFromWhere("uploaded_documents", array("user_id" => $_SESSION['userInfo']['user_id'], "service_id" => base64_decode($services_id)));
         $this->load->view('user/layout/header');
         $this->load->view('user/layout/sidenav');
         $this->load->view('user/service-details', $data);
@@ -212,7 +212,7 @@ class User extends CI_Controller
                 $ids = "'" . implode("','", $packages[2]['servicesId']) . "'";
                 return array($data['documents'] = $this->CustomModel->getREquiredDocuments($ids), $packages[2]['servicesNames']);
             case 'single':
-                return array($data['documents'] = $this->CustomModel->getREquiredDocuments($data['services'][0]['serviceId']), $data['documents'] = $data['services']);
+                return array($data['documents'] = $this->CustomModel->getREquiredDocuments("'" . $data['services'][0]['serviceId'] . "'"), $data['documents'] = $data['services']);
                 break;
         }
     }
@@ -352,29 +352,29 @@ class User extends CI_Controller
 
     public function new_ticket($services_id = null)
     {
+        
         if (isset($_POST['subject']) && isset($_POST['description']) && isset($_POST['type'])) {
             $uploadFile = uploadFile($_FILES, './queryUploads');
-            if ($uploadFile[0] == 'success') {
-                $ticketId = $this->MainModel->getNewIDorNo('helpdesk', "TCK-");
-                $query = array(
-                    'customer_id' => $_SESSION['userInfo']['user_id'],
-                    'ticket_id' => $ticketId,
-                    'subject' => validateInput($_POST['subject']),
-                    'query' => validateInput($_POST['description']),
-                    'files' => $uploadFile[1],
-                    'date_time' => date("Y-m-d H:i:s"),
-                    'type' => 'query'
-                );
-                // Inserting Helpdesk data into the database;
-                $result = $this->MainModel->insertInto('helpdesk', $query);
 
-                if ($result) {
-                    $this->session->set_flashdata("success",  "Ticket Generated");
-                    redirect(base_url('User/helpdesk'));
-                } else {
-                    $this->session->set_flashdata("error",  "Ticket could not be generated");
-                    redirect(base_url('User/helpdesk'));
-                }
+            $ticketId = $this->MainModel->getNewIDorNo('helpdesk', "TCK-");
+            $query = array(
+                'customer_id' => $_SESSION['userInfo']['user_id'],
+                'ticket_id' => $ticketId,
+                'subject' => validateInput($_POST['subject']),
+                'query' => validateInput($_POST['description']),
+                'files' => $uploadFile[1],
+                'date_time' => date("Y-m-d H:i:s"),
+                'type' => 'query'
+            );
+            // Inserting Helpdesk data into the database;
+            $result = $this->MainModel->insertInto('helpdesk', $query);
+
+            if ($result) {
+                $this->session->set_flashdata("success",  "Ticket Generated");
+                redirect(base_url('User/helpdesk'));
+            } else {
+                $this->session->set_flashdata("error",  "Ticket could not be generated");
+                redirect(base_url('User/helpdesk'));
             }
         } else {
             $this->session->set_flashdata("error",  "Insufficient information found, Contact to IT");

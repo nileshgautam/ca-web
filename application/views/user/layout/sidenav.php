@@ -48,29 +48,38 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
+                        <?php if ($_SESSION['userInfo']['role'] == 'User') {
+                            $id = $_SESSION['userInfo']['user_id'];
+                            $result = $this->MainModel->selectAllFromWhere("uploaded_documents", array("user_id" => $id, 'status' => 'R'));
+                            $notifications = isset($result) ? count($result) : 0;
+                            // echo "<pre>";print_r($result);die;
+                         ?>
                         <li class="header-notification">
                             <a href="#!">
                                 <i class="ti-bell"></i>
-                                <span class="badge bg-c-pink"></span>
+                                <span class="badge bg-c-pink"><?php echo isset($notifications) ? $notifications : 0  ?></span>
                             </a>
                             <ul class="show-notification">
                                 <li>
                                     <h6>Notifications</h6>
                                     <label class="label label-danger">New</label>
                                 </li>
-                                <li>
-                                    <div class="media">
-                                        <i class="ti-user"></i>
-                                        <div class="media-body">
-                                            <h5 class="notification-user">John Doe</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.
-                                            </p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                </li>
+                                <?php if (isset($result) && $notifications > 0) {
+                                    for ($i = 0; $i < $notifications; $i++) { 
+                                        $service = $this->MainModel->selectAllFromWhere("services", array("serviceId" => $result[$i]['main_service_id']));?>
+                                        <li style="padding:5px 20px;">
+                                            <div class="media">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                                <div class="media-body ml-2">
+                                                    <p class="mb-0 fs-14"><?php echo $result[$i]['document_name'] . ' Rejected for the service ' . $service[0]['service_name'] ?></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                <?php }
+                                } ?>
                             </ul>
                         </li>
-
+                            <?php } ?>
                         <li class="user-profile header-notification">
                             <a href="#!">
                                 <img src="<?php echo base_url('usertheme/') ?>assets/images/user.png" class="img-radius" alt="User-Profile-Image">

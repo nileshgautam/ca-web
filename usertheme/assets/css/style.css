@@ -22053,3 +22053,15 @@ table.footable-paging-center>tfoot>tr.footable-paging>td {
     .excerpt {
         cursor: pointer;
     }
+
+    .header-navbar .navbar-wrapper .navbar-container .badge {
+        border-radius: 100px;
+        right: 5px !important;
+        position: absolute;
+        top: 7px !important;
+        padding: 4px;
+    }
+
+    .fs-14{
+        font-size: 14px;
+    }
