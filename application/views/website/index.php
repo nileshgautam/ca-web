@@ -8,8 +8,8 @@
 				<h5>Get Free Consultation Now</h5>
 				<form action="" class="action-form">
 					<div class="action-button-one col-sm-8 pos-unset">
-						<a class="input-style-2 consult-left col-sm-6 pos-unset"></a>
-						<a href="<?php echo base_url('ControlUnit/videoCunsultation') ?>" class="btn col-sm-6 pos-unset consult">Consult Online <i class="fa fa-angle-right" aria-hidden="true"></i> </a></div>
+						<a class=" consult-left col-sm-6 pos-unset"></a>
+						<a href="<?php echo base_url('ControlUnit/videoCunsultation') ?>" class="btn col-sm-6 input-style-2 pos-unset consult">Consult Online <i class="fa fa-angle-right" aria-hidden="true"></i> </a></div>
 				</form>
 			</div>
 		</div>

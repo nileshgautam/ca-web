@@ -33,7 +33,7 @@
         <script src="<?php echo base_url() ?>adminAssets/js/responsive.bootstrap4.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('usertheme/') ?>assets/js/custom.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/trumbowyg.min.js"></script>
-
+        <script src="<?php echo base_url('usertheme/assets/js/calender.js')?>"></script>
         <!-- Message pop up -->
         <?php if (!empty($this->session->flashdata('error'))) { ?>
                 <script>

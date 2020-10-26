@@ -17,7 +17,7 @@
                           <!-- /.card-header -->
                           <div class="card-body">
 
-                              <table id="userDocsTable" class="table table-bordered">
+                              <table id="userDocsTable" class="table table-bordered table-responsive">
                                   <thead>
                                       <tr>                                          
                                           <th>User Id</th>

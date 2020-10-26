@@ -330,4 +330,23 @@ class BackendTeam extends CI_Controller
             echo json_encode(array('error', 'Insufficient information found, contact to IT'));
         }
     }
+
+    public function slotBook(){
+        $this->load->view('user/layout/header.php');
+        $this->load->view('user/layout/sidenav.php');
+        $this->load->view('backend/timeSlot');
+        $this->load->view('user/layout/footer.php');
+    }
+
+    public function saveTimeSlot(){
+        if(isset($_POST['fDate']) && isset($_POST['tDate']) && isset($_POST['fTime']) && isset($_POST['tTime'])){
+            echo "<pre>";
+            print_r($_POST);
+            die;
+        }else{
+            $this->session->set_flashdata("error",  "Insuffiecient information found, Contact to IT");
+                redirect(base_url('BackendTeam/slotBook')); 
+        }
+        
+    }
 }

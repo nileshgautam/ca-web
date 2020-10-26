@@ -277,6 +277,15 @@
                                         </a>
 
                                     </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url('BackendTeam/slotBook') ?>">
+                                            <span class="pcoded-micon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Time Slot</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+
+                                    </li>
                                 </ul>
                             <?php } ?>
                         </div>

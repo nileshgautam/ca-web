@@ -61,7 +61,7 @@
     }
 
     .navbar .logo {
-    	margin-left: 30px;
+    	/* margin-left: 30px; */
     	/* margin-top: -16px; */
     }
 
@@ -1054,6 +1054,17 @@
     	display: none;
     }
 
+    .side-images {
+    	background-size: contain !important;
+    	height: 100%;
+    	width: auto;
+    	background-repeat: no-repeat !important;
+    }
+
+    #mobPackTab .nav.nav-tabs {
+    	display: none;
+    }
+
     /* Phone View Css */
 
     @media (max-width: 991px) {
@@ -1239,7 +1250,7 @@
     		padding: 15px !important;
     	}
 
-    	
+
     	.Container .container .p-30 .col-sm-2,
     	.Container .container .p-30 .col-sm-10 {
     		display: inline-block;
@@ -1247,55 +1258,185 @@
 
     	.Container .container .p-30 .col-sm-2 {
     		width: 25%;
-		}
-		
-		.Container .container .p-30 .col-sm-10{
-			width: 75%;
-		}
+    	}
 
-		.Container .container .p-30 .col-sm-8 .offset-9{
-			margin-left: 0px !important;
-			margin-top: 10px !important;
-		}
-		.Container .container .p-30 .col-sm-8,
-		.Container .container .p-30 .col-sm-4{
-			margin-left: auto;
-			margin-right: auto;
-			text-align: center;
-		}
-		.footer-address-section{
-			padding: 10px 0;
-		}
+    	.Container .container .p-30 .col-sm-10 {
+    		width: 75%;
+    	}
 
-		.address-title-primary{
-			margin-left: 0;
-			font-size: 16px;
-		}
+    	.Container .container .p-30 .col-sm-8 .offset-9 {
+    		margin-left: 0px !important;
+    		margin-top: 10px !important;
+    	}
 
-		.address-div .row .col-sm-2{
-			display: inline-block;
-			width: 10%;
+    	.Container .container .p-30 .col-sm-8,
+    	.Container .container .p-30 .col-sm-4 {
+    		margin-left: auto;
+    		margin-right: auto;
+    		text-align: center;
+    	}
 
-		}
+    	.footer-address-section {
+    		padding: 10px 0;
+    	}
 
-		.fa.fs-25{
-			font-size: 14px;
-		}
+    	.address-title-primary {
+    		margin-left: 0;
+    		font-size: 16px;
+    	}
 
-		.address-div .f-13{
-			font-size: 12px;
-		}
+    	.address-div .row .col-sm-2 {
+    		display: inline-block;
+    		width: 10%;
 
-		.address-div .row .col-sm-10{
-			display: inline-block;
-			width: 90%;
-		}
+    	}
 
-		.address-div .row{
-			margin-bottom: 0.5rem;
-		}
+    	.fa.fs-25 {
+    		font-size: 14px;
+    	}
 
-		.footer-nav ul{
-			display: block !important;
-		}
+    	.address-div .f-13 {
+    		font-size: 12px;
+    	}
+
+    	.address-div .row .col-sm-10 {
+    		display: inline-block;
+    		width: 90%;
+    	}
+
+    	.address-div .row {
+    		margin-bottom: 0.5rem;
+    	}
+
+    	.footer-nav ul {
+    		display: block !important;
+    	}
+
+    	.key_highlight .col-sm-4,
+    	.key_highlight .col-sm-1,
+    	.key_highlight .col-sm-10 {
+    		width: auto;
+    	}
+
+    	.service_heading h2 {
+    		font-size: 16px;
+    		font-weight: bold;
+    	}
+
+    	.service_heading p {
+    		font-size: 14px;
+    		text-align: justify;
+    	}
+
+    	.business-services-info {
+    		max-height: 250px;
+    	}
+
+    	#packages {
+    		overflow-x: auto;
+    		width: auto;
+    		flex-wrap: nowrap;
+    	}
+
+    	#packages .package {
+    		margin: 5px 5px 0 5px;
+    	}
+
+    	#packages .col-sm-4 {
+    		width: 230px;
+    		padding: 0;
+    	}
+
+    	#packages .col-sm-1,
+    	#packages .col-sm-5,
+    	#packages .col-sm-10 {
+    		width: auto;
+    	}
+
+    	.form-section {
+    		z-index: 9;
+    		margin-top: 15px;
+    	}
+
+    	.about-service .row.mt-210 {
+    		margin-top: 778px;
+    	}
+
+    	.content h4,
+    	.content h2 {
+    		font-size: 16px;
+    		font-weight: bold;
+    	}
+
+    	.content p {
+    		font-size: 14px;
+    	}
+
+    	#services-feature .row .py-5 {
+    		padding: 0 2rem !important;
+    	}
+
+    	#services-feature h2.section-heading-primary {
+    		font-size: 16px;
+    	}
+
+    	#services-feature .card {
+    		display: inline-block;
+    		margin-bottom: 0px !important;
+    	}
+
+    	#services-feature .card .card-img-top {
+    		display: inline-block;
+    		vertical-align: top;
+    		width: 27%;
+    		height: 107px;
+    	}
+
+    	#services-feature .card-body {
+    		width: 68%;
+    		display: inline-block;
+    	}
+
+    	#services-feature .card-body .card-title {
+    		font-size: 16px;
+    		text-align: left;
+    	}
+
+    	#services-feature .card-body .card-text {
+    		font-size: 14px;
+    		text-align: justify;
+    	}
+
+    	#mobPackTab .nav.nav-tabs {
+    		display: flex;
+    	}
+
+    	#mobPackTab {
+    		margin-top: 33px;
+    	}
+
+    	#mobPackTab .nav.nav-tabs li a:hover {
+    		color: black !important;
+    		background-color: white !important;
+    		border-radius: 0rem !important;
+    	}
+
+    	.calender-form select.form-control {
+    		width: auto !important;
+    	}
+
+    	.details-show .row {
+    		margin-left: 0;
+    		margin-right: 0;
+    	}
+
+    	.details-show .row span:nth-child(1) {
+    		width: 50px;
+    		height: 30px;
+    	}
+
+    	.details-show .row span:nth-child(2) {
+    		width: auto;
+
+    	}
     }

@@ -23,11 +23,11 @@
                 </table>
 
                 <div class="form-inline p-3">
-                    <button class="btn btn-outline-primary col-sm-6 mr-3" style="max-width:48%" id="previous" onclick="previous()">Previous Month</button>
-                    <button class="btn btn-outline-primary col-sm-6" style="max-width:48%" id="next" onclick="next()">Next Month</button>
+                    <button class="btn btn-outline-primary col-sm-6 mr-3" style="max-width:47%" id="previous" onclick="previous()">Previous Month</button>
+                    <button class="btn btn-outline-primary col-sm-6" style="max-width:47%" id="next" onclick="next()">Next Month</button>
                 </div>
 
-                <form class="form-inline container">
+                <form class="form-inline container calender-form">
 
                     <label class="lead mr-2 ml-2" for="month">Jump To: </label>
                     <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
@@ -93,7 +93,7 @@
                 <br />
             </div>
         </div>
-        <div class="col-sm-4 pos-unset mt-3">
+        <div class="col-sm-4 pos-unset mt-3 details-show">
             <div class="row pos-unset">
                 <span class="bg-warning pos-unset d-flex col-sm-1" height='20' width='20'></span>
                 <span class="col-sm-11 pos-unset">Gst File Return Date</span>
